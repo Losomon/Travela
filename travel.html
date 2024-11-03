@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner</title>
+    <link rel="stylesheet" href="Travel.css">
+    <script  type=""></script> <!-- Include your login logic script -->
+</head>
+<body>
+    <header class="header">
+        <h1>Travel Planner</h1>
+    </header>
+    
+    <p>Your non-stop destination for trip planning, flight booking, and accommodations.</p>
+    
+    <nav class="current">
+        <a href="i.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="service.html">Services</a>        
+    </nav>
+    
+    <br>
+    
+    <nav class="nav-bar">
+        <a href="#Trip Planner">Plan A Trip</a>
+        <a href="#flight">Flight</a>
+        <a href="#accommodations">Accommodations</a>
+    </nav>
+
+    <section id="Trip Planner" class="section">
+        <h2>Plan Your Trip</h2>
+        <label for="Destination">Destination:</label>
+        <input type="text" id="Destination" placeholder="Enter destination">
+        <br>
+        <label for="Start Date">Start Date:</label>
+        <input type="date" id="Start Date">
+        <br>
+        <label for="End Date">End Date:</label>
+        <input type="date" id="End Date">
+        <label for="Travelers">Number of Travelers:</label>
+        <input type="number" id="Travelers" placeholder="Enter number of travelers" min="1" max="20">
+        
+        <label for="TravelStyle">Travel Style:</label>
+        <select id="TravelStyle">
+            <option value="budget">Budget</option>
+            <option value="family">Family</option>
+            <option value="luxury">Luxury</option>
+            <option value="adventure">Adventure</option>
+            <option value="romantic">Romantic</option>
+        </select>
+        <button onclick="PlanTrip()">Plan Trip</button>
+    </section>
+
+    <section id="flight" class="section">
+        <h2>Book For Flight</h2>
+        <label for="From">From:</label>
+        <input type="text" id="From" placeholder="Enter Origin">
+        <br>
+        <label for="To">To:</label>
+        <input type="text" id="To" placeholder="Enter Destination">
+        <br>
+        <label for="Flight Date">Flight Date:</label>
+        <input type="date" id="Flight Date" placeholder="Flight Date">
+        <br>
+        <br>
+        <button onclick="Searchflight()">Search Flights</button>
+    </section>
+
+    <section id="Accommodations" class="section">
+        <h2>Find Accommodations</h2>
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Enter location">
+        <br>
+        <label for="RoomType">Room Type:</label>
+        <select id="RoomType">
+            <option value="single">Single Room</option>
+            <option value="double">Double Room</option>
+            <option value="suite">Suite</option>
+            <option value="family">Family Room</option>
+        </select>
+
+        <label for="Amenities">Select Amenities:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="wifi" value="wifi">
+            <label for="wifi">Free WiFi</label>
+            <input type="checkbox" id="breakfast" value="breakfast">
+            <label for="breakfast">Breakfast Included</label>
+            <input type="checkbox" id="pool" value="pool">
+            <label for="pool">Swimming Pool</label>
+            <input type="checkbox" id="parking" value="parking">
+            <label for="parking">Free Parking</label>
+        </div>
+        <br>
+        <button onclick="findAccommodation()">Find Accommodations</button>
+    </section>
+
+    <!-- Attractions Section -->
+    <section id="Attractions" class="section">
+        <h2>Top Attractions</h2>
+        <p>Explore these amazing attractions to enhance your travel experience!</p>
+        <div class="attraction-container">
+            <div class="attraction">
+                <img src="modern-tokyo-street-background.jpg" alt="Attraction 1" class="attraction-image">
+                <h3>Attraction Title 1</h3>
+                <p>Brief description of the attraction highlighting what to see and do.</p>
+            </div>
+            <div class="attraction">
+                <img src="view-building-architecture-london-city.jpg" alt="Attraction 2" class="attraction-image">
+                <h3>Attraction Title 2</h3>
+                <p>Brief description of the attraction highlighting what to see and do.</p>
+            </div>
+            <div class="attraction">
+                <img src="city-sparkles-light-streets-night.jpg" alt="Attraction 3" class="attraction-image">
+                <h3>Attraction Title 3</h3>
+                <p>Brief description of the attraction highlighting what to see and do.</p>
+            </div>
+            <!-- Add more attractions as needed -->
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="Videos" class="section">
+        <h2>Travel Videos</h2>
+        <p>Explore our collection of videos to inspire your next adventure!</p>
+        <div class="video-container">
+            <div class="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/3SsK-cxlj_w?si=0YJ7VIKyoBndYmIA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Discover the Hidden Gems of Japan</h3>
+                <p>Join us on a journey through Japan's lesser-known attractions, from serene temples to breathtaking natural landscapes.</p>
+            </div>
+    
+            <div class="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/exI_hD_4jAM?si=zRQYJ2Wx9qcqD8ow" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Adventure Awaits in New Zealand</h3>
+                <p>Explore the thrilling adventures New Zealand has to offer, from skydiving to hiking through lush national parks.</p>
+            </div>  
+
+            <div class="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/n-J5UN2cAgs?si=QQlXSs3vZ6cVOzuv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>A Taste of Italy: Culinary Delights</h3>
+            <p>Indulge in the flavors of Italy as we explore local markets and traditional dishes that showcase Italian cuisine.</p>
+        </div> 
+            <!-- Add more videos as needed -->
+            <div class="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/d__yZFBX6UI?si=k-PqIXVynCWt0dl2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                
+                <h3>Exploring the Wonders of South America</h3>
+                <p>Travel through South America and experience its diverse cultures, breathtaking scenery, and vibrant cities.</p>
+            </div>
+
+            <div class="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/NUNsSUf25HI?si=ilAXs3bB4BTvZF8l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                <h3>Relaxation in the Maldives</h3>
+                <p>Escape to the paradise of the Maldives and explore crystal-clear waters and breathtaking sunsets.</p>
+            </div>
+        
+    </section>
+
+    <footer>
+        <p>Travel Planner © 2024. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

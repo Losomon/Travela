@@ -1,0 +1,62 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card">
+            <h2>Register</h2>
+            <form onsubmit="return validatePassword()">
+                <div class="input-box">
+                    <input type="text" name="surname" required>
+                    <label>Surname</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="first_name" required>
+                    <label>First Name</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="middle_name" required>
+                    <label>Middle Name</label>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="tel" required>
+                    <label>Phone Number</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" id="password" required>
+                    <label>Input Password</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="confirm_password" id="confirm_password" required>
+                    <label>Confirm Password</label>
+                </div>
+                <button type="submit">Register</button>
+                <div class="already-registered">
+                    <p>Already registered? <a href="login.html">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
+

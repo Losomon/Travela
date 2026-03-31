@@ -1,0 +1,163 @@
+<!-- Header Start -->
+<div class="container-fluid bg-breadcrumb" style="background: linear-gradient(135deg, #0a2342 0%, #19335c 100%);">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">Holiday Tour</h3>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="tour.html">Tours</a></li>
+            <li class="breadcrumb-item active text-white">Holiday Tour</li>
+        </ol>
+    </div>
+</div>
+<!-- Header End -->
+
+<style>
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    .card.box {
+        background: linear-gradient(135deg, rgba(30,60,114,0.92) 0%, rgba(42,82,152,0.92) 100%);
+        backdrop-filter: blur(8px) saturate(120%);
+        -webkit-backdrop-filter: blur(8px) saturate(120%);
+        border-radius: 24px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 8px 32px rgba(30,60,114,0.18), 0 1.5px 8px 0 rgba(0,0,0,0.10);
+        border: 1.5px solid rgba(255,255,255,0.10);
+        transition: box-shadow 0.4s, transform 0.4s, border 0.4s;
+        color: #f3f6fa;
+        display: flex;
+        flex-direction: column;
+        min-height: 420px;
+    }
+    .card.box::before, .card.box::after {
+        content: '';
+        position: absolute;
+        top: 10%;
+        width: 28px;
+        height: 80%;
+        border-radius: 50px;
+        filter: blur(16px);
+        opacity: 0.22;
+        z-index: 1;
+        pointer-events: none;
+        transition: opacity 0.4s, filter 0.4s;
+    }
+    .card.box::before {
+        left: -20px;
+        background: radial-gradient(circle, #4ecdc4 60%, transparent 100%);
+    }
+    .card.box::after {
+        right: -20px;
+        background: radial-gradient(circle, #ff4d4f 60%, transparent 100%);
+    }
+    .card.box:hover {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 16px 48px 0 rgba(76,205,196,0.18), 0 15px 40px rgba(0,0,0,0.25);
+        border: 2.5px solid #4ecdc4;
+    }
+    .card.box:hover::before, .card.box:hover::after {
+        opacity: 0.38;
+        filter: blur(24px);
+    }
+    .ribbon {
+        position: absolute;
+        top: 15px;
+        left: -10px;
+        background: linear-gradient(90deg, #4ecdc4 60%, #ffb3b3 100%);
+        color: #fff;
+        padding: 4px 16px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transform: rotate(-45deg);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        z-index: 3;
+        letter-spacing: 1px;
+    }
+    .floating-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.2rem;
+        background: rgba(255,255,255,0.12);
+        padding: 6px;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        color: #4ecdc4;
+        z-index: 3;
+        transition: background 0.3s, color 0.3s;
+    }
+    .card.box:hover .floating-icon {
+        background: #4ecdc4;
+        color: #fff;
+    }
+    .card-content img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 0 0 4px rgba(76,205,196,0.08);
+        margin-bottom: 10px;
+    }
+    .card-content {
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .card-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    .card-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #e0e6ed;
+    }
+    .btn-primary {
+        background: linear-gradient(45deg, #4ecdc4, #1e3c72);
+        border: none;
+        padding: 12px 30px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        color: #fff;
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(45deg, #19335c, #4ecdc4);
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .card-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .card.box {
+            margin: 10px auto;
+            max-width: 100%;
+        }
+    }
+</style> 
+
+<!-- Example for one card -->
+<div class="card box">
+    <span class="ribbon">Top Pick</span>
+    <span class="floating-icon"><i class="fa fa-star"></i></span>
+    <div class="card-content">
+        <img src="img/explore-holiday-tour-1.jpg" class="img-fluid" alt="Mountain Retreat">
+        <h2 class="card-title">Mystic Mountain Retreat</h2>
+        <p class="card-text">Escape to alpine tranquility with crisp air, cozy lodges, and panoramic peaks that take your breath away.</p>
+        <a href="booking.html" class="btn btn-primary btn-lg rounded-pill px-4 mt-3">Book Now</a>
+    </div>
+</div>
+
+<!-- Repeat for each card --> 

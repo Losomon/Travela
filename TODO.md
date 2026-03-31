@@ -1,11 +1,15 @@
-# GitHub Push Plan for Travela
+# Travela Go Backend TODO
 
-## Steps:
-1. [ ] Create .gitignore
-2. [ ] git init
-3. [ ] git add .
-4. [ ] git commit -m \"Initial commit\"
-5. [ ] git branch -M main
-6. [ ] git remote add origin https://github.com/Losomon/Travela.git
-7. [ ] git push -u origin main
-8. [ ] Update TODO.md with completion
+## Status: Backend Ready ✅
+
+- [x] Plan approved
+- [x] Create backend/go.mod  
+- [x] Create backend/main.go
+- [x] Create backend/models.go
+- [x] Create backend/db.go
+- [x] cd backend && go mod tidy
+- [x] Test server: go run main.go (localhost:8080, APIs working, frontend served)
+- [ ] Update frontend booking form to POST /api/bookings (AJAX)
+- [ ] Dynamic tours from /api/tours
+- [ ] Add search endpoint
+- [ ] Deploy instructions

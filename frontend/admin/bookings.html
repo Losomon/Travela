@@ -299,14 +299,30 @@
 </main>
 
 <script>
-    const bookingsDataset = [
-        { id: '#TRV-2103', customer: 'Emma Richardson', email: 'emma.r@travela.com', destination: 'Santorini, Greece', date: 'Jun 12, 2026', status: 'confirmed', amount: '$1,890' },
-        { id: '#TRV-2102', customer: 'Liam Chen', email: 'liam.chen@email.com', destination: 'Kyoto, Japan', date: 'Jul 05, 2026', status: 'pending', amount: '$2,750' },
-        { id: '#TRV-2101', customer: 'Sofia Patel', email: 'sofia.p@travela.com', destination: 'Maldives', date: 'Aug 20, 2026', status: 'confirmed', amount: '$3,290' },
-        { id: '#TRV-2100', customer: 'Oliver Schmidt', email: 'oliver.s@web.de', destination: 'Swiss Alps', date: 'Sep 02, 2026', status: 'completed', amount: '$1,450' },
-        { id: '#TRV-2099', customer: 'Mia Wong', email: 'mia.wong@outlook.com', destination: 'Bali, Indonesia', date: 'Oct 15, 2026', status: 'hold', amount: '$1,125' },
-        { id: '#TRV-2098', customer: 'James O\'Connor', email: 'jamesoc@travela.com', destination: 'New York, USA', date: 'Nov 01, 2026', status: 'pending', amount: '$1,680' }
-    ];
+    let bookingsDataset = [];
+    const API_BASE = window.location.origin + '/api';
+
+    async function fetchBookings() {
+        try {
+            const res = await fetch(API_BASE + '/bookings');
+            if (!res.ok) throw new Error('Failed to fetch bookings');
+            const data = await res.json();
+            bookingsDataset = data.map(b => ({
+                realId: b.id,
+                id: b.id ? '#TRV-' + (2000 + b.id) : '#TRV-0000',
+                customer: b.name,
+                email: b.email,
+                destination: b.destination || 'Unknown',
+                date: b.date || b.created_at || 'N/A',
+                status: b.status || 'pending',
+                amount: b.amount ? '$' + b.amount.toLocaleString() : '$0'
+            }));
+            loadAllBookings();
+        } catch (err) {
+            console.error(err);
+            document.getElementById('allBookingsBody').innerHTML = '<tr><td colspan="7" class="text-center text-danger p-4">Error loading bookings: ' + err.message + '</td></tr>';
+        }
+    }
 
     function getStatusBadgeHTML(status) {
         const map = {
@@ -320,20 +336,35 @@
 
     function loadAllBookings() {
         const body = document.getElementById('allBookingsBody');
-        if(body) {
-            body.innerHTML = bookingsDataset.map(b => `
-                <tr>
-                    <td class="fw-semibold">${b.id}</td><td>${b.customer}</td><td>${b.email}</td><td>${b.destination}</td><td>${b.date}</td>
-                    <td>${getStatusBadgeHTML(b.status)}</td>
-                    <td><button class="action-btn edit" onclick="editBooking('${b.id}')"><i class="fas fa-pen"></i></button>
-                        <button class="action-btn delete" onclick="deleteBookingItem('${b.id}')"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>
-            `).join('');
+        if(!body) return;
+        if(bookingsDataset.length === 0) {
+            body.innerHTML = '<tr><td colspan="7" class="text-center text-muted p-4">No bookings found</td></tr>';
+            return;
         }
+        body.innerHTML = bookingsDataset.map(b => `
+            <tr>
+                <td class="fw-semibold">${b.id}</td><td>${b.customer}</td><td>${b.email}</td><td>${b.destination}</td><td>${b.date}</td>
+                <td>${getStatusBadgeHTML(b.status)}</td>
+                <td><button class="action-btn edit" onclick="editBooking('${b.id}')"><i class="fas fa-pen"></i></button>
+                    <button class="action-btn delete" onclick="deleteBookingItem('${b.id}')"><i class="fas fa-trash-alt"></i></button></td>
+            </tr>
+        `).join('');
     }
 
-    function editBooking(id) { alert(`✏️ Edit mode for ${id} – modal would open with full details.`); }
-    function deleteBookingItem(id) { if(confirm(`Permanently remove booking ${id}?`)) alert(`Booking ${id} removed (simulated)`); }
+    function editBooking(id) { alert('✏️ Edit mode for ' + id + ' – modal would open with full details.'); }
+    async function deleteBookingItem(id) {
+        if(!confirm('Permanently remove booking ' + id + '?')) return;
+        const booking = bookingsDataset.find(b => b.id === id);
+        if(!booking) return;
+        try {
+            const res = await fetch(API_BASE + '/bookings/' + booking.realId, { method: 'DELETE' });
+            if(!res.ok) throw new Error('Delete failed');
+            await fetchBookings();
+            alert('Booking ' + id + ' removed');
+        } catch(err) {
+            alert('Error: ' + err.message);
+        }
+    }
     function exportBookingsCSV() { 
         let csvRows = [["Booking ID","Customer","Email","Destination","Travel Date","Status","Amount"]];
         bookingsDataset.forEach(b => { csvRows.push([b.id, b.customer, b.email, b.destination, b.date, b.status, b.amount]); });
@@ -367,7 +398,7 @@
     });
 
     if(localStorage.getItem('sidebarCollapsed') === 'true') document.getElementById('sidebar')?.classList.add('collapsed');
-    loadAllBookings();
+    fetchBookings();
 
     const topbarLeft = document.querySelector('.topbar .d-flex');
     if(topbarLeft && !document.getElementById('mobileMenuBtn')) {

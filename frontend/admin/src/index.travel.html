@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Travela Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="./assets/images/favicon_io/site.webmanifest">
+
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+  <div id="overlay" class="overlay overlay"></div>
+
+  <nav id="topbar" class="navbar border-bottom fixed-top topbar px-3">
+    <div class="d-flex align-items-center gap-2" style="width: 100%">
+      <button id="toggleBtn" class="d-none d-lg-inline-flex btn btn-outline-secondary btn-icon btn-sm">
+        <i class="ti ti-layout-sidebar-left-expand"></i>
+      </button>
+
+      <button id="mobileBtn" class="btn btn-outline-secondary btn-icon btn-sm d-lg-none me-1">
+        <i class="ti ti-layout-sidebar-left-expand"></i>
+      </button>
+
+      <div class="d-none d-lg-flex align-items-center gap-2 flex-grow-1">
+        <div class="position-relative" style="min-width: 360px; max-width: 520px; width: 100%">
+          <input class="form-control form-control-sm rounded-pill ps-4" placeholder="Search bookings, tours, customers…" />
+          <i class="ti ti-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%); color: rgba(96,165,250,.95)"></i>
+        </div>
+
+        <span class="pill ms-2">
+          <span style="width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.15)"></span>
+          Live bookings
+        </span>
+
+        <select class="form-select form-select-sm rounded-pill" style="width: 120px">
+          <option selected>USD</option>
+          <option>EUR</option>
+          <option>GBP</option>
+          <option>INR</option>
+        </select>
+      </div>
+
+      <ul class="list-unstyled d-flex align-items-center mb-0 gap-1 ms-auto">
+        <li>
+          <a class="position-relative btn-icon btn-sm btn btn-outline-secondary rounded-circle" data-bs-toggle="dropdown" aria-expanded="false" href="#" role="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bell">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+              <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+            </svg>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-2 ms-n2">2<span class="visually-hidden">unread</span></span>
+          </a>
+        </li>
+
+        <li class="ms-2 dropdown">
+          <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-inline-flex align-items-center gap-2">
+            <img src="./assets/images/avatar/avatar-1.jpg" alt="" class="avatar avatar-sm rounded-circle" />
+            <span class="d-none d-md-inline small" style="color: rgba(248,250,252,.9); font-weight: 800">Admin</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 220px">
+            <div class="small" style="opacity:.95; font-weight: 700">Control Center</div>
+            <div class="mt-2 d-flex gap-2">
+              <button class="btn btn-sm btn-outline-secondary w-100" type="button">Profile</button>
+              <button class="btn btn-sm btn-outline-secondary w-100" type="button">Sign out</button>
+            </div>
+          </div>
+        </li>
+
+        <li class="ms-2">
+          <button class="btn btn-sm btn-outline-secondary rounded-pill" type="button" aria-label="Toggle theme">
+            <i class="ti ti-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="logo-area mb-2">
+      <a href="index.travel.html" class="d-inline-flex">
+        <img src="./assets/images/logo-icon.svg" alt="" width="24">
+        <span class="logo-text ms-2">
+          <img src="./assets/images/logo.svg" alt="">
+        </span>
+      </a>
+    </div>
+
+    <ul class="nav flex-column">
+      <li class="px-4 py-2"><small class="nav-text">Operations</small></li>
+
+      <li><a class="nav-link active" href="index.travel.html"><i class="ti ti-home"></i><span class="nav-text">Dashboard</span></a></li>
+      <li><a class="nav-link" href="bookings.html"><i class="ti ti-ticket"></i><span class="nav-text">Bookings</span></a></li>
+      <li><a class="nav-link" href="packages.html"><i class="ti ti-planet"></i><span class="nav-text">Tours & Packages</span></a></li>
+      <li><a class="nav-link" href="destinations.html"><i class="ti ti-map-pin"></i><span class="nav-text">Destinations</span></a></li>
+      <li><a class="nav-link" href="customers.html"><i class="ti ti-user"></i><span class="nav-text">Customers</span></a></li>
+      <li><a class="nav-link" href="guides.html"><i class="ti ti-user-circle"></i><span class="nav-text">Tour Guides</span></a></li>
+      <li><a class="nav-link" href="vehicles.html"><i class="ti ti-car"></i><span class="nav-text">Vehicles</span></a></li>
+      <li><a class="nav-link" href="payments.html"><i class="ti ti-credit-card"></i><span class="nav-text">Payments</span></a></li>
+      <li><a class="nav-link" href="reviews.html"><i class="ti ti-star"></i><span class="nav-text">Reviews</span></a></li>
+      <li><a class="nav-link" href="promotions.html"><i class="ti ti-tags"></i><span class="nav-text">Promotions</span></a></li>
+      <li><a class="nav-link" href="blog.html"><i class="ti ti-pencil"></i><span class="nav-text">Blog CMS</span></a></li>
+      <li><a class="nav-link" href="analytics.html"><i class="ti ti-chart-bar"></i><span class="nav-text">Analytics</span></a></li>
+      <li><a class="nav-link" href="messages.html"><i class="ti ti-message"></i><span class="nav-text">Messages</span></a></li>
+      <li><a class="nav-link" href="settings.html"><i class="ti ti-settings"></i><span class="nav-text">Settings</span></a></li>
+
+      <li class="px-4 pt-4 pb-2"><small class="nav-text">Account</small></li>
+      <li><a class="nav-link" href="signin.html"><i class="ti ti-logout"></i><span class="nav-text">Log in</span></a></li>
+    </ul>
+  </aside>
+
+  <main id="content" class="content py-10">
+    <div class="container-fluid">
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+              <h1 class="fs-3 mb-1" style="font-weight: 900; letter-spacing: .2px">Travel Admin</h1>
+              <div style="color: rgba(148,163,184,.95); font-weight: 700">Control center for bookings, logistics, money & schedules</div>
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap">
+              <span class="pill"><i class="ti ti-currency-dollar"></i> Today’s Revenue: <span style="color: var(--soft)"> $28,460</span></span>
+              <span class="pill"><i class="ti ti-ticket"></i> New Bookings: <span style="color: var(--soft)"> 12</span></span>
+              <span class="pill"><i class="ti ti-hourglass"></i> Pending Payments: <span style="color: #fde68a"> 4</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-lg-3 col-12">
+          <div class="card kpi p-4">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="icon-shape"><i class="ti ti-currency-dollar fs-4" style="color: rgba(96,165,250,.95)"></i></div>
+              <div>
+                <div style="color: rgba(148,163,184,.95); font-weight: 900; font-size: 12px">Total Revenue</div>
+                <div style="font-weight: 950; font-size: 24px">$212,980</div>
+                <div style="color:#86efac; font-weight: 800; font-size: 12px">+9.4% MoM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+          <div class="card kpi p-4">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="icon-shape"><i class="ti ti-planet fs-4" style="color: rgba(96,165,250,.95)"></i></div>
+              <div>
+                <div style="color: rgba(148,163,184,.95); font-weight: 900; font-size: 12px">Active Tours</div>
+                <div style="font-weight: 950; font-size: 24px">34</div>
+                <div style="color:#93c5fd; font-weight: 800; font-size: 12px">2 new today</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+          <div class="card kpi p-4">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="icon-shape"><i class="ti ti-calendar fs-4" style="color: rgba(96,165,250,.95)"></i></div>
+              <div>
+                <div style="color: rgba(148,163,184,.95); font-weight: 900; font-size: 12px">Monthly Bookings</div>
+                <div style="font-weight: 950; font-size: 24px">1,284</div>
+                <div style="color:#86efac; font-weight: 800; font-size: 12px">+12.2%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+          <div class="card kpi p-4">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="icon-shape"><i class="ti ti-users fs-4" style="color: rgba(96,165,250,.95)"></i></div>
+              <div>
+                <div style="color: rgba(148,163,184,.95); font-weight: 900; font-size: 12px">Active Customers</div>
+                <div style="font-weight: 950; font-size: 24px">842</div>
+                <div style="color:#93c5fd; font-weight: 800; font-size: 12px">Repeat score: 78</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-12 col-lg-8">
+          <div class="card glass h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-transparent px-4 py-3" style="border-bottom-color: rgba(96,165,250,.18) !important">
+              <h3 class="h5 mb-0" style="font-weight: 950">Booking Analytics</h3>
+              <select class="form-select form-select-sm" style="min-width: 160px">
+                <option selected>Last 30 days</option>
+                <option>Last 7 days</option>
+                <option>Last 12 months</option>
+              </select>
+            </div>
+            <div class="card-body p-4">
+              <div class="row g-3">
+                <div class="col-12 col-lg-7">
+                  <div class="mb-3" style="font-weight: 900">Revenue Trend</div>
+                  <div id="salesChart" style="min-height: 320px"></div>
+                </div>
+                <div class="col-12 col-lg-5">
+                  <div class="mb-3" style="font-weight: 900">Status Mix</div>
+                  <div class="d-flex flex-column gap-2">
+                    <div class="activity-item">
+                      <div class="activity-dot" style="background:#34d399; box-shadow:0 0 0 4px rgba(52,211,153,.18)"></div>
+                      <div class="flex-grow-1">
+                        <div style="font-weight: 950">Confirmed</div>
+                        <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 12px">73% conversion rate</div>
+                      </div>
+                      <div style="font-weight: 950; color:#86efac">+4.1%</div>
+                    </div>
+                    <div class="activity-item">
+                      <div class="activity-dot" style="background:#fbbf24; box-shadow:0 0 0 4px rgba(251,191,36,.18)"></div>
+                      <div class="flex-grow-1">
+                        <div style="font-weight: 950">Pending</div>
+                        <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 12px">Awaiting payment</div>
+                      </div>
+                      <div style="font-weight: 950; color:#fde68a">4</div>
+                    </div>
+                    <div class="activity-item">
+                      <div class="activity-dot" style="background:#fb7185; box-shadow:0 0 0 4px rgba(251,113,133,.18)"></div>
+                      <div class="flex-grow-1">
+                        <div style="font-weight: 950">Cancelled</div>
+                        <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 12px">Refunds in progress</div>
+                      </div>
+                      <div style="font-weight: 950; color:#fca5a5">2</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mt-3">
+                <div class="col-12 col-lg-6">
+                  <div class="map-panel">
+                    <div class="map-label">
+                      <div style="font-weight: 950; font-size: 18px">Live Activity Map</div>
+                      <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 13px">(Placeholder) — booking density + traveler heatmap</div>
+                      <div class="d-flex gap-2 flex-wrap justify-content-center mt-2">
+                        <span class="pill"><i class="ti ti-map-pin"></i> Bali</span>
+                        <span class="pill"><i class="ti ti-map-pin"></i> Kenya</span>
+                        <span class="pill"><i class="ti ti-map-pin"></i> Paris</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                  <div class="mb-2" style="font-weight: 950">Cancellation & Completion</div>
+                  <div class="card" style="background: rgba(248,250,252,.03) !important">
+                    <div class="card-body p-4">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <div style="color: rgba(148,163,184,.95); font-weight: 900; font-size: 12px">Tour Completion Rate</div>
+                          <div style="font-weight: 980; font-size: 28px">91.6%</div>
+                          <div style="color:#86efac; font-weight: 900; font-size: 12px">-0.6% vs last month</div>
+                        </div>
+                        <div class="ring" aria-hidden="true"></div>
+                      </div>
+
+                      <div class="mt-3">
+                        <div style="color: rgba(148,163,184,.95); font-weight: 900; font-size: 12px">Mini chart placeholder</div>
+                        <div id="customerChart" style="min-height: 150px"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <div class="card glass h-100">
+            <div class="card-header d-flex justify-content-between align-items-center bg-transparent px-4 py-3" style="border-bottom-color: rgba(96,165,250,.18) !important">
+              <h3 class="h5 mb-0" style="font-weight: 950">Recent Bookings</h3>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill" type="button">Export CSV</button>
+            </div>
+
+            <div class="card-body p-4">
+              <div class="table-responsive" style="max-height: 380px; overflow:auto">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Package</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Payment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Sarah</td>
+                      <td>Bali Adventure</td>
+                      <td>Today</td>
+                      <td>$129</td>
+                      <td><span class="badge-status confirmed">Confirmed</span></td>
+                      <td><span class="badge-status confirmed">Paid</span></td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Kenya Safari</td>
+                      <td>Yesterday</td>
+                      <td>$299</td>
+                      <td><span class="badge-status pending">Pending</span></td>
+                      <td><span class="badge-status pending">Unpaid</span></td>
+                    </tr>
+                    <tr>
+                      <td>Amira</td>
+                      <td>Paris Weekend</td>
+                      <td>2 days ago</td>
+                      <td>$179</td>
+                      <td><span class="badge-status confirmed">Confirmed</span></td>
+                      <td><span class="badge-status confirmed">Paid</span></td>
+                    </tr>
+                    <tr>
+                      <td>Daniel</td>
+                      <td>Tokyo Food Tour</td>
+                      <td>3 days ago</td>
+                      <td>$89</td>
+                      <td><span class="badge-status cancelled">Cancelled</span></td>
+                      <td><span class="badge-status cancelled">Refund</span></td>
+                    </tr>
+                    <tr>
+                      <td>Priya</td>
+                      <td>Alps Escape</td>
+                      <td>4 days ago</td>
+                      <td>$259</td>
+                      <td><span class="badge-status pending">Pending</span></td>
+                      <td><span class="badge-status pending">Processing</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="mt-3" style="font-weight: 950">Live Tour Activity</div>
+              <div class="d-flex flex-column gap-2 mt-2">
+                <div class="activity-item">
+                  <div class="activity-dot"></div>
+                  <div class="flex-grow-1">
+                    <div style="font-weight: 950">John booked Bali Adventure</div>
+                    <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 12px">2 minutes ago</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot" style="background:#34d399; box-shadow:0 0 0 4px rgba(52,211,153,.18)"></div>
+                  <div class="flex-grow-1">
+                    <div style="font-weight: 950">Payment received from Sarah</div>
+                    <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 12px">12 minutes ago</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot" style="background:#fbbf24; box-shadow:0 0 0 4px rgba(251,191,36,.18)"></div>
+                  <div class="flex-grow-1">
+                    <div style="font-weight: 950">3 seats remaining for Kenya Safari</div>
+                    <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 12px">28 minutes ago</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot" style="background:#60a5fa; box-shadow:0 0 0 4px rgba(96,165,250,.18)"></div>
+                  <div class="flex-grow-1">
+                    <div style="font-weight: 950">Guide assigned to Paris Tour</div>
+                    <div style="color: rgba(148,163,184,.95); font-weight: 800; font-size: 12px">1 hour ago</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <footer class="text-center py-3 mt-4" style="color: rgba(148,163,184,.95) !important; font-weight: 800">
+            © 2026 Travela — Admin Control Center
+          </footer>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="./assets/js/main.js" type="module"></script>
+</body>
+
+</html>
+

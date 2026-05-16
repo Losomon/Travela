@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,79 @@
 <title>Travela – Destinations</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:#f5f6fa;display:flex;height:100vh;overflow:hidden;color:#1a1d23;font-size:13px}
-button,a{font-family:'DM Sans',sans-serif;cursor:pointer;text-decoration:none;border:none;background:none}
-::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#dde1e9;border-radius:99px}
-#sidebar{width:256px;min-width:256px;background:#fff;display:flex;flex-direction:column;border-right:1px solid #eef0f5;overflow-y:auto;overflow-x:hidden}
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dcard{background:#fff;border-radius:13px;border:1px solid #eef0f5;overflow:hidden}
+.dcard-img{height:155px;position:relative;overflow:hidden}
+.dcard-img-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.dcard-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55))}
+.dcard-foot{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;display:flex;align-items:flex-end;justify-content:space-between}
+.dcard-name{font-size:14px;font-weight:700;color:#fff}
+.dcard-country{font-size:11px;color:rgba(255,255,255,.8)}
+.dcard-body{padding:12px}
+.dstat{display:flex;gap:12px}
+.ds{font-size:11.5px;color:#6b7585}
+.ds b{color:#1a1d23;font-weight:600}
+.dcard-actions{display:flex;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid #f3f4f8;align-items:center;justify-content:space-between}
+.bdg{border-radius:99px;padding:3px 10px;font-size:11px;font-weight:500;white-space:nowrap;display:inline-block}
+.bg{background:#dcfce7;color:#15803d}.bam{background:#fef3c7;color:#b45309}.br{background:#fee2e2;color:#b91c1c}
+.ia{display:flex;gap:5px}
+.ia button{width:27px;height:27px;border-radius:6px;border:1px solid #eef0f5;background:#fff;display:flex;align-items:center;justify-content:center;color:#6b7585}
+.ia button svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</head>
+<body>
+
+<div id="main">
+
+<div id="content">
+  <div class="pg-hd">
+    <h1>Destinations</h1>
+    <button class="abtn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Destination</button>
+  </div>
+  <div class="fbar">
+    <div class="sinp"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input placeholder="Search destinations..."/></div>
+    <button class="obtn" style="margin-left:auto"><svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="18" x2="12" y2="18"/></svg>Filter</button>
+  </div>
+  <div class="dest-grid" id="destGrid"></div>
+</div>
+</div>
+<script>
+function go(p){location=p}
+document.getElementById('nb-dest').classList.add('active');
+const dests=[
+  {name:'Bali',country:'Indonesia',flag:'🇮🇩',tours:166,bookings:1248,status:'Active',g:'linear-gradient(135deg,#1a6b5a,#2d9e7a)'},
+  {name:'Paris',country:'France',flag:'🇫🇷',tours:90,bookings:982,status:'Active',g:'linear-gradient(135deg,#5a3e6b,#7d5c99)'},
+  {name:'Switzerland',country:'Europe',flag:'🇨🇭',tours:88,bookings:874,status:'Active',g:'linear-gradient(135deg,#1e3a5f,#2a5298)'},
+  {name:'Maldives',country:'Indian Ocean',flag:'🇲🇻',tours:87,bookings:645,status:'Active',g:'linear-gradient(135deg,#0c7b8a,#14a8bc)'},
+  {name:'Iceland',country:'Europe',flag:'🇮🇸',tours:76,bookings:512,status:'Active',g:'linear-gradient(135deg,#2d4a6e,#1a3350)'},
+  {name:'Dubai',country:'UAE',flag:'🇦🇪',tours:88,bookings:480,status:'Active',g:'linear-gradient(135deg,#c4920a,#e8b230)'},
+  {name:'Turkey',country:'Europe/Asia',flag:'🇹🇷',tours:68,bookings:430,status:'Active',g:'linear-gradient(135deg,#8b1a1a,#b52d2d)'},
+  {name:'Kenya',country:'Africa',flag:'🇰🇪',tours:35,bookings:380,status:'Active',g:'linear-gradient(135deg,#7a4419,#c0722d)'},
+  {name:'Japan',country:'Asia',flag:'🇯🇵',tours:52,bookings:298,status:'Inactive',g:'linear-gradient(135deg,#b52d2d,#e05c5c)'},
+];
+const g=document.getElementById('destGrid');
+dests.forEach(d=>{
+  g.innerHTML+=\`<div class="dcard">
+    <div class="dcard-img">
+      <div class="dcard-img-bg" style="background:\${d.g}">
+        <svg viewBox="0 0 300 155" style="width:100%;height:100%;opacity:.25"><polygon points="0,100 50,55 100,75 150,35 200,60 250,30 300,50 300,155 0,155" fill="rgba(255,255,255,.3)"/><polygon points="0,125 80,90 150,110 220,75 300,95 300,155 0,155" fill="rgba(0,0,0,.2)"/></svg>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px">\${d.flag}</div>
+      </div>
+      <div class="dcard-overlay"></div>
+      <div class="dcard-foot"><div><div class="dcard-name">\${d.name}</div><div class="dcard-country">\${d.country}</div></div></div>
+    </div>
+    <div class="dcard-body">
+      <div class="dstat"><div class="ds"><b>\${d.tours}</b> Tours</div><div class="ds"><b>\${d.bookings.toLocaleString()}</b> Bookings</div></div>
+      <div class="dcard-actions"><span class="bdg \${d.status==='Active'?'bg':'br'}">\${d.status}</span>
+        <div class="ia">
+          <button title="View"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          <button title="Edit"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+          <button title="Delete"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>\`;
+});
+</script>
+</body>
+</html>

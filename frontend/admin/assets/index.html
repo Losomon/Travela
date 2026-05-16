@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Travela – Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f5f6fa;display:flex;height:100vh;overflow:hidden;color:#1a1d23;font-size:13px}
+button,a{font-family:'DM Sans',sans-serif;cursor:pointer;text-decoration:none}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#dde1e9;border-radius:99px}
+
+/* SIDEBAR */
+#sidebar{width:256px;min-width:256px;background:linear-gradient(180deg,#1a2a47 0%,#1f3a5f 100%);display:flex;flex-direction:column;border-right:1px solid #2d4a6f;overflow-y:auto;overflow-x:hidden}
+.logo-wrap{padding:28px 20px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #2d4a6f}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,#5b5ef6 0%,#7b7ef8 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 16px rgba(91,94,246,.25)}
+.logo-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.logo-text .brand{font-size:16px;font-weight:800;color:#fff;line-height:1.2}
+.logo-text .sub{font-size:11px;color:#9bb3d4;font-weight:500}
+nav{padding:16px 12px 0;flex:1}
+.nav-section{margin-bottom:2px}
+.nav-btn{width:100%;display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:10px;border:none;background:transparent;color:#8fa4c1;font-size:13px;font-weight:500;text-align:left;transition:all .2s;margin-bottom:2px}
+.nav-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;opacity:.75}
+.nav-btn:hover{background:rgba(91,94,246,.1);color:#b0c7e0}
+.nav-btn.active{background:linear-gradient(90deg,#5b5ef6 0%,#7b7ef8 100%);color:#fff;box-shadow:0 4px 12px rgba(91,94,246,.3)}
+.nav-btn.active svg{opacity:1}
+.nav-badge{background:#e8403c;color:#fff;border-radius:99px;font-size:10px;padding:2px 8px;font-weight:700;margin-left:auto}
+.nav-arrow{margin-left:auto;opacity:.4;width:12px!important;height:12px!important}
+.nav-btn.active .nav-arrow{opacity:.8}
+.sidebar-promo{margin:20px 12px 16px;border-radius:14px;overflow:hidden;position:relative;min-height:140px;background:linear-gradient(135deg,#3d5b8a 0%,#2d4570 100%);box-shadow:0 12px 24px rgba(0,0,0,.2)}
+.promo-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:.4;border-radius:14px}
+.promo-content{position:relative;z-index:1;padding:18px 18px 14px}
+.promo-content p{font-size:12.5px;color:#fff;font-weight:700;line-height:1.5;margin-bottom:14px}
+.promo-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;color:#1a2a47;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:600;transition:all .2s}
+.promo-btn:hover{box-shadow:0 6px 16px rgba(0,0,0,.1);transform:translateY(-1px)}
+.promo-btn svg{width:13px;height:13px;stroke:#1a2a47;fill:none;stroke-width:2.5;stroke-linecap:round}
+
+/* MAIN */
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+
+/* TOPBAR */
+header{background:#fff;border-bottom:1px solid #e5e8f0;padding:0 28px;height:76px;display:flex;align-items:center;gap:14px;flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.hamburger{border:none;background:none;color:#6b7585;display:flex;padding:6px;border-radius:7px;transition:all .2s}
+.hamburger svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.search{display:flex;align-items:center;gap:9px;background:#f9fafb;border:1px solid #e5e8f0;border-radius:11px;padding:10px 15px;width:300px;transition:all .2s}
+.search:focus-within{border-color:#5b5ef6;background:#f5f8ff;box-shadow:0 0 0 3px rgba(91,94,246,.05)}
+.search svg{width:15px;height:15px;stroke:#a0aac1;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.search span{font-size:13px;color:#a0aac1;flex:1}
+.search kbd{font-size:10px;color:#c0c7d3;border:1px solid #e5e8ef;border-radius:5px;padding:2px 6px;font-family:inherit}
+.topbar-end{display:flex;align-items:center;gap:12px;margin-left:auto}
+.live-chip{display:flex;align-items:center;gap:7px;background:#edfaf4;border-radius:99px;padding:8px 16px;border:1px solid #c8f0df}
+.live-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 0 2px #bbf7d0;animation:pulse .2s infinite}
+.live-chip span{font-size:12px;color:#15803d;font-weight:600}
+.live-chip .lc{background:#5b5ef6;color:#fff;border-radius:99px;font-size:11px;padding:2px 8px;font-weight:800}
+.icon-pill{display:flex;align-items:center;gap:6px;border:1px solid #e5e8f0;background:#f9fafb;border-radius:10px;padding:8px 14px;font-size:12.5px;color:#374151;font-weight:500;transition:all .2s}
+.icon-pill svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.tbtn{border:1px solid #e5e8f0;background:#f9fafb;border-radius:10px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#6b7585;position:relative;flex-shrink:0;transition:all .2s}
+.tbtn:hover{background:#fff;border-color:#d9dce5}
+.tbtn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nbadge{position:absolute;top:-6px;right:-6px;background:#e8403c;color:#fff;border-radius:99px;font-size:9px;padding:2px 5px;font-weight:800;border:2px solid #fff}
+.avatar-block{display:flex;align-items:center;gap:11px;padding-left:8px}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#5b5ef6,#818cf8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;flex-shrink:0;overflow:hidden;box-shadow:0 2px 8px rgba(91,94,246,.2)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.av-name{font-size:13px;font-weight:700;color:#1a1d23;line-height:1.2}
+.av-role{font-size:11px;color:#9aa3b2}
+@keyframes pulse{0%{opacity:1}50%{opacity:.6}100%{opacity:1}}
+
+/* CONTENT */
+#content{flex:1;overflow-y:auto;padding:28px 28px;display:flex;flex-direction:column;gap:24px}
+
+/* PAGE HEADER */
+.pg-header{display:flex;align-items:flex-start;justify-content:space-between}
+.pg-header h1{font-size:22px;font-weight:800;color:#1a1d23;letter-spacing:-.3px}
+.pg-header p{font-size:13.5px;color:#7a8295;margin-top:5px;font-weight:500}
+.pg-actions{display:flex;gap:12px;align-items:center}
+.date-btn{display:flex;align-items:center;gap:8px;border:1px solid #e5e8f0;background:#f9fafb;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;color:#374151;transition:all .2s}
+.date-btn:hover{background:#fff;border-color:#d9dce5}
+.date-btn svg{width:14px;height:14px;stroke:#6b7585;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.exp-btn{display:flex;align-items:center;gap:8px;border:none;background:linear-gradient(135deg,#5b5ef6 0%,#7b7ef8 100%);border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;color:#fff;transition:all .2s;box-shadow:0 4px 12px rgba(91,94,246,.25);cursor:pointer}
+.exp-btn:hover{box-shadow:0 6px 16px rgba(91,94,246,.35);transform:translateY(-1px)}
+.exp-btn svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.sc{background:#fff;border-radius:16px;padding:24px;border:1px solid #e5e8f0;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:all .3s;position:relative;overflow:hidden}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,rgba(91,94,246,.3),rgba(91,94,246,0));opacity:0;transition:opacity .3s}
+.sc:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
+.sc:hover::before{opacity:1}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.sc-lbl{font-size:12px;color:#7a8295;font-weight:700;line-height:1.5;max-width:90px;text-transform:uppercase;letter-spacing:.5px}
+.sc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sc-val{font-size:26px;font-weight:800;color:#1a1d23;line-height:1;letter-spacing:-.3px}
+.sc-spark{display:block;width:100%;height:48px;margin:14px 0 10px}
+.sc-trend{display:flex;align-items:center;gap:6px}
+.up{font-size:11.5px;font-weight:700;color:#16a34a}
+.dn{font-size:11.5px;font-weight:700;color:#dc2626}
+.trsub{font-size:11.5px;color:#a0aac1}
+.ring-wrap{width:52px;height:52px;flex-shrink:0}
+
+/* MIDDLE ROW */
+.mid{display:grid;grid-template-columns:1fr 460px;gap:20px}
+.card{background:#ffffff;border-radius:16px;padding:24px;border:1px solid #f1f5f9;box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);transition:all .3s}
+.card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mid .card:first-child {
+    padding: 24px;
+}
+.card-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.card-title{font-size:16px;font-weight:600;color:#1e2937}
+.va{font-size:12px;color:#5b5ef6;border:none;background:none;font-weight:700;cursor:pointer;transition:all .2s}
+.va:hover{color:#7b7ef8}
+.legend{display:flex;gap:14px;align-items:center}
+.ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.li{display:flex;align-items:center;gap:6px;font-size:12px;color:#7a8295;font-weight:500}
+.wbtn{display:flex;align-items:center;gap:5px;border:1px solid #e5e8f0;background:#f9fafb;border-radius:8px;padding:7px 13px;font-size:12px;color:#374151;font-weight:600;cursor:pointer;transition:all .2s}
+.wbtn:hover{background:#fff;border-color:#d9dce5}
+.wbtn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* TABLE */
+.bt{width:100%;border-collapse:collapse}
+.bt th{
+    padding-bottom:12px;
+    font-size:11px;
+    color:#64748b;
+    font-weight:600;
+}
+.bt td{
+    padding:14px 10px 14px 0;
+    border-bottom:1px solid #f1f5f9;
+}
+.bt tr:last-child td{border-bottom:none}
+.cc{display:flex;align-items:center;gap:10px}
+.cav{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.cn{font-size:13px;font-weight:700;color:#1a1d23}
+.ce{font-size:11px;color:#a0aac1;font-weight:500}
+.pkg{font-size:12px;color:#4b5563;font-weight:600}
+.amt{font-size:13px;font-weight:700;color:#1a1d23}
+.bdate{font-size:12px;color:#7a8295;font-weight:500}
+.bdg{
+    padding:4px 12px;
+    font-size:12px;
+    font-weight:500;
+    border-radius:9999px;
+}
+.g{background:#dcfce7;color:#15803d}
+.am{background:#fef3c7;color:#b45309}
+.r{background:#fee2e2;color:#b91c1c}
+.b{background:#dbeafe;color:#1d4ed8}
+
+/* BOTTOM */
+.bot{display:grid;grid-template-columns:240px 1fr 300px;gap:20px}
+.ai{display:flex;gap:11px;align-items:flex-start;padding:10px 0}
+.ai+.ai{border-top:1px solid #f7f8fc}
+.aic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.aic svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.at{font-size:12px;color:#374151;line-height:1.5;font-weight:500}
+.at strong{font-weight:700;color:#1a1d23}
+.atm{font-size:11px;color:#a0aac1;margin-top:3px;font-weight:500}
+
+/* DESTINATIONS */
+.dests-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.map-box{background:#eef3fb;border-radius:12px;position:relative;overflow:hidden;height:180px;border:1px solid #e5ecf8}
+.map-box svg{width:100%;height:100%}
+.dest-list{display:flex;flex-direction:column;gap:6px}
+.di{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:10px;transition:all .2s}
+.di.top{background:#f5f3ff;border:1px solid #f0ecff}
+.di:not(.top){border:1px solid transparent}
+.di:hover{background:#f9f8fb}
+.dflag{font-size:18px;line-height:1}
+.dname{font-size:12px;font-weight:700;color:#1a1d23}
+.dcnt{font-size:11px;color:#a0aac1;font-weight:500}
+
+/* TOURS TYPE */
+.tt-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+.tt-l{display:flex;align-items:center;gap:8px}
+.tt-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tt-name{font-size:12.5px;color:#4b5563;font-weight:500}
+.tt-r{display:flex;gap:12px;align-items:center}
+.tt-c{font-size:12px;color:#a0aac1;font-weight:500}
+.tt-p{font-size:13px;font-weight:700;color:#1a1d23}
+.earn{background:linear-gradient(135deg,#4e46e5 0%,#6366f1 100%);border-radius:14px;padding:18px;margin-top:16px;box-shadow:0 8px 16px rgba(79,70,229,.25)}
+.earn-lbl{font-size:11px;color:#c7d2fe;font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.earn-val{font-size:24px;font-weight:800;color:#fff;letter-spacing:-.3px}
+.earn-trend{font-size:11px;color:#a5b4fc;margin-top:4px;font-weight:500}
+.sat{border:1px solid #e5e8f0;border-radius:12px;padding:16px;margin-top:14px;background:#f9fafb}
+.sat-ttl{font-size:12px;font-weight:700;color:#7a8295;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.sat-val{font-size:24px;font-weight:800;color:#1a1d23;letter-spacing:-.3px}
+.stars{display:flex;gap:3px;margin-top:8px}
+.star{font-size:16px}
+.sat-t{font-size:12px;color:#16a34a;margin-top:6px;font-weight:600}
+.donut-wrap{display:flex;justify-content:center;margin-bottom:16px;position:relative}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-n{font-size:18px;font-weight:800;color:#1a1d23;letter-spacing:-.2px}
+.donut-s{font-size:11px;color:#a0aac1;margin-top:1px;font-weight:500}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke-linejoin="round"/><path d="M17 1a6 6 0 016 6"/><path d="M17 5a2 2 0 012 2"/></svg>
+    </div>
+    <div class="logo-text">
+      <div class="brand">Travela</div>
+      <div class="sub">Admin Dashboard</div>
+    </div>
+  </div>
+
+  <nav>
+    <button class="nav-btn active">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Bookings
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      Tours &amp; Packages
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Destinations
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      Customers
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><circle cx="6.5" cy="6.5" r="3.5"/><circle cx="6.5" cy="17.5" r="3.5"/><line x1="10" y1="6.5" x2="22" y2="6.5"/><line x1="10" y1="17.5" x2="22" y2="17.5"/></svg>
+      Tour Guides
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      Vehicles
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      Payments
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Reviews
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Promotions
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Blog CMS
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+      Analytics
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Messages
+      <span class="nav-badge">12</span>
+    </button>
+    <button class="nav-btn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      Settings
+      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </nav>
+
+  <div class="sidebar-promo">
+    <!-- Mountain landscape SVG background -->
+    <svg class="promo-img" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2744"/><stop offset="100%" stop-color="#3a5a8a"/></linearGradient>
+        <linearGradient id="mtn1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2d4a6e"/><stop offset="100%" stop-color="#1a2d45"/></linearGradient>
+        <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3d5f7e"/><stop offset="100%" stop-color="#243d55"/></linearGradient>
+        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2d3e"/><stop offset="100%" stop-color="#0f1c27"/></linearGradient>
+      </defs>
+      <rect width="200" height="120" fill="url(#sky)"/>
+      <polygon points="0,80 30,30 60,60 90,20 130,70 160,35 200,65 200,120 0,120" fill="url(#mtn1)"/>
+      <polygon points="0,90 40,55 80,75 120,45 160,68 200,50 200,120 0,120" fill="url(#mtn2)"/>
+      <polygon points="0,100 50,75 100,90 150,72 200,85 200,120 0,120" fill="url(#fg)"/>
+      <circle cx="30" cy="20" r="2" fill="#fff" opacity=".6"/>
+      <circle cx="80" cy="12" r="1.5" fill="#fff" opacity=".5"/>
+      <circle cx="150" cy="18" r="1" fill="#fff" opacity=".7"/>
+      <circle cx="170" cy="10" r="1.5" fill="#fff" opacity=".4"/>
+      <!-- Hiker silhouette -->
+      <circle cx="105" cy="73" r="2.5" fill="#0f1c27"/>
+      <line x1="105" y1="76" x2="105" y2="84" stroke="#0f1c27" stroke-width="1.5"/>
+      <line x1="105" y1="79" x2="101" y2="83" stroke="#0f1c27" stroke-width="1.2"/>
+      <line x1="105" y1="79" x2="109" y2="83" stroke="#0f1c27" stroke-width="1.2"/>
+      <line x1="105" y1="84" x2="102" y2="89" stroke="#0f1c27" stroke-width="1.2"/>
+      <line x1="105" y1="84" x2="108" y2="89" stroke="#0f1c27" stroke-width="1.2"/>
+      <line x1="102" y1="75" x2="100" y2="80" stroke="#0f1c27" stroke-width="1"/>
+    </svg>
+    <div class="promo-content">
+      <p>Explore the world<br>with Travela</p>
+      <button class="promo-btn">
+        View Website
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div id="main">
+  <header>
+    <button class="hamburger">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span>Search anything...</span>
+      <kbd>⌘K</kbd>
+    </div>
+    <div class="topbar-end">
+      <div class="live-chip">
+        <div class="live-dot"></div>
+        <span>Live Bookings</span>
+        <span class="lc">24</span>
+      </div>
+      <button class="tbtn">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        <span class="nbadge">8</span>
+      </button>
+      <button class="icon-pill">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
+        🌐 English
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <button class="tbtn">🌙</button>
+      <div class="avatar-block">
+        <div class="avatar">AU</div>
+        <div>
+          <div class="av-name">Admin User</div>
+          <div class="av-role">Super Admin</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="content">
+    <!-- Page Header -->
+    <div class="pg-header">
+      <div>
+        <h1>Welcome back, Admin! 👋</h1>
+        <p>Here's what's happening with your travel business today.</p>
+      </div>
+      <div class="pg-actions">
+        <button class="date-btn">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          May 12 – May 18, 2024
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <button class="exp-btn">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export Report
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <!-- Total Revenue -->
+      <div class="sc">
+        <div class="sc-top">
+          <div class="sc-lbl">Total Revenue</div>
+          <div class="sc-icon" style="background:#eef2ff"><svg viewBox="0 0 24 24" stroke="#6366f1"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        </div>
+        <div class="sc-val">$128,540</div>
+        <canvas class="sc-spark" id="sp0"></canvas>
+        <div class="sc-trend"><span class="up">↑ 18.6%</span><span class="trsub">vs last 7 days</span></div>
+      </div>
+      <!-- Active Tours -->
+      <div class="sc">
+        <div class="sc-top">
+          <div class="sc-lbl">Active Tours</div>
+          <div class="sc-icon" style="background:#f5f3ff"><svg viewBox="0 0 24 24" stroke="#8b5cf6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        </div>
+        <div class="sc-val">156</div>
+        <canvas class="sc-spark" id="sp1"></canvas>
+        <div class="sc-trend"><span class="up">↑ 12.4%</span><span class="trsub">vs last 7 days</span></div>
+      </div>
+      <!-- New Bookings -->
+      <div class="sc">
+        <div class="sc-top">
+          <div class="sc-lbl">New Bookings</div>
+          <div class="sc-icon" style="background:#ecfdf5"><svg viewBox="0 0 24 24" stroke="#10b981"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg></div>
+        </div>
+        <div class="sc-val">1,248</div>
+        <canvas class="sc-spark" id="sp2"></canvas>
+        <div class="sc-trend"><span class="up">↑ 12.6%</span><span class="trsub">↑ 24.8%</span></div>
+      </div>
+      <!-- Active Customers -->
+      <div class="sc">
+        <div class="sc-top">
+          <div class="sc-lbl">Active Customers</div>
+          <div class="sc-icon" style="background:#fffbeb"><svg viewBox="0 0 24 24" stroke="#f59e0b"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div>
+        </div>
+        <div class="sc-val">5,854</div>
+        <canvas class="sc-spark" id="sp3"></canvas>
+        <div class="sc-trend"><span class="up">↑ 13.8%</span><span class="trsub">↑ 14.2%</span></div>
+      </div>
+      <!-- Pending Payments -->
+      <div class="sc">
+        <div class="sc-top">
+          <div class="sc-lbl">Pending Payments</div>
+          <div class="sc-icon" style="background:#fef2f2"><svg viewBox="0 0 24 24" stroke="#ef4444"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        </div>
+        <div class="sc-val">$12,850</div>
+        <canvas class="sc-spark" id="sp4"></canvas>
+        <div class="sc-trend"><span class="dn">↓ 13.5%</span><span class="trsub">↓ 18.5%</span></div>
+      </div>
+      <!-- Tour Completion Rate -->
+      <div class="sc">
+        <div class="sc-top">
+          <div class="sc-lbl">Tour Completion Rate</div>
+          <div class="ring-wrap">
+            <svg viewBox="0 0 52 52" width="52" height="52">
+              <circle cx="26" cy="26" r="21" fill="none" stroke="#e5e7eb" stroke-width="6"/>
+              <circle cx="26" cy="26" r="21" fill="none" stroke="#3b82f6" stroke-width="6"
+                stroke-dasharray="121.5 131.9" stroke-linecap="round" transform="rotate(-90 26 26)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sc-val">92.6%</div>
+        <div class="sc-trend" style="margin-top:10px"><span class="up">↑ 5.2%</span><span class="trsub">vs last 7 days</span></div>
+      </div>
+    </div>
+
+    <!-- Middle Row -->
+    <div class="mid">
+      <!-- Revenue Chart -->
+      <div class="card">
+        <div class="card-hd">
+          <div class="card-title">Revenue Overview</div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <div class="legend">
+              <div class="li"><div class="ldot" style="background:#6366f1"></div>Total Revenue</div>
+              <div class="li"><div class="ldot" style="background:#10b981"></div>Bookings</div>
+              <div class="li"><div class="ldot" style="background:#ef4444"></div>Cancellations</div>
+            </div>
+            <button class="wbtn">This Week <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          </div>
+        </div>
+        <div style="height:220px;position:relative">
+          <canvas id="revChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Bookings Table -->
+      <div class="card">
+        <div class="card-hd">
+          <div class="card-title">Recent Bookings</div>
+          <button class="va">View All</button>
+        </div>
+        <table class="bt">
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Tour / Package</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Payment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="cc"><div class="cav" style="background:#eef2ff;color:#4f46e5">WW</div><div><div class="cn">Wade Warren</div><div class="ce">wade@gmail.com</div></div></div></td>
+              <td class="pkg">Bali Paradise</td>
+              <td class="bdate">May 18, 2024</td>
+              <td class="amt">$1,250</td>
+              <td><span class="bdg g">Confirmed</span></td>
+              <td><span class="bdg b">Paid</span></td>
+            </tr>
+            <tr>
+              <td><div class="cc"><div class="cav" style="background:#fffbeb;color:#b45309">EH</div><div><div class="cn">Esther Howard</div><div class="ce">esther@gmail.com</div></div></div></td>
+              <td class="pkg">Switzerland Trip</td>
+              <td class="bdate">May 18, 2024</td>
+              <td class="amt">$2,780</td>
+              <td><span class="bdg am">Pending</span></td>
+              <td><span class="bdg am">Pending</span></td>
+            </tr>
+            <tr>
+              <td><div class="cc"><div class="cav" style="background:#ecfdf5;color:#15803d">CW</div><div><div class="cn">Cameron Williamson</div><div class="ce">cameron@gmail.com</div></div></div></td>
+              <td class="pkg">Iceland Adventure</td>
+              <td class="bdate">May 18, 2024</td>
+              <td class="amt">$1,890</td>
+              <td><span class="bdg g">Confirmed</span></td>
+              <td><span class="bdg b">Paid</span></td>
+            </tr>
+            <tr>
+              <td><div class="cc"><div class="cav" style="background:#f5f3ff;color:#6d28d9">BS</div><div><div class="cn">Brooklyn Simmons</div><div class="ce">brooklyn@gmail.com</div></div></div></td>
+              <td class="pkg">Maldives Escape</td>
+              <td class="bdate">May 17, 2024</td>
+              <td class="amt">$2,450</td>
+              <td><span class="bdg g">Confirmed</span></td>
+              <td><span class="bdg b">Paid</span></td>
+            </tr>
+            <tr>
+              <td><div class="cc"><div class="cav" style="background:#fef2f2;color:#b91c1c">LA</div><div><div class="cn">Leslie Alexander</div><div class="ce">leslie@gmail.com</div></div></div></td>
+              <td class="pkg">Paris Getaway</td>
+              <td class="bdate">May 17, 2024</td>
+              <td class="amt">$980</td>
+              <td><span class="bdg r">Cancelled</span></td>
+              <td><span class="bdg r">Refunded</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="bot">
+      <!-- Live Activity -->
+      <div class="card">
+        <div class="card-hd">
+          <div class="card-title">Live Activity</div>
+          <button class="va">View All</button>
+        </div>
+        <div class="ai">
+          <div class="aic" style="background:#eef2ff;color:#5b5ef6"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="at"><strong>John Doe</strong> booked Bali Adventure</div><div class="atm">2 min ago</div></div>
+        </div>
+        <div class="ai">
+          <div class="aic" style="background:#fef3c7;color:#b45309"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div><div class="at"><strong>3 seats remaining</strong> for Kenya Safari</div><div class="atm">5 min ago</div></div>
+        </div>
+        <div class="ai">
+          <div class="aic" style="background:#dcfce7;color:#15803d"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div><div class="at">Payment received from <strong>Sarah Johnson</strong></div><div class="atm">8 min ago</div></div>
+        </div>
+        <div class="ai">
+          <div class="aic" style="background:#f5f3ff;color:#6d28d9"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><div class="at"><strong>Guide Alex</strong> assigned to Paris Tour</div><div class="atm">12 min ago</div></div>
+        </div>
+        <div class="ai">
+          <div class="aic" style="background:#fef3c7;color:#b45309"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div><div class="at">New review received for <strong>Switzerland Trip</strong></div><div class="atm">15 min ago</div></div>
+        </div>
+      </div>
+
+      <!-- Top Destinations -->
+      <div class="card">
+        <div class="card-hd">
+          <div class="card-title">Top Destinations</div>
+          <button class="va">View All</button>
+        </div>
+        <div class="dests-grid">
+          <!-- World Map SVG -->
+          <div class="map-box">
+            <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              <rect width="340" height="180" fill="#ddeaf8" rx="8"/>
+              <!-- Simplified continent shapes -->
+              <!-- North America -->
+              <path d="M20,30 L25,25 L35,22 L55,20 L70,25 L80,35 L85,50 L82,65 L75,75 L68,80 L60,85 L50,88 L42,82 L35,75 L28,65 L22,55 L18,42 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Central America -->
+              <path d="M60,85 L68,80 L72,90 L68,98 L60,100 L55,95 L52,88 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- South America -->
+              <path d="M60,100 L72,95 L82,100 L88,115 L90,130 L85,150 L75,162 L62,165 L50,158 L45,145 L42,128 L44,110 L50,100 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Europe -->
+              <path d="M140,18 L155,15 L165,18 L170,25 L165,35 L155,40 L148,38 L140,32 L135,25 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Scandinavia bump -->
+              <path d="M150,12 L158,10 L162,14 L158,18 L150,18 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Africa -->
+              <path d="M140,45 L158,40 L172,42 L180,52 L182,68 L178,88 L170,108 L158,122 L145,128 L132,122 L125,108 L122,88 L124,68 L130,52 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Asia (large) -->
+              <path d="M170,18 L200,14 L235,12 L265,15 L285,22 L295,35 L290,50 L278,60 L258,65 L235,68 L210,65 L188,58 L175,48 L168,35 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- India -->
+              <path d="M218,65 L228,62 L235,68 L232,82 L225,90 L218,85 L215,75 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Southeast Asia -->
+              <path d="M258,65 L275,62 L282,70 L278,82 L268,85 L258,80 L252,72 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Indonesia (Bali region) -->
+              <ellipse cx="275" cy="98" rx="12" ry="5" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <ellipse cx="292" cy="100" rx="8" ry="4" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Australia -->
+              <path d="M262,118 L285,112 L308,115 L318,128 L315,142 L305,152 L288,155 L270,150 L260,140 L258,128 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Greenland -->
+              <path d="M72,5 L88,3 L95,8 L92,16 L80,18 L70,14 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- UK/Iceland area -->
+              <ellipse cx="130" cy="14" rx="5" ry="3" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <ellipse cx="118" cy="18" rx="4" ry="3" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Maldives dot -->
+              <circle cx="220" cy="95" r="2" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+              <!-- Iceland island -->
+              <ellipse cx="118" cy="18" rx="6" ry="4" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+
+              <!-- Legend bar -->
+              <defs>
+                <linearGradient id="heatBar" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#a5c8f0"/>
+                  <stop offset="50%" stop-color="#5b8fd4"/>
+                  <stop offset="100%" stop-color="#1e4d8c"/>
+                </linearGradient>
+              </defs>
+              <rect x="10" y="168" width="80" height="5" rx="2.5" fill="url(#heatBar)"/>
+              <text x="8" y="180" font-size="8" fill="#6b7585">Low</text>
+              <text x="80" y="180" font-size="8" fill="#6b7585">High</text>
+
+              <!-- Destination pins -->
+              <!-- Bali, Indonesia -->
+              <circle cx="275" cy="94" r="6" fill="#5b5ef6" opacity=".2"/>
+              <circle cx="275" cy="94" r="3.5" fill="#5b5ef6"/>
+              <circle cx="275" cy="94" r="1.5" fill="#fff"/>
+
+              <!-- Paris, France -->
+              <circle cx="148" cy="28" r="5" fill="#5b5ef6" opacity=".2"/>
+              <circle cx="148" cy="28" r="3" fill="#5b5ef6"/>
+              <circle cx="148" cy="28" r="1.2" fill="#fff"/>
+
+              <!-- Switzerland -->
+              <circle cx="153" cy="34" r="4" fill="#5b5ef6" opacity=".15"/>
+              <circle cx="153" cy="34" r="2.5" fill="#5b5ef6"/>
+              <circle cx="153" cy="34" r="1" fill="#fff"/>
+
+              <!-- Maldives -->
+              <circle cx="220" cy="92" r="4" fill="#5b5ef6" opacity=".15"/>
+              <circle cx="220" cy="92" r="2.5" fill="#5b5ef6"/>
+
+              <!-- Iceland -->
+              <circle cx="120" cy="18" r="4" fill="#5b5ef6" opacity=".15"/>
+              <circle cx="120" cy="18" r="2.5" fill="#5b5ef6"/>
+            </svg>
+          </div>
+          <!-- Destination List -->
+          <div class="dest-list">
+            <div class="di top">
+              <span class="dflag">🇮🇩</span>
+              <div><div class="dname">Bali, Indonesia</div><div class="dcnt">1,248 Bookings</div></div>
+            </div>
+            <div class="di">
+              <span class="dflag">🇫🇷</span>
+              <div><div class="dname">Paris, France</div><div class="dcnt">982 Bookings</div></div>
+            </div>
+            <div class="di">
+              <span class="dflag">🇨🇭</span>
+              <div><div class="dname">Switzerland</div><div class="dcnt">874 Bookings</div></div>
+            </div>
+            <div class="di">
+              <span class="dflag">🇲🇻</span>
+              <div><div class="dname">Maldives</div><div class="dcnt">645 Bookings</div></div>
+            </div>
+            <div class="di">
+              <span class="dflag">🇮🇸</span>
+              <div><div class="dname">Iceland</div><div class="dcnt">512 Bookings</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tours By Type -->
+      <div class="card">
+        <div class="card-title" style="margin-bottom:13px">Tours By Type</div>
+        <div class="donut-wrap">
+          <div style="position:relative;width:120px;height:120px">
+            <canvas id="donut" width="120" height="120"></canvas>
+            <div class="donut-center">
+              <div class="donut-n">1,556</div>
+              <div class="donut-s">Total Tours</div>
+            </div>
+          </div>
+        </div>
+        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#6366f1"></div><span class="tt-name">Adventure</span></div><div class="tt-r"><span class="tt-c">545</span><span class="tt-p">35%</span></div></div>
+        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#3b82f6"></div><span class="tt-name">Cultural</span></div><div class="tt-r"><span class="tt-c">389</span><span class="tt-p">25%</span></div></div>
+        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#10b981"></div><span class="tt-name">Relaxation</span></div><div class="tt-r"><span class="tt-c">312</span><span class="tt-p">20%</span></div></div>
+        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#f59e0b"></div><span class="tt-name">Nature</span></div><div class="tt-r"><span class="tt-c">187</span><span class="tt-p">12%</span></div></div>
+        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#e5e7eb"></div><span class="tt-name">Other</span></div><div class="tt-r"><span class="tt-c">123</span><span class="tt-p">8%</span></div></div>
+
+        <div class="earn">
+          <div class="earn-lbl">Monthly Earnings</div>
+          <div class="earn-val">$128,540</div>
+          <div class="earn-trend">↑ 18.6% vs last month</div>
+        </div>
+        <div class="sat">
+          <div class="sat-ttl">Customer Satisfaction</div>
+          <div class="sat-val">4.8/5</div>
+          <div class="stars">
+            <span class="star" style="color:#f59e0b">★</span>
+            <span class="star" style="color:#f59e0b">★</span>
+            <span class="star" style="color:#f59e0b">★</span>
+            <span class="star" style="color:#f59e0b">★</span>
+            <span class="star" style="color:#e5e7eb">★</span>
+          </div>
+          <div class="sat-t">↑ 5.2% vs last month</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+// Sparkline
+function spark(id, pts, color, up) {
+  const c = document.getElementById(id);
+  if (!c) return;
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.offsetWidth || 120, H = 42;
+  c.width = W * dpr; c.height = H * dpr;
+  c.style.width = W + 'px'; c.style.height = H + 'px';
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const mn = Math.min(...pts), mx = Math.max(...pts);
+  const tx = i => (i / (pts.length - 1)) * W;
+  const ty = v => H - ((v - mn) / (mx - mn || 1)) * (H - 4) - 2;
+  const col = up ? color : '#ef4444';
+  ctx.beginPath();
+  pts.forEach((v, i) => i === 0 ? ctx.moveTo(tx(i), ty(v)) : ctx.lineTo(tx(i), ty(v)));
+  ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, col + '2a'); g.addColorStop(1, col + '00');
+  ctx.fillStyle = g; ctx.fill();
+  ctx.beginPath();
+  pts.forEach((v, i) => i === 0 ? ctx.moveTo(tx(i), ty(v)) : ctx.lineTo(tx(i), ty(v)));
+  ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.stroke();
+}
+
+window.addEventListener('load', () => {
+  spark('sp0', [20,28,24,34,30,42,38,50,46,60], '#6366f1', true);
+  spark('sp1', [38,32,46,38,52,44,58,48,62,68], '#8b5cf6', true);
+  spark('sp2', [28,38,32,48,42,58,52,68,62,80], '#10b981', true);
+  spark('sp3', [48,42,58,52,62,58,68,62,72,78], '#f59e0b', true);
+  spark('sp4', [78,68,72,62,68,58,62,52,58,48], '#ef4444', false);
+});
+
+// Revenue chart
+new Chart(document.getElementById('revChart'), {
+  type: 'line',
+  data: {
+    labels: ['May 12','May 13','May 14','May 15','May 16','May 17','May 18'],
+    datasets: [
+      { label:'Total Revenue', data:[28000,31000,38000,32540,39000,43000,48000],
+        borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,.08)',
+        borderWidth:2.2, fill:true, tension:.42, pointRadius:3.5,
+        pointBackgroundColor:'#6366f1', pointBorderColor:'#fff', pointBorderWidth:2 },
+      { label:'Bookings', data:[20000,23000,27000,22000,29000,31000,35000],
+        borderColor:'#10b981', backgroundColor:'rgba(16,185,129,.06)',
+        borderWidth:2.2, fill:true, tension:.42, pointRadius:3.5,
+        pointBackgroundColor:'#10b981', pointBorderColor:'#fff', pointBorderWidth:2 },
+      { label:'Cancellations', data:[8000,10000,9500,11000,10500,9000,12500],
+        borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,.05)',
+        borderWidth:2.2, fill:true, tension:.42, pointRadius:3.5,
+        pointBackgroundColor:'#ef4444', pointBorderColor:'#fff', pointBorderWidth:2 }
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins: {
+      legend:{display:false},
+      tooltip:{
+        backgroundColor:'#fff', titleColor:'#1a1d23', bodyColor:'#6b7585',
+        borderColor:'#eef0f5', borderWidth:1, padding:10, cornerRadius:8,
+        callbacks:{ label: c => ' '+c.dataset.label+': $'+c.parsed.y.toLocaleString() }
+      }
+    },
+    scales:{
+      x:{ grid:{display:false}, ticks:{color:'#9aa3b2',font:{size:11,family:'DM Sans'}} },
+      y:{ grid:{color:'#f3f4f8',drawBorder:false}, border:{display:false},
+          ticks:{color:'#9aa3b2',font:{size:11,family:'DM Sans'},callback:v=>'$'+(v/1000)+'K'},
+          min:0, max:55000 }
+    }
+  }
+});
+
+// Donut
+new Chart(document.getElementById('donut'), {
+  type:'doughnut',
+  data:{
+    labels:['Adventure','Cultural','Relaxation','Nature','Other'],
+    datasets:[{
+      data:[35,25,20,12,8],
+      backgroundColor:['#6366f1','#3b82f6','#10b981','#f59e0b','#e5e7eb'],
+      borderWidth:0, hoverOffset:4
+    }]
+  },
+  options:{
+    responsive:false, cutout:'73%',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}
+  }
+});
+
+// Nav active
+document.querySelectorAll('.nav-btn').forEach(b => {
+  b.addEventListener('click', function() {
+    document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Travela – Bookings</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f5f6fa;display:flex;height:100vh;overflow:hidden;color:#1a1d23;font-size:13px}
+button,a{font-family:'DM Sans',sans-serif;cursor:pointer;text-decoration:none;border:none;background:none}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#dde1e9;border-radius:99px}
+#sidebar{width:216px;min-width:216px;background:#fff;display:flex;flex-direction:column;border-right:1px solid #eef0f5;overflow-y:auto;overflow-x:hidden}
+.logo-wrap{padding:18px 16px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f3f4f8;flex-shrink:0}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#5b5ef6,#7b7ef8);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-icon svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.brand{font-size:14px;font-weight:700;color:#1a1d23}.brand-sub{font-size:10.5px;color:#9aa3b2}
+nav{padding:8px 8px 0;flex:1}
+.nb{width:100%;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:9px;color:#6b7585;font-size:12.5px;font-weight:500;text-align:left;margin-bottom:1px;transition:all .14s}
+.nb svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.nb:hover{background:#f5f6fa;color:#1a1d23}.nb.active{background:#5b5ef6;color:#fff}
+.nba{background:#e8403c;color:#fff;border-radius:99px;font-size:10px;padding:1px 6px;font-weight:700;margin-left:auto}
+.narr{margin-left:auto;opacity:.5;width:12px!important;height:12px!important}
+.sb-promo{margin:10px 8px 8px;border-radius:12px;overflow:hidden;position:relative;min-height:100px;background:#1e2435}
+.sb-promo-c{position:relative;z-index:1;padding:12px}
+.sb-promo-c p{font-size:11.5px;color:#fff;font-weight:600;line-height:1.4;margin-bottom:10px}
+.pb{display:inline-flex;align-items:center;gap:5px;background:#fff;color:#1a1d23;border-radius:7px;padding:5px 11px;font-size:11.5px;font-weight:600}
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+header{background:#fff;border-bottom:1px solid #eef0f5;padding:0 22px;height:60px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.srch{display:flex;align-items:center;gap:7px;background:#f7f8fc;border:1px solid #eef0f5;border-radius:9px;padding:7px 12px;width:260px}
+.srch svg{width:13px;height:13px;stroke:#9aa3b2;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.srch span{font-size:12px;color:#9aa3b2;flex:1}.srch kbd{font-size:10px;color:#c0c7d3;border:1px solid #e5e8ef;border-radius:4px;padding:1px 5px}
+.tend{display:flex;align-items:center;gap:8px;margin-left:auto}
+.lchip{display:flex;align-items:center;gap:5px;background:#edfaf4;border-radius:99px;padding:5px 12px;border:1px solid #c8f0df}
+.ldot{width:7px;height:7px;background:#22c55e;border-radius:50%}
+.lchip span{font-size:11.5px;color:#15803d;font-weight:500}
+.lchip .lc{background:#5b5ef6;color:#fff;border-radius:99px;font-size:10.5px;padding:1px 6px;font-weight:700}
+.tibtn{border:1px solid #eef0f5;background:#fff;border-radius:9px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:#6b7585;position:relative;flex-shrink:0}
+.tibtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nbdg{position:absolute;top:-4px;right:-4px;background:#e8403c;color:#fff;border-radius:99px;font-size:9px;padding:1px 4px;font-weight:700;border:1.5px solid #fff}
+.lpill{display:flex;align-items:center;gap:5px;border:1px solid #eef0f5;background:#fff;border-radius:9px;padding:5px 11px;font-size:12px;color:#374151;font-weight:500}
+.lpill svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+.avblk{display:flex;align-items:center;gap:8px}
+.av{width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,#5b5ef6,#818cf8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0}
+.av-n{font-size:12px;font-weight:600;color:#1a1d23;line-height:1.2}.av-r{font-size:10px;color:#9aa3b2}
+#content{flex:1;overflow-y:auto;padding:20px 22px}
+.card{background:#fff;border-radius:13px;padding:18px;border:1px solid #eef0f5}
+.pg-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.pg-hd h1{font-size:20px;font-weight:700;color:#1a1d23}
+.abtn{display:flex;align-items:center;gap:7px;background:#5b5ef6;color:#fff;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:600}
+.abtn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.obtn{display:flex;align-items:center;gap:6px;border:1px solid #dde1ea;background:#fff;border-radius:9px;padding:7px 13px;font-size:12.5px;font-weight:500;color:#374151}
+.obtn svg{width:12px;height:12px;stroke:#6b7585;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tabs{display:flex;gap:0;border-bottom:1px solid #eef0f5;margin-bottom:18px}
+.tab{padding:8px 16px;font-size:13px;font-weight:500;color:#6b7585;border-bottom:2.5px solid transparent;margin-bottom:-1px;cursor:pointer}
+.tab.active{color:#5b5ef6;border-bottom-color:#5b5ef6;font-weight:600}
+.fbar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.sinp{display:flex;align-items:center;gap:7px;background:#f7f8fc;border:1px solid #eef0f5;border-radius:9px;padding:7px 12px;width:220px}
+.sinp svg{width:13px;height:13px;stroke:#9aa3b2;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0}
+.sinp input{border:none;background:none;font-size:12px;color:#1a1d23;outline:none;width:100%;font-family:'DM Sans',sans-serif}
+.sinp input::placeholder{color:#9aa3b2}
+.sel{border:1px solid #dde1ea;background:#fff;border-radius:9px;padding:7px 12px;font-size:12px;color:#374151;font-family:'DM Sans',sans-serif;outline:none}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:10px;color:#9aa3b2;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:0 10px 10px 0;border-bottom:1px solid #f0f2f7;text-align:left;white-space:nowrap}
+.tbl td{padding:10px 10px 10px 0;border-bottom:1px solid #f7f8fc;vertical-align:middle;font-size:12px;color:#374151}
+.tbl tr:last-child td{border-bottom:none}
+.tbl th:first-child,.tbl td:first-child{padding-left:0}
+.ccel{display:flex;align-items:center;gap:8px}
+.cavt{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.cn{font-size:12px;font-weight:600;color:#1a1d23}.ce{font-size:10.5px;color:#9aa3b2}
+.bdg{border-radius:99px;padding:3px 10px;font-size:11px;font-weight:500;white-space:nowrap;display:inline-block}
+.bg{background:#dcfce7;color:#15803d}.bam{background:#fef3c7;color:#b45309}.br{background:#fee2e2;color:#b91c1c}.bb{background:#dbeafe;color:#1d4ed8}.bv{background:#f3e8ff;color:#7e22ce}
+.ia{display:flex;gap:5px}
+.ia button{width:27px;height:27px;border-radius:6px;border:1px solid #eef0f5;background:#fff;display:flex;align-items:center;justify-content:center;color:#6b7585}
+.ia button svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pgn{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.pgn-info{font-size:12px;color:#9aa3b2}
+.pgn-btns{display:flex;gap:4px}
+.pbn{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#6b7585;border:1px solid #eef0f5;background:#fff;cursor:pointer}
+.pbn.active{background:#5b5ef6;color:#fff;border-color:#5b5ef6}
+.bid{font-size:11.5px;color:#5b5ef6;font-weight:600}
+</style>
+</head>
+<body>
+<aside id="sidebar">
+  <div class="logo-wrap">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+    <div><div class="brand">Travela</div><div class="brand-sub">Admin Dashboard</div></div>
+  </div>
+  <nav>
+    <button class="nb" onclick="location='travela-dashboard.html'"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</button>
+    <button class="nb active"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Bookings<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb" onclick="location='tours-packages.html'"><svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Tours & Packages<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb" onclick="location='destinations.html'"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Destinations<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb" onclick="location='customers.html'"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>Customers<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb" onclick="location='tour-guides.html'"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0116 0v1"/></svg>Tour Guides<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Vehicles<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb" onclick="location='payments.html'"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Payments<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Reviews</button>
+    <button class="nb"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Promotions<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Blog CMS</button>
+    <button class="nb" onclick="location='analytics.html'"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <button class="nb"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Messages<span class="nba">12</span></button>
+    <button class="nb"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings<svg class="narr" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </nav>
+  <div class="sb-promo">
+    <svg class="sb-promo-bg" viewBox="0 0 200 110" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2744"/><stop offset="100%" stop-color="#2d3a5c"/></linearGradient></defs>
+      <rect width="200" height="110" fill="url(#sg)"/>
+      <polygon points="0,75 40,45 80,65 130,30 170,55 200,38 200,110 0,110" fill="#1a2d45" opacity=".7"/>
+      <polygon points="0,90 60,65 110,78 160,55 200,68 200,110 0,110" fill="#0f1c27" opacity=".8"/>
+    </svg>
+    <div class="sb-promo-c"><p>Explore the world<br>with Travela</p><button class="pb">View Website →</button></div>
+  </div>
+</aside>
+
+<div id="main">
+  <header>
+    <button style="border:none;background:none;color:#6b7585;display:flex;padding:4px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <div class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><span>Search anything...</span><kbd>⌘K</kbd></div>
+    <div class="tend">
+      <div class="lchip"><div class="ldot"></div><span>Live Bookings</span><span class="lc">24</span></div>
+      <div class="tibtn"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="nbdg">8</span></div>
+      <div class="lpill">🌐 English <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="tibtn">🌙</div>
+      <div class="avblk"><div class="av">AU</div><div><div class="av-n">Admin User</div><div class="av-r">Super Admin</div></div></div>
+    </div>
+  </header>
+
+  <div id="content">
+    <div class="pg-hd">
+      <h1>Bookings</h1>
+      <div style="display:flex;gap:8px">
+        <button class="obtn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tabs">
+        <button class="tab active">All Bookings</button>
+        <button class="tab">My Bookings</button>
+        <button class="tab">Cancelled</button>
+        <button class="tab">Refunded</button>
+      </div>
+
+      <div class="fbar">
+        <div class="sinp"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input placeholder="Search booking, customer..."/></div>
+        <select class="sel"><option>All Destinations</option><option>Bali, Indonesia</option><option>Paris, France</option><option>Switzerland</option><option>Maldives</option><option>Iceland</option></select>
+        <select class="sel"><option>All Status</option><option>Confirmed</option><option>Pending</option><option>Cancelled</option><option>Refunded</option></select>
+        <select class="sel"><option>All Payment</option><option>Paid</option><option>Pending</option><option>Refunded</option></select>
+        <button class="obtn" style="margin-left:auto"><svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="18" x2="12" y2="18"/></svg>Filter</button>
+        <button class="obtn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export</button>
+      </div>
+
+      <table class="tbl">
+        <thead><tr>
+          <th>Booking ID</th><th>Customer</th><th>Tour / Package</th><th>Destination</th><th>Date</th><th>Travel Date</th><th>Amount</th><th>Payment</th><th>Status</th><th>Action</th>
+        </tr></thead>
+        <tbody id="brows"></tbody>
+      </table>
+
+      <div class="pgn">
+        <span class="pgn-info">Showing 1 to 8 of 124 entries</span>
+        <div class="pgn-btns">
+          <button class="pbn">‹</button>
+          <button class="pbn active">1</button>
+          <button class="pbn">2</button>
+          <button class="pbn">3</button>
+          <button class="pbn">…</button>
+          <button class="pbn">18</button>
+          <button class="pbn">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const rows=[
+  {id:'#BK1248',name:'Wade Warren',email:'wade@gmail.com',ini:'WW',ic:'#eef2ff',tc:'#4f46e5',tour:'Bali Paradise',dest:'Bali, Indonesia',date:'May 18, 2024',travel:'Jun 15, 2024',amt:'$1,250',pay:'Paid',st:'Confirmed'},
+  {id:'#BK1247',name:'Esther Howard',email:'esther@gmail.com',ini:'EH',ic:'#fffbeb',tc:'#b45309',tour:'Switzerland Trip',dest:'Switzerland',date:'May 18, 2024',travel:'Jun 20, 2024',amt:'$2,780',pay:'Pending',st:'Pending'},
+  {id:'#BK1246',name:'Cameron Williamson',email:'cameron@gmail.com',ini:'CW',ic:'#ecfdf5',tc:'#15803d',tour:'Iceland Adventure',dest:'Iceland',date:'May 18, 2024',travel:'Jun 30, 2024',amt:'$1,890',pay:'Paid',st:'Confirmed'},
+  {id:'#BK1245',name:'Brooklyn Simmons',email:'brooklyn@gmail.com',ini:'BS',ic:'#f5f3ff',tc:'#6d28d9',tour:'Maldives Escape',dest:'Maldives',date:'May 17, 2024',travel:'Jun 25, 2024',amt:'$2,450',pay:'Paid',st:'Confirmed'},
+  {id:'#BK1244',name:'Leslie Alexander',email:'leslie@gmail.com',ini:'LA',ic:'#fef2f2',tc:'#b91c1c',tour:'Paris Getaway',dest:'Paris, France',date:'May 17, 2024',travel:'Jun 18, 2024',amt:'$980',pay:'Refunded',st:'Cancelled'},
+  {id:'#BK1243',name:'Guy Hawkins',email:'guy@gmail.com',ini:'GH',ic:'#eef2ff',tc:'#1d4ed8',tour:'Kenya Safari',dest:'Kenya',date:'May 16, 2024',travel:'Jun 08, 2024',amt:'$3,200',pay:'Paid',st:'Confirmed'},
+  {id:'#BK1242',name:'Jacob Jones',email:'jacob@gmail.com',ini:'JJ',ic:'#f0fdf4',tc:'#15803d',tour:'Dubai City Tour',dest:'Dubai, UAE',date:'May 16, 2024',travel:'Jun 15, 2024',amt:'$760',pay:'Paid',st:'Confirmed'},
+  {id:'#BK1241',name:'Darlene Robertson',email:'darlene@gmail.com',ini:'DR',ic:'#fffbeb',tc:'#b45309',tour:'Turkey Explorer',dest:'Turkey',date:'May 16, 2024',travel:'Jun 18, 2024',amt:'$1,350',pay:'Pending',st:'Pending'},
+];
+const stMap={Confirmed:'bg',Pending:'bam',Cancelled:'br',Refunded:'br'};
+const pyMap={Paid:'bb',Pending:'bam',Refunded:'br'};
+const tbody=document.getElementById('brows');
+rows.forEach(r=>{
+  tbody.innerHTML+=`<tr>
+    <td class="bid">${r.id}</td>
+    <td><div class="ccel"><div class="cavt" style="background:${r.ic};color:${r.tc}">${r.ini}</div><div><div class="cn">${r.name}</div><div class="ce">${r.email}</div></div></div></td>
+    <td style="font-weight:500;color:#1a1d23">${r.tour}</td>
+    <td>${r.dest}</td>
+    <td>${r.date}</td>
+    <td>${r.travel}</td>
+    <td style="font-weight:600;color:#1a1d23">${r.amt}</td>
+    <td><span class="bdg ${pyMap[r.pay]}">${r.pay}</span></td>
+    <td><span class="bdg ${stMap[r.st]}">${r.st}</span></td>
+    <td><div class="ia">
+      <button title="View"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      <button title="Edit"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+      <button title="Delete"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></button>
+    </div></td>
+  </tr>`;
+});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));this.classList.add('active')}));
+</script>
+</body>
+</html>

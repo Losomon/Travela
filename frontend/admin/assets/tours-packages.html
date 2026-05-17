@@ -77,6 +77,11 @@ header{background:#fff;border-bottom:1px solid #eef0f5;padding:0 22px;height:60p
 .bdg{border-radius:99px;padding:3px 10px;font-size:11px;font-weight:500;white-space:nowrap;display:inline-block}
 .bg{background:#dcfce7;color:#15803d}.bam{background:#fef3c7;color:#b45309}.br{background:#fee2e2;color:#b91c1c}
 </style>
+
+<!-- Choices.js (latest, CDN) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/styles/choices.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>
+
 </head>
 <body>
 <aside id="sidebar">
@@ -184,6 +189,25 @@ tours.forEach((t,i)=>{
   </div>`;
 });
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));this.classList.add('active')}));
+
+// Init Choices.js on the filter selects
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    const selects = document.querySelectorAll('select.sel');
+    selects.forEach((sel) => {
+      // Avoid double-init if page re-renders
+      if (sel.dataset && sel.dataset.choicesInitialized === 'true') return;
+      new Choices(sel, {
+        searchEnabled: true,
+        itemSelectText: '',
+        shouldSort: false,
+      });
+      if (sel.dataset) sel.dataset.choicesInitialized = 'true';
+    });
+  } catch (e) {
+    console.error('Choices init failed', e);
+  }
+});
 </script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+/* ==========================================
+   TRAVELA SAAS — DESIGN TOKENS
+   assets/css/themes.css
+   ========================================== */
+
+:root {
+  /* ── Palette ── */
+  --indigo-50:#eef2ff;--indigo-100:#e0e7ff;--indigo-200:#c7d2fe;
+  --indigo-500:#6366f1;--indigo-600:#5b5ef6;--indigo-700:#4f46e5;--indigo-900:#3730a3;
+  --emerald-50:#ecfdf5;--emerald-100:#d1fae5;--emerald-500:#10b981;--emerald-600:#059669;
+  --amber-50:#fffbeb;--amber-100:#fef3c7;--amber-500:#f59e0b;
+  --rose-50:#fef2f2;--rose-100:#fee2e2;--rose-500:#ef4444;--rose-600:#dc2626;
+  --sky-50:#f0f9ff;--sky-100:#e0f2fe;--sky-500:#0ea5e9;--sky-600:#0284c7;
+  --slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;
+  --slate-300:#cbd5e1;--slate-400:#94a3b8;--slate-500:#64748b;
+  --slate-600:#475569;--slate-700:#334155;--slate-800:#1e293b;
+  --slate-900:#0f172a;--slate-950:#020617;
+  --violet-50:#f5f3ff;--violet-100:#ede9fe;--violet-500:#8b5cf6;
+
+  /* ── Surfaces ── */
+  --bg-app:#f0f2f9;
+  --bg-sidebar:#0c1325;
+  --bg-card:#ffffff;
+  --bg-card-hover:#f8f9fc;
+  --bg-glass:rgba(15,23,42,.55);
+  --bg-glass-light:rgba(255,255,255,.72);
+  --border-glass:rgba(255,255,255,.08);
+  --border-card:#eef1f8;
+  --border-card-light:#f1f5f9;
+
+  /* ── Typography ── */
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-display:'Inter',system-ui,sans-serif;
+  --text-50:#f1f5f9;--text-100:#e2e8f0;--text-200:#cbd5e1;--text-300:#94a3b8;
+  --text-400:#64748b;--text-500:#475569;--text-600:#334155;
+  --text-700:#1e293b;--text-900:#0f172a;
+  --text-body:#556070;
+  --text-heading:#121827;
+
+  /* ── Spacing ── */
+  --gap-xs:4px;--gap-sm:8px;--gap-md:12px;--gap-lg:16px;
+  --gap-xl:20px;--gap-2xl:24px;--gap-3xl:32px;
+
+  /* ── Corners ── */
+  --radius-sm:7px;--radius-md:10px;--radius-lg:14px;
+  --radius-xl:18px;--radius-2xl:22px;--radius-full:9999px;
+
+  /* ── Shadows ── */
+  --shadow-card:0 1px 3px rgba(15,23,42,.04),0 1px 2px rgba(15,23,42,.06);
+  --shadow-card-md:0 4px 6px -2px rgba(15,23,42,.06),0 2px 4px -2px rgba(15,23,42,.04);
+  --shadow-card-lg:0 8px 20px -4px rgba(15,23,42,.10),0 2px 8px -2px rgba(15,23,42,.05);
+  --shadow-card-xl:0 20px 40px -8px rgba(15,23,42,.14);
+  --shadow-glow:0 0 20px rgba(99,102,241,.22);
+
+  /* ── Z-indices ── */
+  --z-sidebar:100;--z-workspace-header:200;
+  --z-toast:600;--z-modal:700;--z-overlay:800;--z-popover:500;
+
+  /* ── Sidebar ── */
+  --sidebar-w:240px;
+
+  /* ── Workspace header height ── */
+  --wh-h:58px;
+}

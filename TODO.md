@@ -7,4 +7,12 @@
 - [ ] Update `frontend/package.json` with `sass` (dart-sass) devDependency and build script.
 - [x] Run install + build and verify output.
 
+## Admin design system (foundation)
+- [x] Create `frontend/admin/assets/css/core/variables.css`
+- [x] Create `frontend/admin/assets/css/core/reset.css`
+- [x] Create `frontend/admin/assets/css/core/typography.css`
+- [x] Create `frontend/admin/assets/css/core/global.css`
+- [x] Create `frontend/admin/assets/css/core/utilities.css`
+
+
 

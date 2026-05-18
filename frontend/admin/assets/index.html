@@ -1,744 +1,1393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Travela – Admin Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<link rel="stylesheet" href="assets/css/main.css"/>
-<style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travela – Premium SaaS Admin</title>
 
-/* PAGE HEADER */
-.pg-header{display:flex;align-items:flex-start;justify-content:space-between}
-.pg-header h1{font-size:22px;font-weight:800;color:#1a1d23;letter-spacing:-.3px}
-.pg-header p{font-size:13.5px;color:#7a8295;margin-top:5px;font-weight:500}
-.pg-actions{display:flex;gap:12px;align-items:center}
-.date-btn{display:flex;align-items:center;gap:8px;border:1px solid #e5e8f0;background:#f9fafb;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;color:#374151;transition:all .2s}
-.date-btn:hover{background:#fff;border-color:#d9dce5}
-.date-btn svg{width:14px;height:14px;stroke:#6b7585;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.exp-btn{display:flex;align-items:center;gap:8px;border:none;background:linear-gradient(135deg,#5b5ef6 0%,#7b7ef8 100%);border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;color:#fff;transition:all .2s;box-shadow:0 4px 12px rgba(91,94,246,.25);cursor:pointer}
-.exp-btn:hover{box-shadow:0 6px 16px rgba(91,94,246,.35);transform:translateY(-1px)}
-.exp-btn svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet"/>
 
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
-.sc{background:#fff;border-radius:16px;padding:24px;border:1px solid #e5e8f0;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:all .3s;position:relative;overflow:hidden}
-.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,rgba(91,94,246,.3),rgba(91,94,246,0));opacity:0;transition:opacity .3s}
-.sc:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
-.sc:hover::before{opacity:1}
-.sc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.sc-lbl{font-size:12px;color:#7a8295;font-weight:700;line-height:1.5;max-width:90px;text-transform:uppercase;letter-spacing:.5px}
-.sc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sc-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.sc-val{font-size:26px;font-weight:800;color:#1a1d23;line-height:1;letter-spacing:-.3px}
-.sc-spark{display:block;width:100%;height:48px;margin:14px 0 10px}
-.sc-trend{display:flex;align-items:center;gap:6px}
-.up{font-size:11.5px;font-weight:700;color:#16a34a}
-.dn{font-size:11.5px;font-weight:700;color:#dc2626}
-.trsub{font-size:11.5px;color:#a0aac1}
-.ring-wrap{width:52px;height:52px;flex-shrink:0}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
-/* MIDDLE ROW */
-.mid{display:grid;grid-template-columns:1fr 460px;gap:20px}
-.card{background:#ffffff;border-radius:16px;padding:24px;border:1px solid #f1f5f9;box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);transition:all .3s}
-.card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
-.mid .card:first-child {
-    padding: 24px;
-}
-.card-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.card-title{font-size:16px;font-weight:600;color:#1e2937}
-.va{font-size:12px;color:#5b5ef6;border:none;background:none;font-weight:700;cursor:pointer;transition:all .2s}
-.va:hover{color:#7b7ef8}
-.legend{display:flex;gap:14px;align-items:center}
-.ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.li{display:flex;align-items:center;gap:6px;font-size:12px;color:#7a8295;font-weight:500}
-.wbtn{display:flex;align-items:center;gap:5px;border:1px solid #e5e8f0;background:#f9fafb;border-radius:8px;padding:7px 13px;font-size:12px;color:#374151;font-weight:600;cursor:pointer;transition:all .2s}
-.wbtn:hover{background:#fff;border-color:#d9dce5}
-.wbtn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+  <style>
+    :root{
+      --bg:#f6f8fc;
+      --panel:rgba(255,255,255,.78);
+      --panel2:#ffffff;
+      --stroke:rgba(15,23,42,.08);
+      --stroke2:rgba(15,23,42,.12);
+      --text:#0f172a;
+      --muted:#6b7280;
+      --muted2:#94a3b8;
+      --brand:#5b5ef6;
+      --brand2:#7b7ef8;
+      --ok:#16a34a;
+      --warn:#b45309;
+      --bad:#dc2626;
+      --info:#2563eb;
+      --shadow:0 18px 45px rgba(15,23,42,.10);
+      --shadow2:0 10px 28px rgba(15,23,42,.08);
+      --radius:18px;
+      --radius2:14px;
+      --blur:14px;
+    }
 
-/* TABLE */
-.bt{width:100%;border-collapse:collapse}
-.bt th{
-    padding-bottom:12px;
-    font-size:11px;
-    color:#64748b;
-    font-weight:600;
-}
-.bt td{
-    padding:14px 10px 14px 0;
-    border-bottom:1px solid #f1f5f9;
-}
-.bt tr:last-child td{border-bottom:none}
-.cc{display:flex;align-items:center;gap:10px}
-.cav{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
-.cn{font-size:13px;font-weight:700;color:#1a1d23}
-.ce{font-size:11px;color:#a0aac1;font-weight:500}
-.pkg{font-size:12px;color:#4b5563;font-weight:600}
-.amt{font-size:13px;font-weight:700;color:#1a1d23}
-.bdate{font-size:12px;color:#7a8295;font-weight:500}
-.bdg{
-    padding:4px 12px;
-    font-size:12px;
-    font-weight:500;
-    border-radius:9999px;
-}
-.g{background:#dcfce7;color:#15803d}
-.am{background:#fef3c7;color:#b45309}
-.r{background:#fee2e2;color:#b91c1c}
-.b{background:#dbeafe;color:#1d4ed8}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(91,94,246,.16), transparent 55%),
+                 radial-gradient(900px 540px at 80% 0%, rgba(34,197,94,.12), transparent 50%),
+                 var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
 
-/* BOTTOM */
-.bot{display:grid;grid-template-columns:240px 1fr 300px;gap:20px}
-.ai{display:flex;gap:11px;align-items:flex-start;padding:10px 0}
-.ai+.ai{border-top:1px solid #f7f8fc}
-.aic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
-.aic svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
-.at{font-size:12px;color:#374151;line-height:1.5;font-weight:500}
-.at strong{font-weight:700;color:#1a1d23}
-.atm{font-size:11px;color:#a0aac1;margin-top:3px;font-weight:500}
+    /* Layout */
+    .app{
+      display:grid;
+      grid-template-columns: 290px 1fr;
+      min-height:100vh;
+    }
 
-/* DESTINATIONS */
-.dests-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-.map-box{background:#eef3fb;border-radius:12px;position:relative;overflow:hidden;height:180px;border:1px solid #e5ecf8}
-.map-box svg{width:100%;height:100%}
-.dest-list{display:flex;flex-direction:column;gap:6px}
-.di{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:10px;transition:all .2s}
-.di.top{background:#f5f3ff;border:1px solid #f0ecff}
-.di:not(.top){border:1px solid transparent}
-.di:hover{background:#f9f8fb}
-.dflag{font-size:18px;line-height:1}
-.dname{font-size:12px;font-weight:700;color:#1a1d23}
-.dcnt{font-size:11px;color:#a0aac1;font-weight:500}
+    /* Sidebar */
+    .sidebar{
+      position:sticky;
+      top:0;
+      height:100vh;
+      padding:18px 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.45));
+      border-right:1px solid var(--stroke);
+      backdrop-filter: blur(var(--blur));
+    }
 
-/* TOURS TYPE */
-.tt-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
-.tt-l{display:flex;align-items:center;gap:8px}
-.tt-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.tt-name{font-size:12.5px;color:#4b5563;font-weight:500}
-.tt-r{display:flex;gap:12px;align-items:center}
-.tt-c{font-size:12px;color:#a0aac1;font-weight:500}
-.tt-p{font-size:13px;font-weight:700;color:#1a1d23}
-.earn{background:linear-gradient(135deg,#4e46e5 0%,#6366f1 100%);border-radius:14px;padding:18px;margin-top:16px;box-shadow:0 8px 16px rgba(79,70,229,.25)}
-.earn-lbl{font-size:11px;color:#c7d2fe;font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
-.earn-val{font-size:24px;font-weight:800;color:#fff;letter-spacing:-.3px}
-.earn-trend{font-size:11px;color:#a5b4fc;margin-top:4px;font-weight:500}
-.sat{border:1px solid #e5e8f0;border-radius:12px;padding:16px;margin-top:14px;background:#f9fafb}
-.sat-ttl{font-size:12px;font-weight:700;color:#7a8295;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
-.sat-val{font-size:24px;font-weight:800;color:#1a1d23;letter-spacing:-.3px}
-.stars{display:flex;gap:3px;margin-top:8px}
-.star{font-size:16px}
-.sat-t{font-size:12px;color:#16a34a;margin-top:6px;font-weight:600}
-.donut-wrap{display:flex;justify-content:center;margin-bottom:16px;position:relative}
-.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.donut-n{font-size:18px;font-weight:800;color:#1a1d23;letter-spacing:-.2px}
-.donut-s{font-size:11px;color:#a0aac1;margin-top:1px;font-weight:500}
-</style>
+    .sb-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .brand .logo{
+      width:44px;height:44px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      background: linear-gradient(135deg, rgba(91,94,246,.18), rgba(91,94,246,.06));
+      border:1px solid rgba(91,94,246,.18);
+      flex-shrink:0;
+    }
+
+    .brand .logo svg{width:20px;height:20px;stroke:#5b5ef6;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+    .brand .txt{min-width:0}
+    .brand .txt .name{font-weight:900;letter-spacing:-.3px;font-size:16px;line-height:1}
+    .brand .txt .role{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .sb-env{
+      margin-top:10px;
+      background: rgba(255,255,255,.65);
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      padding:12px;
+      box-shadow: 0 2px 10px rgba(15,23,42,.04);
+    }
+
+    .env-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .env-title{font-weight:900;letter-spacing:-.2px;font-size:13px;}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.6);
+      font-size:12px;font-weight:800;color:#1f2937;
+    }
+    .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(22,163,74,.12)}
+
+    .sb-actions{display:flex;gap:8px;margin-top:12px}
+    .sb-iconbtn{
+      width:40px;height:40px;border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.62);
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:transform .15s, box-shadow .15s, background .15s;
+    }
+    .sb-iconbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.82);box-shadow:0 10px 24px rgba(15,23,42,.10)}
+    .sb-iconbtn svg{width:18px;height:18px;stroke:#475569;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+    /* Nav */
+    .nav-section{margin-top:14px}
+    .nav-head{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:10px 8px 8px;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+    }
+    .nav-group{display:flex;flex-direction:column;gap:6px}
+
+    .nav-item{
+      width:100%;
+      text-align:left;
+      border:none;
+      background:transparent;
+      padding:10px 10px;
+      border-radius:14px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition: background .15s, transform .15s, box-shadow .15s, border-color .15s;
+      color:#0f172a;
+      border:1px solid transparent;
+    }
+    .nav-item:hover{background: rgba(91,94,246,.08);border-color: rgba(91,94,246,.18)}
+
+    .nav-item.active{
+      background: linear-gradient(135deg, rgba(91,94,246,.18), rgba(91,94,246,.08));
+      border-color: rgba(91,94,246,.25);
+      box-shadow: 0 12px 30px rgba(91,94,246,.16);
+    }
+
+    .nav-item .ni-ic{
+      width:36px;height:36px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background: rgba(255,255,255,.7);
+      border:1px solid var(--stroke);
+      flex-shrink:0;
+    }
+    .nav-item.active .ni-ic{border-color: rgba(91,94,246,.25);background:rgba(255,255,255,.85)}
+
+    .nav-item svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;color:#475569}
+    .nav-item.active svg{color: #5b5ef6}
+
+    .ni-txt{min-width:0;flex:1}
+    .ni-txt .t{font-weight:900;font-size:13.5px;letter-spacing:-.1px}
+    .ni-txt .s{font-weight:700;color:var(--muted);font-size:11.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .badge{
+      padding:5px 10px;border-radius:999px;
+      font-size:11.5px;font-weight:900;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.6);
+      color:#334155;
+    }
+
+    .sb-foot{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px dashed rgba(15,23,42,.14);
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .role-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .me{display:flex;align-items:center;gap:10px;min-width:0}
+    .me .avatar{
+      width:40px;height:40px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(91,94,246,.18), rgba(34,197,94,.12));
+      border:1px solid rgba(91,94,246,.25);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;color:#5b5ef6;letter-spacing:-.3px
+    }
+    .me .meta{min-width:0}
+    .me .meta .n{font-weight:1000;letter-spacing:-.2px;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .me .meta .r{font-weight:800;color:var(--muted);font-size:11.5px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    /* Main */
+    .main{
+      padding:18px 22px 30px;
+      position:relative;
+    }
+
+    /* Global Workspace Header */
+    .gwh{
+      border-radius: 22px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(var(--blur));
+      padding:14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .g-left{display:flex;align-items:center;gap:12px;min-width:0}
+
+    .g-ham{
+      width:44px;height:44px;border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.65);
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+    }
+    .g-ham svg{width:20px;height:20px;stroke:#475569;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+    .workspace{
+      display:flex;flex-direction:column;gap:4px;min-width:0
+    }
+    .workspace .wname{font-weight:1000;letter-spacing:-.3px;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .workspace .wmeta{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;font-weight:800}
+    .wmeta .sep{width:3px;height:3px;border-radius:50%;background:rgba(148,163,184,.8)}
+
+    .g-center{display:flex;align-items:center;gap:12px;flex:1;justify-content:center}
+    .cmdhint{
+      width:min(640px,100%);
+      display:flex;align-items:center;gap:12px;
+      padding:11px 14px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.55);
+      cursor:pointer;
+      transition: background .15s, border-color .15s, box-shadow .15s;
+    }
+    .cmdhint:hover{background:rgba(255,255,255,.85);border-color: rgba(91,94,246,.22);box-shadow:0 12px 28px rgba(91,94,246,.12)}
+    .cmdhint svg{width:18px;height:18px;stroke:#475569;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .cmdhint .ph{flex:1;font-weight:900;color:#475569;letter-spacing:-.1px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .kbd{
+      font-size:11px;
+      font-weight:1000;
+      color:#475569;
+      border:1px solid rgba(148,163,184,.35);
+      background: rgba(255,255,255,.6);
+      padding:5px 9px;
+      border-radius:10px;
+    }
+
+    .g-right{display:flex;align-items:center;gap:10px}
+
+    .status{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.55);
+      min-width:200px;
+    }
+    .health{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 5px rgba(22,163,74,.12)}
+    .status .t{font-weight:1000;font-size:12.5px;letter-spacing:-.1px}
+    .status .s{font-size:11.5px;color:var(--muted);font-weight:900;margin-top:4px}
+
+    .stackbtn{
+      width:44px;height:44px;border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.60);
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+      cursor:pointer;
+    }
+    .stackbtn svg{width:20px;height:20px;stroke:#475569;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .stackbtn .nb{
+      position:absolute;top:-6px;right:-6px;
+      padding:5px 8px;border-radius:999px;
+      background:linear-gradient(135deg, #ef4444, #dc2626);
+      color:white;
+      font-weight:1000;font-size:11px;
+      border:2px solid rgba(255,255,255,.9)
+    }
+
+    .ai-btn{
+      width:44px;height:44px;border-radius:16px;
+      border:1px solid rgba(91,94,246,.25);
+      background: linear-gradient(135deg, rgba(91,94,246,.18), rgba(91,94,246,.06));
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+    }
+    .ai-btn svg{width:20px;height:20px;stroke:#5b5ef6;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+    .pulse{
+      width:10px;height:10px;border-radius:50%;background:#60a5fa;
+      box-shadow:0 0 0 0 rgba(96,165,250,.35);
+      animation:pulse 1.7s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(96,165,250,.35)}
+      70%{box-shadow:0 0 0 12px rgba(96,165,250,0)}
+      100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}
+    }
+
+    .presence{
+      display:flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.55);
+    }
+    .presence .avatars{display:flex;align-items:center;margin-left:4px}
+    .presence .avatars .a{
+      width:30px;height:30px;border-radius:12px;
+      border:1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.8);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1000;font-size:11px;color:#334155;
+      margin-left:-8px
+    }
+    .presence .label{font-weight:1000;font-size:12.5px;letter-spacing:-.1px}
+    .presence .sub{font-size:11.5px;color:var(--muted);font-weight:900;margin-top:4px}
+
+    /* Hero / Content */
+    .content{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+
+    .hero{
+      border-radius: 22px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(var(--blur));
+      box-shadow: var(--shadow2);
+      padding:18px;
+      display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+    }
+
+    .hero .greeting{
+      min-width:0;
+    }
+    .hero h1{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.4px;
+      font-weight:1000;
+    }
+    .hero .sub{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+      line-height:1.4;
+    }
+
+    .hero .summary{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(170px, 1fr));
+      gap:12px;
+      align-items:stretch;
+      width:min(880px, 58vw);
+    }
+
+    .hcard{
+      border-radius:18px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.65);
+      padding:12px 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hcard::before{
+      content:"";
+      position:absolute;left:-20%;top:-30%;width:140%;height:140%;
+      background: radial-gradient(circle at 20% 20%, rgba(91,94,246,.18), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .hcard .k{position:relative; font-size:11.5px;color:var(--muted);font-weight:1000;letter-spacing:.4px;text-transform:uppercase}
+    .hcard .v{position:relative;margin-top:8px;font-weight:1000;font-size:20px;letter-spacing:-.3px}
+    .hcard .hint{position:relative;margin-top:7px;color:var(--muted);font-size:11.5px;font-weight:900;line-height:1.25}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.35fr .9fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .bento{
+      border-radius: 22px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(var(--blur));
+      box-shadow: var(--shadow2);
+      padding:14px;
+    }
+
+    .bento .bento-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows:minmax(120px, auto);
+      gap:12px;
+    }
+
+    .widget{
+      border-radius: 18px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.68);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+      min-height:120px;
+    }
+    .widget .whd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .widget .wt{font-weight:1000;letter-spacing:-.2px; font-size:14.5px}
+    .widget .wd{color:var(--muted);font-weight:900;font-size:12px;margin-top:4px;line-height:1.2}
+
+    .tagbtn{
+      border:none;
+      background: rgba(91,94,246,.10);
+      color:#5b5ef6;
+      font-weight:1000;
+      padding:8px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      border:1px solid rgba(91,94,246,.20);
+      transition: transform .15s, background .15s;
+    }
+    .tagbtn:hover{transform:translateY(-1px);background: rgba(91,94,246,.14)}
+
+    .metric-big{
+      display:flex;flex-direction:column;gap:8px;
+      margin-top:6px;
+    }
+    .metric-big .big{font-size:30px;font-weight:1100;letter-spacing:-.6px}
+    .metric-big .small{color:var(--muted);font-weight:900;font-size:12px;line-height:1.35}
+
+    .ai-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+    .ai-item{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.55);
+    }
+    .ai-item .ic{width:34px;height:34px;border-radius:14px;
+      border:1px solid rgba(91,94,246,.20);
+      background: linear-gradient(135deg, rgba(91,94,246,.14), rgba(91,94,246,.05));
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+    .ai-item .ic svg{width:16px;height:16px;stroke:#5b5ef6;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .ai-item .tx{min-width:0}
+    .ai-item .tx .a{font-weight:1000;font-size:12.5px;letter-spacing:-.1px;line-height:1.25}
+    .ai-item .tx .b{margin-top:5px;color:var(--muted);font-weight:900;font-size:11.5px;line-height:1.25}
+
+    /* Booking pipeline (Kanban) */
+    .kanban{
+      display:grid;
+      grid-template-columns: repeat(7, minmax(110px, 1fr));
+      gap:10px;
+      overflow:auto;
+      padding-bottom:6px;
+    }
+    .col{
+      border-radius:16px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.55);
+      padding:10px;
+      min-height:190px;
+    }
+    .col .ct{
+      font-weight:1000;font-size:11.5px;color:#475569;letter-spacing:.4px;text-transform:uppercase;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      margin-bottom:8px;
+    }
+    .col .count{font-weight:1100;font-size:12px;color:#0f172a}
+    .cardb{
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.72);
+      padding:10px;
+      margin-top:8px;
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+    }
+    .cardb .n{font-weight:1000;font-size:12.5px;letter-spacing:-.1px;line-height:1.25}
+    .cardb .m{margin-top:6px;color:var(--muted);font-size:11.5px;font-weight:900;line-height:1.2}
+    .cardb .s{
+      margin-top:8px;
+      display:inline-flex;
+      padding:5px 9px;border-radius:999px;
+      font-weight:1000;font-size:11.5px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.7);
+    }
+
+    /* Right column */
+    .side-stack{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .timeline{
+      display:flex;flex-direction:column;gap:10px;margin-top:8px
+    }
+    .tlitem{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:10px 10px;
+      border-radius:16px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.58);
+    }
+    .tlitem .t{font-weight:1000;font-size:12px;color:#334155;min-width:52px}
+    .tlitem .body .a{font-weight:1000;font-size:12.5px;line-height:1.25}
+    .tlitem .body .b{margin-top:4px;color:var(--muted);font-weight:900;font-size:11.5px;line-height:1.25}
+
+    .alerts{
+      display:flex;flex-direction:column;gap:10px;margin-top:8px
+    }
+    .alert{
+      padding:11px 12px;border-radius:16px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.58);
+      display:flex;gap:10px;align-items:flex-start
+    }
+    .alert .dot{
+      width:12px;height:12px;border-radius:50%;margin-top:3px;
+      background: var(--bad);
+      box-shadow:0 0 0 5px rgba(220,38,38,.12)
+    }
+    .alert.ok .dot{background:var(--ok);box-shadow:0 0 0 5px rgba(22,163,74,.12)}
+    .alert.warn .dot{background:#f59e0b;box-shadow:0 0 0 5px rgba(245,158,11,.14)}
+    .alert .body .a{font-weight:1000;font-size:12.5px;line-height:1.25}
+    .alert .body .b{margin-top:5px;color:var(--muted);font-weight:900;font-size:11.5px;line-height:1.25}
+
+    /* Command palette */
+    .overlay{position:fixed;inset:0;background:rgba(2,6,23,.40);display:none;align-items:flex-start;justify-content:center;padding-top:12vh;z-index:50}
+    .overlay.show{display:flex}
+    .palette{
+      width:min(760px, 92vw);
+      border-radius:22px;
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.55);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .pal-hd{
+      padding:14px 14px;
+      border-bottom:1px solid rgba(15,23,42,.08);
+      display:flex;align-items:center;gap:12px
+    }
+    .pal-hd svg{width:18px;height:18px;stroke:#475569;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .pal-input{
+      border:none;outline:none;flex:1;
+      background:transparent;
+      font-weight:1000;
+      font-size:13.5px;
+      color:#0f172a;
+      padding:10px 6px;
+    }
+    .pal-kbd{font-weight:1000;color:#475569;font-size:11.5px}
+
+    .pal-list{max-height:420px;overflow:auto; padding:10px}
+    .pal-item{
+      width:100%;
+      text-align:left;
+      border:none;
+      background:transparent;
+      padding:12px 12px;
+      border-radius:16px;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      border:1px solid transparent;
+    }
+    .pal-item:hover{background: rgba(91,94,246,.10); border-color: rgba(91,94,246,.18)}
+    .pal-left{display:flex;align-items:center;gap:12px;min-width:0}
+    .pal-ico{
+      width:36px;height:36px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      background: rgba(255,255,255,.65);
+      border:1px solid rgba(15,23,42,.08);
+      flex-shrink:0
+    }
+    .pal-ico svg{width:18px;height:18px;stroke:#5b5ef6;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .pal-txt .a{font-weight:1100;font-size:13px;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pal-txt .b{margin-top:5px;color:var(--muted);font-weight:900;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pal-right{color:var(--muted2);font-weight:1000;font-size:11.5px}
+
+    /* Small responsive */
+    @media (max-width: 1150px){
+      .app{grid-template-columns: 260px 1fr}
+      .hero .summary{grid-template-columns: repeat(2, minmax(160px, 1fr));width:100%}
+      .grid{grid-template-columns:1fr;}
+      .status{min-width:150px}
+      .kanban{grid-template-columns: repeat(7, minmax(130px, 1fr))}
+    }
+    @media (max-width: 820px){
+      .app{grid-template-columns: 1fr}
+      .sidebar{position:relative;height:auto}
+      .g-center{justify-content:flex-start}
+      .gwh{flex-wrap:wrap}
+      .grid{grid-template-columns:1fr}
+      .presence{display:none}
+      .status{min-width:auto;flex:1}
+      .kanban{grid-template-columns: repeat(7, minmax(160px, 1fr))}
+    }
+  </style>
 </head>
 <body>
+  <div class="app">
+    <!-- Sidebar: workspace-aware operating system -->
+    <aside class="sidebar">
+      <div class="sb-top">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81a19.79 19.79 0 0 1-3.07-8.68A2 2 0 0 1 2 .18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+              <path d="M17 1a6 6 0 0 1 6 6"/>
+              <path d="M17 5a2 2 0 0 1 2 2"/>
+            </svg>
+          </div>
+          <div class="txt">
+            <div class="name">Travela</div>
+            <div class="role">Travel Ops Console</div>
+          </div>
+        </div>
 
-<!-- SIDEBAR -->
-<aside id="sidebar">
-  <div class="logo-wrap">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke-linejoin="round"/><path d="M17 1a6 6 0 016 6"/><path d="M17 5a2 2 0 012 2"/></svg>
-    </div>
-    <div class="logo-text">
-      <div class="brand">Travela</div>
-      <div class="sub">Admin Dashboard</div>
+        <button class="sb-iconbtn" id="sbQuick" title="Quick actions" type="button">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2v20"/>
+            <path d="M2 12h20"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="sb-env">
+        <div class="env-row">
+          <div class="env-title">The Coconut Saraih</div>
+          <div class="pill"><span class="dot"></span> Production</div>
+        </div>
+        <div class="sb-actions">
+          <button class="sb-iconbtn" type="button" title="Workspace switching">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 4h16v16H4z"/>
+              <path d="M8 12h8"/>
+              <path d="M12 8v8"/>
+            </svg>
+          </button>
+          <button class="sb-iconbtn" type="button" title="AI playbooks">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>
+            </svg>
+          </button>
+          <button class="sb-iconbtn" type="button" title="Notifications">
+            <svg viewBox="0 0 24 24">
+              <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 01-3.46 0"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-head"><span>Operations</span><span class="badge">Live</span></div>
+        <div class="nav-group">
+          <button class="nav-item active" data-route="dashboard" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 13.5V4h6v9.5z"/><path d="M14 20V4h6v16z"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Command Center</div><div class="s">Decision-ready overview</div></div>
+          </button>
+          <button class="nav-item" data-route="bookings" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Booking Pipeline</div><div class="s">Inquiry → completion</div></div>
+          </button>
+          <button class="nav-item" data-route="tours" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M22 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Tours & Scheduling</div><div class="s">Capacity & incident logs</div></div>
+          </button>
+          <button class="nav-item" data-route="fleet" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 7h13l5 6v4H3z"/><path d="M7 17a2 2 0 104 0"/><path d="M17 17a2 2 0 104 0"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Fleet Ops</div><div class="s">Health, drivers, routes</div></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-head"><span>Customers</span><span class="badge">VIP</span></div>
+        <div class="nav-group">
+          <button class="nav-item" data-route="customers" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">CRM & Travelers</div><div class="s">LTV, segments, repeat</div></div>
+          </button>
+          <button class="nav-item" data-route="guides" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6"/><path d="M23 11h-6"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Guides</div><div class="s">Roster & live presence</div></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-head"><span>Finance</span><span class="badge">SaaS</span></div>
+        <div class="nav-group">
+          <button class="nav-item" data-route="payments" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 12h8"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Payments</div><div class="s">Payouts & refunds</div></div>
+          </button>
+          <button class="nav-item" data-route="revenue" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M7 14l3-3 3 2 4-5"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Revenue Intelligence</div><div class="s">Forecast & variance</div></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-head"><span>Content</span><span class="badge">Growth</span></div>
+        <div class="nav-group">
+          <button class="nav-item" data-route="destinations" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-8"/><path d="M9 9l3-3 3 3"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Destinations</div><div class="s">SEO & availability</div></div>
+          </button>
+          <button class="nav-item" data-route="packages" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 01-2 2H5a2 2 0 01-2-2"/><path d="M7 12h10"/><path d="M7 16h10"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Tours & Packages</div><div class="s">Pricing, inventory</div></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-head"><span>System</span><span class="badge">Admin</span></div>
+        <div class="nav-group">
+          <button class="nav-item" data-route="settings" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 0 1 7 2.18l.06.06A1.65 1.65 0 0 0 8.9 2.57 1.65 1.65 0 0 0 10 1V1a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06A2 2 0 1 1 21.7 5.04l-.06.06A1.65 1.65 0 0 0 21.3 6.92 1.65 1.65 0 0 0 22.82 8H23a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Settings</div><div class="s">RBAC, notifications, tenants</div></div>
+          </button>
+          <button class="nav-item" data-route="audit" type="button">
+            <div class="ni-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div class="ni-txt"><div class="t">Audit & Activity</div><div class="s">Operational compliance</div></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="sb-foot">
+        <div class="role-row">
+          <div class="me">
+            <div class="avatar">AU</div>
+            <div class="meta">
+              <div class="n">Admin User</div>
+              <div class="r">Super Admin</div>
+            </div>
+          </div>
+          <button class="sb-iconbtn" id="toggleTheme" type="button" title="Theme (demo)" aria-label="Theme toggle">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3a7 7 0 1 0 7 7"/>
+              <path d="M21 12a9 9 0 1 1-9-9"/>
+            </svg>
+          </button>
+        </div>
+        <div style="color:var(--muted);font-weight:900;font-size:11.5px;line-height:1.35">
+          Tip: Press <b>⌘ K</b> / <b>Ctrl K</b> for command search.
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main area -->
+    <main class="main">
+      <!-- Global Workspace Header -->
+      <div class="gwh">
+        <div class="g-left">
+          <button class="g-ham" id="sbCollapse" type="button" aria-label="Toggle sidebar">
+            <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+          </button>
+
+          <div class="workspace">
+            <div class="wname">The Coconut Saraih</div>
+            <div class="wmeta">
+              <span style="display:flex;align-items:center;gap:8px"> <span style="width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 5px rgba(22,163,74,.12)"></span> Healthy</span>
+              <span class="sep"></span>
+              <span style="font-weight:1000">Tenant: Coconut</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="g-center">
+          <div class="cmdhint" id="cmdOpen" role="button" tabindex="0" aria-label="Open command palette">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <div class="ph">Search tours, bookings, customers, actions…</div>
+            <div class="kbd">⌘ K</div>
+          </div>
+        </div>
+
+        <div class="g-right">
+          <div class="status" title="System status">
+            <div class="health"></div>
+            <div>
+              <div class="t">System: Operational</div>
+              <div class="s">Latency 42ms • Uptime 99.99%</div>
+            </div>
+          </div>
+
+          <button class="stackbtn" id="notifBtn" type="button" aria-label="Notifications">
+            <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="nb">8</span>
+          </button>
+
+          <button class="ai-btn" id="aiBtn" type="button" aria-label="AI assistant">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>
+          </button>
+
+          <div class="presence" title="Live team presence">
+            <div>
+              <div class="label" style="display:flex;align-items:center;gap:10px"><span class="pulse"></span> Presence</div>
+              <div class="sub">3 admins online</div>
+            </div>
+            <div class="avatars" aria-hidden="true">
+              <div class="a">AU</div>
+              <div class="a">MJ</div>
+              <div class="a">KR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero intelligence banner -->
+      <section class="content">
+        <div class="hero">
+          <div class="greeting">
+            <h1 id="heroTitle">Good morning, Solomon 👋</h1>
+            <div class="sub" id="heroSub">Your decision-ready ops overview is up to date. Smart insights are waiting.</div>
+          </div>
+
+          <div class="summary">
+            <div class="hcard">
+              <div class="k">Bookings</div>
+              <div class="v">+18.4%</div>
+              <div class="hint">Most growth from Bali packages</div>
+            </div>
+            <div class="hcard">
+              <div class="k">Attention</div>
+              <div class="v">2 tours</div>
+              <div class="hint">Need capacity confirmation within 24h</div>
+            </div>
+            <div class="hcard">
+              <div class="k">VIP Check-in</div>
+              <div class="v">12</div>
+              <div class="hint">Arriving today • 3 high-priority</div>
+            </div>
+            <div class="hcard">
+              <div class="k">Revenue Target</div>
+              <div class="v">84%</div>
+              <div class="hint">Forecast: +22% next week (AI)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="bento">
+            <div class="bento-grid">
+              <!-- Intelligence hero widget -->
+              <div class="widget" style="grid-column: 1 / span 2; min-height: 150px">
+                <div class="whd">
+                  <div>
+                    <div class="wt">AI Intelligence Layer</div>
+                    <div class="wd">What changed, what matters, and the next best actions.</div>
+                  </div>
+                  <button class="tagbtn" type="button" id="applyInsights">Apply playbook</button>
+                </div>
+
+                <div style="display:grid;grid-template-columns: 1.2fr 1fr 1fr;gap:12px;align-items:start">
+                  <div class="metric-big">
+                    <div class="big">+ $28,400</div>
+                    <div class="small">Revenue increased today. Cancellation spike detected in Europe—recommend mitigation.</div>
+                  </div>
+
+                  <div class="ai-list" style="margin-top:0">
+                    <div class="ai-item">
+                      <div class="ic" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>
+                      </div>
+                      <div class="tx">
+                        <div class="a">Cancellation spike • Europe</div>
+                        <div class="b">Suggested action: run 10% smart promo on Paris + refund-safe rebooking window.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ai-list" style="margin-top:0">
+                    <div class="ai-item">
+                      <div class="ic" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M4 19.5V4.5L20 12z"/></svg>
+                      </div>
+                      <div class="tx">
+                        <div class="a">Capacity risk • 2 tours</div>
+                        <div class="b">Suggested action: confirm guide roster and secure vehicle allocation for tomorrow.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Revenue card -->
+              <div class="widget" style="min-height: 260px">
+                <div class="whd">
+                  <div>
+                    <div class="wt">Revenue Intelligence</div>
+                    <div class="wd">Variance, mix, and growth drivers.</div>
+                  </div>
+                  <button class="tagbtn" type="button" id="revBreakdown">View breakdown</button>
+                </div>
+
+                <div style="display:flex;gap:12px;align-items:flex-start">
+                  <div class="metric-big" style="min-width:210px">
+                    <div class="big">$128,540</div>
+                    <div class="small">Up 18.6% vs last 7 days. AI predicts +22% next week.</div>
+                  </div>
+                  <div style="flex:1;min-width:240px;height:200px">
+                    <canvas id="revChart" height="200"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Booking pipeline -->
+              <div class="widget" style="grid-column: 1 / span 2; min-height: 290px">
+                <div class="whd">
+                  <div>
+                    <div class="wt">Booking Pipeline (Operational)</div>
+                    <div class="wd">Live kanban flow across the full lifecycle.</div>
+                  </div>
+                  <button class="tagbtn" type="button" id="openPipeline">Open pipeline</button>
+                </div>
+
+                <div class="kanban" aria-label="Booking pipeline">
+                  <div class="col"><div class="ct">Inquiry <span class="count">46</span></div>
+                    <div class="cardb"><div class="n">Bali Explorer • 4 pax</div><div class="m">Booked channel: Website</div><div class="s" style="border-color:rgba(37,99,235,.2);color:#2563eb">New</div></div>
+                  </div>
+                  <div class="col"><div class="ct">Pending <span class="count">31</span></div>
+                    <div class="cardb"><div class="n">Paris City • VIP</div><div class="m">Awaiting payment confirmation</div><div class="s" style="border-color:rgba(245,158,11,.22);color:#b45309">Hold</div></div>
+                  </div>
+                  <div class="col"><div class="ct">Confirmed <span class="count">58</span></div>
+                    <div class="cardb"><div class="n">Kenya Safari • 2 rooms</div><div class="m">Vehicle assigned</div><div class="s" style="border-color:rgba(22,163,74,.22);color:#16a34a">Ready</div></div>
+                  </div>
+                  <div class="col"><div class="ct">Preparing <span class="count">22</span></div>
+                    <div class="cardb"><div class="n">Switzerland Trip</div><div class="m">Docs review scheduled</div><div class="s" style="border-color:rgba(91,94,246,.22);color:#5b5ef6">Docs</div></div>
+                  </div>
+                  <div class="col"><div class="ct">In Tour <span class="count">19</span></div>
+                    <div class="cardb"><div class="n">Iceland Aurora</div><div class="m">Route on track</div><div class="s" style="border-color:rgba(37,99,235,.2);color:#2563eb">Live</div></div>
+                  </div>
+                  <div class="col"><div class="ct">Completed <span class="count">73</span></div>
+                    <div class="cardb"><div class="n">Maldives Escape</div><div class="m">Review request sent</div><div class="s" style="border-color:rgba(22,163,74,.22);color:#16a34a">Done</div></div>
+                  </div>
+                  <div class="col"><div class="ct">Cancelled <span class="count">9</span></div>
+                    <div class="cardb"><div class="n">Paris Getaway</div><div class="m">Refund policy engaged</div><div class="s" style="border-color:rgba(220,38,38,.22);color:#dc2626">Refund</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI suggestions -->
+              <div class="widget" style="min-height: 240px">
+                <div class="whd">
+                  <div>
+                    <div class="wt">Next Best Actions</div>
+                    <div class="wd">Actionable automation suggestions.</div>
+                  </div>
+                  <button class="tagbtn" type="button">Run</button>
+                </div>
+
+                <div class="ai-list">
+                  <div class="ai-item">
+                    <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+                    <div class="tx"><div class="a">Optimize pricing for Bali</div><div class="b">AI suggests +6% on weekends; expected conversion +3.1%.</div></div>
+                  </div>
+                  <div class="ai-item">
+                    <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg></div>
+                    <div class="tx"><div class="a">Prevent no-shows</div><div class="b">Send confirm reminders to Pending bookings from Europe.</div></div>
+                  </div>
+                  <div class="ai-item">
+                    <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M2 12h20"/></svg></div>
+                    <div class="tx"><div class="a">Auto-assign guides</div><div class="b">Allocate best-fit guides based on capacity + language preferences.</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Operations mini: map/info (reuse the old visual flavor) -->
+              <div class="widget" style="min-height: 240px">
+                <div class="whd">
+                  <div>
+                    <div class="wt">Live Operations Map</div>
+                    <div class="wd">Heat by demand + activity pins (visual demo).</div>
+                  </div>
+                  <button class="tagbtn" type="button" id="focusMap">Focus</button>
+                </div>
+
+                <div style="height:165px;border-radius:16px;border:1px solid rgba(15,23,42,.08);background:linear-gradient(180deg, rgba(91,94,246,.10), rgba(255,255,255,.5));position:relative;overflow:hidden">
+                  <svg viewBox="0 0 340 180" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%" aria-hidden="true">
+                    <rect width="340" height="180" fill="rgba(221,234,248,.55)" rx="12"/>
+                    <path d="M20,30 L25,25 L35,22 L55,20 L70,25 L80,35 L85,50 L82,65 L75,75 L68,80 L60,85 L50,88 L42,82 L35,75 L28,65 L22,55 L18,42 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+                    <path d="M60,100 L72,95 L82,100 L88,115 L90,130 L85,150 L75,162 L62,165 L50,158 L45,145 L42,128 L44,110 L50,100 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+                    <path d="M140,18 L155,15 L165,18 L170,25 L165,35 L155,40 L148,38 L140,32 L135,25 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+                    <path d="M140,45 L158,40 L172,42 L180,52 L182,68 L178,88 L170,108 L158,122 L145,128 L132,122 L125,108 L122,88 L124,68 L130,52 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+                    <path d="M170,18 L200,14 L235,12 L265,15 L285,22 L295,35 L290,50 L278,60 L258,65 L235,68 L210,65 L188,58 L175,48 L168,35 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
+
+                    <defs>
+                      <linearGradient id="heatBar" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#93c5fd"/>
+                        <stop offset="55%" stop-color="#5b8fd4"/>
+                        <stop offset="100%" stop-color="#1e4d8c"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="14" y="158" width="90" height="6" rx="3" fill="url(#heatBar)" opacity=".9"/>
+                    <text x="10" y="172" font-size="8" fill="#6b7585" font-weight="800">Low</text>
+                    <text x="88" y="172" font-size="8" fill="#6b7585" font-weight="800">High</text>
+
+                    <!-- Pins -->
+                    <g opacity=".95">
+                      <circle cx="275" cy="94" r="6" fill="#5b5ef6" opacity=".16"/>
+                      <circle cx="275" cy="94" r="3.8" fill="#5b5ef6"/>
+                      <circle cx="275" cy="94" r="1.5" fill="#fff"/>
+
+                      <circle cx="148" cy="28" r="5" fill="#5b5ef6" opacity=".14"/>
+                      <circle cx="148" cy="28" r="3.2" fill="#5b5ef6"/>
+                      <circle cx="148" cy="28" r="1.2" fill="#fff"/>
+
+                      <circle cx="153" cy="34" r="4" fill="#5b5ef6" opacity=".12"/>
+                      <circle cx="153" cy="34" r="2.5" fill="#5b5ef6"/>
+
+                      <circle cx="220" cy="92" r="4" fill="#5b5ef6" opacity=".12"/>
+                      <circle cx="220" cy="92" r="2.5" fill="#5b5ef6"/>
+
+                      <circle cx="120" cy="18" r="4" fill="#5b5ef6" opacity=".12"/>
+                      <circle cx="120" cy="18" r="2.5" fill="#5b5ef6"/>
+                    </g>
+                  </svg>
+
+                  <div style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.75);border:1px solid rgba(15,23,42,.08);border-radius:999px;padding:8px 10px;font-weight:1000;color:#334155;font-size:11.5px">
+                    Demand heat • live activity
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+                  <span class="badge" style="border-color:rgba(91,94,246,.22);color:#5b5ef6;background:rgba(91,94,246,.08)">Bali • Hot</span>
+                  <span class="badge">Paris • Active</span>
+                  <span class="badge">Europe • Mitigate</span>
+                  <span class="badge">Iceland • Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-stack">
+            <div class="bento" style="padding:14px">
+              <div class="widget" style="border:none;background:transparent;padding:0;min-height:0">
+                <div class="whd">
+                  <div>
+                    <div class="wt">Live Activity Stream</div>
+                    <div class="wd">Operational timeline across the workspace.</div>
+                  </div>
+                  <button class="tagbtn" type="button">View all</button>
+                </div>
+
+                <div class="timeline">
+                  <div class="tlitem"><div class="t">10:24</div><div class="body"><div class="a">Booking confirmed</div><div class="b">Wade Warren • Bali Paradise</div></div></div>
+                  <div class="tlitem"><div class="t">10:28</div><div class="body"><div class="a">Refund requested</div><div class="b">Leslie Alexander • Paris Getaway</div></div></div>
+                  <div class="tlitem"><div class="t">10:31</div><div class="body"><div class="a">Guide assigned</div><div class="b">Alex • Paris Tour</div></div></div>
+                  <div class="tlitem"><div class="t">10:40</div><div class="body"><div class="a">VIP checked in</div><div class="b">12 arrivals • 3 priority</div></div></div>
+                  <div class="tlitem"><div class="t">10:47</div><div class="body"><div class="a">Vehicle health updated</div><div class="b">TRV-204 • Maintenance scheduled</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bento" style="padding:14px">
+              <div class="widget" style="border:none;background:transparent;padding:0;min-height:0">
+                <div class="whd">
+                  <div>
+                    <div class="wt">Fleet Management</div>
+                    <div class="wd">Health, driver assignment, maintenance alerts.</div>
+                  </div>
+                  <button class="tagbtn" type="button">Manage</button>
+                </div>
+
+                <div class="alerts">
+                  <div class="alert ok"><div class="dot"></div><div class="body"><div class="a">Vehicle health: Good</div><div class="b">TRV-112 • Engine score 92 • No incidents</div></div></div>
+                  <div class="alert warn"><div class="dot"></div><div class="body"><div class="a">Driver assignment</div><div class="b">Noura assigned to Kenya Safari • ETA 14m</div></div></div>
+                  <div class="alert"><div class="dot"></div><div class="body"><div class="a">Maintenance alert</div><div class="b">TRV-204 • Brake inspection due within 48h</div></div></div>
+                </div>
+
+                <div style="margin-top:12px;display:grid;grid-template-columns: 1fr 1fr;gap:10px">
+                  <div class="ai-item" style="margin:0"><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M12 3v18"/></svg></div><div class="tx"><div class="a">Fuel analytics</div><div class="b">Idle time down 6.2% this week</div></div></div>
+                  <div class="ai-item" style="margin:0"><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-4.4 7-10a7 7 0 1 0-14 0c0 5.6 7 10 7 10z"/><circle cx="12" cy="11" r="2.2"/></svg></div><div class="tx"><div class="a">Trip tracking</div><div class="b">3 active routes • 1 on-time risk</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bento" style="padding:14px">
+              <div class="widget" style="border:none;background:transparent;padding:0;min-height:0">
+                <div class="whd">
+                  <div>
+                    <div class="wt">Operational Metrics Snapshot</div>
+                    <div class="wd">Dense data, real hierarchy.</div>
+                  </div>
+                  <button class="tagbtn" type="button">Refresh</button>
+                </div>
+
+                <div style="display:grid;grid-template-columns: repeat(2, minmax(0,1fr));gap:12px">
+                  <div class="hcard" style="padding:12px"><div class="k">AI Confidence</div><div class="v">0.86</div><div class="hint">Decision signals stable</div></div>
+                  <div class="hcard" style="padding:12px"><div class="k">On-tour</div><div class="v">19</div><div class="hint">Live operators active</div></div>
+                  <div class="hcard" style="padding:12px"><div class="k">Tasks due</div><div class="v">27</div><div class="hint">Grouped by priority</div></div>
+                  <div class="hcard" style="padding:12px"><div class="k">Cancellations</div><div class="v">-12%</div><div class="hint">Mitigation applied</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Command palette overlay -->
+  <div class="overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="palette">
+      <div class="pal-hd">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="pal-input" id="cmdInput" type="text" placeholder="Type to search actions…" autocomplete="off"/>
+        <div class="pal-kbd">Esc</div>
+      </div>
+      <div class="pal-list" id="cmdList"></div>
     </div>
   </div>
 
-  <nav>
-    <button class="nav-btn active">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-      Dashboard
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Bookings
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-      Tours &amp; Packages
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Destinations
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-      Customers
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><circle cx="6.5" cy="6.5" r="3.5"/><circle cx="6.5" cy="17.5" r="3.5"/><line x1="10" y1="6.5" x2="22" y2="6.5"/><line x1="10" y1="17.5" x2="22" y2="17.5"/></svg>
-      Tour Guides
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      Vehicles
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-      Payments
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      Reviews
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Promotions
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      Blog CMS
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-      Analytics
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Messages
-      <span class="nav-badge">12</span>
-    </button>
-    <button class="nav-btn">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-      Settings
-      <svg class="nav-arrow" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-  </nav>
+  <script>
+    const $ = (s, el=document)=>el.querySelector(s);
+    const $$ = (s, el=document)=>Array.from(el.querySelectorAll(s));
 
-  <div class="sidebar-promo">
-    <!-- Mountain landscape SVG background -->
-    <svg class="promo-img" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2744"/><stop offset="100%" stop-color="#3a5a8a"/></linearGradient>
-        <linearGradient id="mtn1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2d4a6e"/><stop offset="100%" stop-color="#1a2d45"/></linearGradient>
-        <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3d5f7e"/><stop offset="100%" stop-color="#243d55"/></linearGradient>
-        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a2d3e"/><stop offset="100%" stop-color="#0f1c27"/></linearGradient>
-      </defs>
-      <rect width="200" height="120" fill="url(#sky)"/>
-      <polygon points="0,80 30,30 60,60 90,20 130,70 160,35 200,65 200,120 0,120" fill="url(#mtn1)"/>
-      <polygon points="0,90 40,55 80,75 120,45 160,68 200,50 200,120 0,120" fill="url(#mtn2)"/>
-      <polygon points="0,100 50,75 100,90 150,72 200,85 200,120 0,120" fill="url(#fg)"/>
-      <circle cx="30" cy="20" r="2" fill="#fff" opacity=".6"/>
-      <circle cx="80" cy="12" r="1.5" fill="#fff" opacity=".5"/>
-      <circle cx="150" cy="18" r="1" fill="#fff" opacity=".7"/>
-      <circle cx="170" cy="10" r="1.5" fill="#fff" opacity=".4"/>
-      <!-- Hiker silhouette -->
-      <circle cx="105" cy="73" r="2.5" fill="#0f1c27"/>
-      <line x1="105" y1="76" x2="105" y2="84" stroke="#0f1c27" stroke-width="1.5"/>
-      <line x1="105" y1="79" x2="101" y2="83" stroke="#0f1c27" stroke-width="1.2"/>
-      <line x1="105" y1="79" x2="109" y2="83" stroke="#0f1c27" stroke-width="1.2"/>
-      <line x1="105" y1="84" x2="102" y2="89" stroke="#0f1c27" stroke-width="1.2"/>
-      <line x1="105" y1="84" x2="108" y2="89" stroke="#0f1c27" stroke-width="1.2"/>
-      <line x1="102" y1="75" x2="100" y2="80" stroke="#0f1c27" stroke-width="1"/>
-    </svg>
-    <div class="promo-content">
-      <p>Explore the world<br>with Travela</p>
-      <button class="promo-btn">
-        View Website
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
-    </div>
-  </div>
-</aside>
+    // Command palette actions (demo, frontend only)
+    const actions = [
+      {title:"Go to Command Center", desc:"Overview + intelligence layer", route:"dashboard", hotkey:"Enter"},
+      {title:"Open Booking Pipeline", desc:"Kanban operational flow", route:"bookings", hotkey:"Enter"},
+      {title:"View Revenue Intelligence", desc:"Forecast + variance cards", route:"revenue", hotkey:"Enter"},
+      {title:"Manage Fleet", desc:"Health + drivers + alerts", route:"fleet", hotkey:"Enter"},
+      {title:"Open CRM & Travelers", desc:"LTV, segments, VIP status", route:"customers", hotkey:"Enter"},
+      {title:"Run AI Playbook", desc:"Apply next best actions", route:"ai", hotkey:"Enter"},
+      {title:"Export operational report", desc:"Download snapshot (UI demo)", route:"export", hotkey:"Enter"},
+      {title:"Toggle theme (demo)", desc:"Switch cosmetic styling", route:"theme", hotkey:"Enter"}
+    ];
 
-<!-- MAIN -->
-<div id="main">
-  <header>
-    <button class="hamburger">
-      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div class="search">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <span>Search anything...</span>
-      <kbd>⌘K</kbd>
-    </div>
-    <div class="topbar-end">
-      <div class="live-chip">
-        <div class="live-dot"></div>
-        <span>Live Bookings</span>
-        <span class="lc">24</span>
-      </div>
-      <button class="tbtn">
-        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-        <span class="nbadge">8</span>
-      </button>
-      <button class="icon-pill">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
-        🌐 English
-        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <button class="tbtn">🌙</button>
-      <div class="avatar-block">
-        <div class="avatar">AU</div>
-        <div>
-          <div class="av-name">Admin User</div>
-          <div class="av-role">Super Admin</div>
-        </div>
-      </div>
-    </div>
-  </header>
+    function renderPalette(list, q=""){
+      const host = $("#cmdList");
+      host.innerHTML = "";
+      const query = (q||"").toLowerCase().trim();
 
-  <div id="content">
-    <!-- Page Header -->
-    <div class="pg-header">
-      <div>
-        <h1>Welcome back, Admin! 👋</h1>
-        <p>Here's what's happening with your travel business today.</p>
-      </div>
-      <div class="pg-actions">
-        <button class="date-btn">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          May 12 – May 18, 2024
-          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <button class="exp-btn">
-          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export Report
-        </button>
-      </div>
-    </div>
+      const filtered = list
+        .filter(a => !query || (a.title + " " + a.desc).toLowerCase().includes(query))
+        .slice(0, 8);
 
-    <!-- Stats -->
-    <div class="stats">
-      <!-- Total Revenue -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-lbl">Total Revenue</div>
-          <div class="sc-icon" style="background:#eef2ff"><svg viewBox="0 0 24 24" stroke="#6366f1"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-        </div>
-        <div class="sc-val">$128,540</div>
-        <canvas class="sc-spark" id="sp0"></canvas>
-        <div class="sc-trend"><span class="up">↑ 18.6%</span><span class="trsub">vs last 7 days</span></div>
-      </div>
-      <!-- Active Tours -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-lbl">Active Tours</div>
-          <div class="sc-icon" style="background:#f5f3ff"><svg viewBox="0 0 24 24" stroke="#8b5cf6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-        </div>
-        <div class="sc-val">156</div>
-        <canvas class="sc-spark" id="sp1"></canvas>
-        <div class="sc-trend"><span class="up">↑ 12.4%</span><span class="trsub">vs last 7 days</span></div>
-      </div>
-      <!-- New Bookings -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-lbl">New Bookings</div>
-          <div class="sc-icon" style="background:#ecfdf5"><svg viewBox="0 0 24 24" stroke="#10b981"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg></div>
-        </div>
-        <div class="sc-val">1,248</div>
-        <canvas class="sc-spark" id="sp2"></canvas>
-        <div class="sc-trend"><span class="up">↑ 12.6%</span><span class="trsub">↑ 24.8%</span></div>
-      </div>
-      <!-- Active Customers -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-lbl">Active Customers</div>
-          <div class="sc-icon" style="background:#fffbeb"><svg viewBox="0 0 24 24" stroke="#f59e0b"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div>
-        </div>
-        <div class="sc-val">5,854</div>
-        <canvas class="sc-spark" id="sp3"></canvas>
-        <div class="sc-trend"><span class="up">↑ 13.8%</span><span class="trsub">↑ 14.2%</span></div>
-      </div>
-      <!-- Pending Payments -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-lbl">Pending Payments</div>
-          <div class="sc-icon" style="background:#fef2f2"><svg viewBox="0 0 24 24" stroke="#ef4444"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-        </div>
-        <div class="sc-val">$12,850</div>
-        <canvas class="sc-spark" id="sp4"></canvas>
-        <div class="sc-trend"><span class="dn">↓ 13.5%</span><span class="trsub">↓ 18.5%</span></div>
-      </div>
-      <!-- Tour Completion Rate -->
-      <div class="sc">
-        <div class="sc-top">
-          <div class="sc-lbl">Tour Completion Rate</div>
-          <div class="ring-wrap">
-            <svg viewBox="0 0 52 52" width="52" height="52">
-              <circle cx="26" cy="26" r="21" fill="none" stroke="#e5e7eb" stroke-width="6"/>
-              <circle cx="26" cy="26" r="21" fill="none" stroke="#3b82f6" stroke-width="6"
-                stroke-dasharray="121.5 131.9" stroke-linecap="round" transform="rotate(-90 26 26)"/>
-            </svg>
-          </div>
-        </div>
-        <div class="sc-val">92.6%</div>
-        <div class="sc-trend" style="margin-top:10px"><span class="up">↑ 5.2%</span><span class="trsub">vs last 7 days</span></div>
-      </div>
-    </div>
-
-    <!-- Middle Row -->
-    <div class="mid">
-      <!-- Revenue Chart -->
-      <div class="card">
-        <div class="card-hd">
-          <div class="card-title">Revenue Overview</div>
-          <div style="display:flex;align-items:center;gap:14px">
-            <div class="legend">
-              <div class="li"><div class="ldot" style="background:#6366f1"></div>Total Revenue</div>
-              <div class="li"><div class="ldot" style="background:#10b981"></div>Bookings</div>
-              <div class="li"><div class="ldot" style="background:#ef4444"></div>Cancellations</div>
+      filtered.forEach((a, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'pal-item';
+        btn.type = 'button';
+        btn.innerHTML = `
+          <div class="pal-left">
+            <div class="pal-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>
             </div>
-            <button class="wbtn">This Week <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
-          </div>
-        </div>
-        <div style="height:220px;position:relative">
-          <canvas id="revChart"></canvas>
-        </div>
-      </div>
-
-      <!-- Bookings Table -->
-      <div class="card">
-        <div class="card-hd">
-          <div class="card-title">Recent Bookings</div>
-          <button class="va">View All</button>
-        </div>
-        <table class="bt">
-          <thead>
-            <tr>
-              <th>Customer</th>
-              <th>Tour / Package</th>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Payment</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><div class="cc"><div class="cav" style="background:#eef2ff;color:#4f46e5">WW</div><div><div class="cn">Wade Warren</div><div class="ce">wade@gmail.com</div></div></div></td>
-              <td class="pkg">Bali Paradise</td>
-              <td class="bdate">May 18, 2024</td>
-              <td class="amt">$1,250</td>
-              <td><span class="bdg g">Confirmed</span></td>
-              <td><span class="bdg b">Paid</span></td>
-            </tr>
-            <tr>
-              <td><div class="cc"><div class="cav" style="background:#fffbeb;color:#b45309">EH</div><div><div class="cn">Esther Howard</div><div class="ce">esther@gmail.com</div></div></div></td>
-              <td class="pkg">Switzerland Trip</td>
-              <td class="bdate">May 18, 2024</td>
-              <td class="amt">$2,780</td>
-              <td><span class="bdg am">Pending</span></td>
-              <td><span class="bdg am">Pending</span></td>
-            </tr>
-            <tr>
-              <td><div class="cc"><div class="cav" style="background:#ecfdf5;color:#15803d">CW</div><div><div class="cn">Cameron Williamson</div><div class="ce">cameron@gmail.com</div></div></div></td>
-              <td class="pkg">Iceland Adventure</td>
-              <td class="bdate">May 18, 2024</td>
-              <td class="amt">$1,890</td>
-              <td><span class="bdg g">Confirmed</span></td>
-              <td><span class="bdg b">Paid</span></td>
-            </tr>
-            <tr>
-              <td><div class="cc"><div class="cav" style="background:#f5f3ff;color:#6d28d9">BS</div><div><div class="cn">Brooklyn Simmons</div><div class="ce">brooklyn@gmail.com</div></div></div></td>
-              <td class="pkg">Maldives Escape</td>
-              <td class="bdate">May 17, 2024</td>
-              <td class="amt">$2,450</td>
-              <td><span class="bdg g">Confirmed</span></td>
-              <td><span class="bdg b">Paid</span></td>
-            </tr>
-            <tr>
-              <td><div class="cc"><div class="cav" style="background:#fef2f2;color:#b91c1c">LA</div><div><div class="cn">Leslie Alexander</div><div class="ce">leslie@gmail.com</div></div></div></td>
-              <td class="pkg">Paris Getaway</td>
-              <td class="bdate">May 17, 2024</td>
-              <td class="amt">$980</td>
-              <td><span class="bdg r">Cancelled</span></td>
-              <td><span class="bdg r">Refunded</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Bottom Row -->
-    <div class="bot">
-      <!-- Live Activity -->
-      <div class="card">
-        <div class="card-hd">
-          <div class="card-title">Live Activity</div>
-          <button class="va">View All</button>
-        </div>
-        <div class="ai">
-          <div class="aic" style="background:#eef2ff;color:#5b5ef6"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div><div class="at"><strong>John Doe</strong> booked Bali Adventure</div><div class="atm">2 min ago</div></div>
-        </div>
-        <div class="ai">
-          <div class="aic" style="background:#fef3c7;color:#b45309"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-          <div><div class="at"><strong>3 seats remaining</strong> for Kenya Safari</div><div class="atm">5 min ago</div></div>
-        </div>
-        <div class="ai">
-          <div class="aic" style="background:#dcfce7;color:#15803d"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-          <div><div class="at">Payment received from <strong>Sarah Johnson</strong></div><div class="atm">8 min ago</div></div>
-        </div>
-        <div class="ai">
-          <div class="aic" style="background:#f5f3ff;color:#6d28d9"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div><div class="at"><strong>Guide Alex</strong> assigned to Paris Tour</div><div class="atm">12 min ago</div></div>
-        </div>
-        <div class="ai">
-          <div class="aic" style="background:#fef3c7;color:#b45309"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-          <div><div class="at">New review received for <strong>Switzerland Trip</strong></div><div class="atm">15 min ago</div></div>
-        </div>
-      </div>
-
-      <!-- Top Destinations -->
-      <div class="card">
-        <div class="card-hd">
-          <div class="card-title">Top Destinations</div>
-          <button class="va">View All</button>
-        </div>
-        <div class="dests-grid">
-          <!-- World Map SVG -->
-          <div class="map-box">
-            <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-              <rect width="340" height="180" fill="#ddeaf8" rx="8"/>
-              <!-- Simplified continent shapes -->
-              <!-- North America -->
-              <path d="M20,30 L25,25 L35,22 L55,20 L70,25 L80,35 L85,50 L82,65 L75,75 L68,80 L60,85 L50,88 L42,82 L35,75 L28,65 L22,55 L18,42 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Central America -->
-              <path d="M60,85 L68,80 L72,90 L68,98 L60,100 L55,95 L52,88 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- South America -->
-              <path d="M60,100 L72,95 L82,100 L88,115 L90,130 L85,150 L75,162 L62,165 L50,158 L45,145 L42,128 L44,110 L50,100 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Europe -->
-              <path d="M140,18 L155,15 L165,18 L170,25 L165,35 L155,40 L148,38 L140,32 L135,25 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Scandinavia bump -->
-              <path d="M150,12 L158,10 L162,14 L158,18 L150,18 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Africa -->
-              <path d="M140,45 L158,40 L172,42 L180,52 L182,68 L178,88 L170,108 L158,122 L145,128 L132,122 L125,108 L122,88 L124,68 L130,52 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Asia (large) -->
-              <path d="M170,18 L200,14 L235,12 L265,15 L285,22 L295,35 L290,50 L278,60 L258,65 L235,68 L210,65 L188,58 L175,48 L168,35 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- India -->
-              <path d="M218,65 L228,62 L235,68 L232,82 L225,90 L218,85 L215,75 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Southeast Asia -->
-              <path d="M258,65 L275,62 L282,70 L278,82 L268,85 L258,80 L252,72 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Indonesia (Bali region) -->
-              <ellipse cx="275" cy="98" rx="12" ry="5" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <ellipse cx="292" cy="100" rx="8" ry="4" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Australia -->
-              <path d="M262,118 L285,112 L308,115 L318,128 L315,142 L305,152 L288,155 L270,150 L260,140 L258,128 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Greenland -->
-              <path d="M72,5 L88,3 L95,8 L92,16 L80,18 L70,14 Z" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- UK/Iceland area -->
-              <ellipse cx="130" cy="14" rx="5" ry="3" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <ellipse cx="118" cy="18" rx="4" ry="3" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Maldives dot -->
-              <circle cx="220" cy="95" r="2" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-              <!-- Iceland island -->
-              <ellipse cx="118" cy="18" rx="6" ry="4" fill="#b8cfec" stroke="#9ab8e0" stroke-width="0.5"/>
-
-              <!-- Legend bar -->
-              <defs>
-                <linearGradient id="heatBar" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#a5c8f0"/>
-                  <stop offset="50%" stop-color="#5b8fd4"/>
-                  <stop offset="100%" stop-color="#1e4d8c"/>
-                </linearGradient>
-              </defs>
-              <rect x="10" y="168" width="80" height="5" rx="2.5" fill="url(#heatBar)"/>
-              <text x="8" y="180" font-size="8" fill="#6b7585">Low</text>
-              <text x="80" y="180" font-size="8" fill="#6b7585">High</text>
-
-              <!-- Destination pins -->
-              <!-- Bali, Indonesia -->
-              <circle cx="275" cy="94" r="6" fill="#5b5ef6" opacity=".2"/>
-              <circle cx="275" cy="94" r="3.5" fill="#5b5ef6"/>
-              <circle cx="275" cy="94" r="1.5" fill="#fff"/>
-
-              <!-- Paris, France -->
-              <circle cx="148" cy="28" r="5" fill="#5b5ef6" opacity=".2"/>
-              <circle cx="148" cy="28" r="3" fill="#5b5ef6"/>
-              <circle cx="148" cy="28" r="1.2" fill="#fff"/>
-
-              <!-- Switzerland -->
-              <circle cx="153" cy="34" r="4" fill="#5b5ef6" opacity=".15"/>
-              <circle cx="153" cy="34" r="2.5" fill="#5b5ef6"/>
-              <circle cx="153" cy="34" r="1" fill="#fff"/>
-
-              <!-- Maldives -->
-              <circle cx="220" cy="92" r="4" fill="#5b5ef6" opacity=".15"/>
-              <circle cx="220" cy="92" r="2.5" fill="#5b5ef6"/>
-
-              <!-- Iceland -->
-              <circle cx="120" cy="18" r="4" fill="#5b5ef6" opacity=".15"/>
-              <circle cx="120" cy="18" r="2.5" fill="#5b5ef6"/>
-            </svg>
-          </div>
-          <!-- Destination List -->
-          <div class="dest-list">
-            <div class="di top">
-              <span class="dflag">🇮🇩</span>
-              <div><div class="dname">Bali, Indonesia</div><div class="dcnt">1,248 Bookings</div></div>
-            </div>
-            <div class="di">
-              <span class="dflag">🇫🇷</span>
-              <div><div class="dname">Paris, France</div><div class="dcnt">982 Bookings</div></div>
-            </div>
-            <div class="di">
-              <span class="dflag">🇨🇭</span>
-              <div><div class="dname">Switzerland</div><div class="dcnt">874 Bookings</div></div>
-            </div>
-            <div class="di">
-              <span class="dflag">🇲🇻</span>
-              <div><div class="dname">Maldives</div><div class="dcnt">645 Bookings</div></div>
-            </div>
-            <div class="di">
-              <span class="dflag">🇮🇸</span>
-              <div><div class="dname">Iceland</div><div class="dcnt">512 Bookings</div></div>
+            <div class="pal-txt">
+              <div class="a">${a.title}</div>
+              <div class="b">${a.desc}</div>
             </div>
           </div>
-        </div>
-      </div>
+          <div class="pal-right">${a.hotkey||""}</div>
+        `;
+        btn.addEventListener('click', () => runAction(a));
+        host.appendChild(btn);
+      });
 
-      <!-- Tours By Type -->
-      <div class="card">
-        <div class="card-title" style="margin-bottom:13px">Tours By Type</div>
-        <div class="donut-wrap">
-          <div style="position:relative;width:120px;height:120px">
-            <canvas id="donut" width="120" height="120"></canvas>
-            <div class="donut-center">
-              <div class="donut-n">1,556</div>
-              <div class="donut-s">Total Tours</div>
-            </div>
-          </div>
-        </div>
-        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#6366f1"></div><span class="tt-name">Adventure</span></div><div class="tt-r"><span class="tt-c">545</span><span class="tt-p">35%</span></div></div>
-        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#3b82f6"></div><span class="tt-name">Cultural</span></div><div class="tt-r"><span class="tt-c">389</span><span class="tt-p">25%</span></div></div>
-        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#10b981"></div><span class="tt-name">Relaxation</span></div><div class="tt-r"><span class="tt-c">312</span><span class="tt-p">20%</span></div></div>
-        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#f59e0b"></div><span class="tt-name">Nature</span></div><div class="tt-r"><span class="tt-c">187</span><span class="tt-p">12%</span></div></div>
-        <div class="tt-row"><div class="tt-l"><div class="tt-dot" style="background:#e5e7eb"></div><span class="tt-name">Other</span></div><div class="tt-r"><span class="tt-c">123</span><span class="tt-p">8%</span></div></div>
-
-        <div class="earn">
-          <div class="earn-lbl">Monthly Earnings</div>
-          <div class="earn-val">$128,540</div>
-          <div class="earn-trend">↑ 18.6% vs last month</div>
-        </div>
-        <div class="sat">
-          <div class="sat-ttl">Customer Satisfaction</div>
-          <div class="sat-val">4.8/5</div>
-          <div class="stars">
-            <span class="star" style="color:#f59e0b">★</span>
-            <span class="star" style="color:#f59e0b">★</span>
-            <span class="star" style="color:#f59e0b">★</span>
-            <span class="star" style="color:#f59e0b">★</span>
-            <span class="star" style="color:#e5e7eb">★</span>
-          </div>
-          <div class="sat-t">↑ 5.2% vs last month</div>
-        </div>
-      </div>
-    </div>
-  </div><!-- /content -->
-</div><!-- /main -->
-
-<script>
-// Sparkline
-function spark(id, pts, color, up) {
-  const c = document.getElementById(id);
-  if (!c) return;
-  const dpr = window.devicePixelRatio || 1;
-  const W = c.offsetWidth || 120, H = 42;
-  c.width = W * dpr; c.height = H * dpr;
-  c.style.width = W + 'px'; c.style.height = H + 'px';
-  const ctx = c.getContext('2d');
-  ctx.scale(dpr, dpr);
-  const mn = Math.min(...pts), mx = Math.max(...pts);
-  const tx = i => (i / (pts.length - 1)) * W;
-  const ty = v => H - ((v - mn) / (mx - mn || 1)) * (H - 4) - 2;
-  const col = up ? color : '#ef4444';
-  ctx.beginPath();
-  pts.forEach((v, i) => i === 0 ? ctx.moveTo(tx(i), ty(v)) : ctx.lineTo(tx(i), ty(v)));
-  ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
-  const g = ctx.createLinearGradient(0, 0, 0, H);
-  g.addColorStop(0, col + '2a'); g.addColorStop(1, col + '00');
-  ctx.fillStyle = g; ctx.fill();
-  ctx.beginPath();
-  pts.forEach((v, i) => i === 0 ? ctx.moveTo(tx(i), ty(v)) : ctx.lineTo(tx(i), ty(v)));
-  ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.stroke();
-}
-
-window.addEventListener('load', () => {
-  spark('sp0', [20,28,24,34,30,42,38,50,46,60], '#6366f1', true);
-  spark('sp1', [38,32,46,38,52,44,58,48,62,68], '#8b5cf6', true);
-  spark('sp2', [28,38,32,48,42,58,52,68,62,80], '#10b981', true);
-  spark('sp3', [48,42,58,52,62,58,68,62,72,78], '#f59e0b', true);
-  spark('sp4', [78,68,72,62,68,58,62,52,58,48], '#ef4444', false);
-});
-
-// Revenue chart
-new Chart(document.getElementById('revChart'), {
-  type: 'line',
-  data: {
-    labels: ['May 12','May 13','May 14','May 15','May 16','May 17','May 18'],
-    datasets: [
-      { label:'Total Revenue', data:[28000,31000,38000,32540,39000,43000,48000],
-        borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,.08)',
-        borderWidth:2.2, fill:true, tension:.42, pointRadius:3.5,
-        pointBackgroundColor:'#6366f1', pointBorderColor:'#fff', pointBorderWidth:2 },
-      { label:'Bookings', data:[20000,23000,27000,22000,29000,31000,35000],
-        borderColor:'#10b981', backgroundColor:'rgba(16,185,129,.06)',
-        borderWidth:2.2, fill:true, tension:.42, pointRadius:3.5,
-        pointBackgroundColor:'#10b981', pointBorderColor:'#fff', pointBorderWidth:2 },
-      { label:'Cancellations', data:[8000,10000,9500,11000,10500,9000,12500],
-        borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,.05)',
-        borderWidth:2.2, fill:true, tension:.42, pointRadius:3.5,
-        pointBackgroundColor:'#ef4444', pointBorderColor:'#fff', pointBorderWidth:2 }
-    ]
-  },
-  options: {
-    responsive:true, maintainAspectRatio:false,
-    plugins: {
-      legend:{display:false},
-      tooltip:{
-        backgroundColor:'#fff', titleColor:'#1a1d23', bodyColor:'#6b7585',
-        borderColor:'#eef0f5', borderWidth:1, padding:10, cornerRadius:8,
-        callbacks:{ label: c => ' '+c.dataset.label+': $'+c.parsed.y.toLocaleString() }
+      if (!filtered.length){
+        host.innerHTML = `<div style="padding:16px;color:#64748b;font-weight:900">No matches. Try “fleet”, “revenue”, or “AI”.</div>`;
       }
-    },
-    scales:{
-      x:{ grid:{display:false}, ticks:{color:'#9aa3b2',font:{size:11,family:'DM Sans'}} },
-      y:{ grid:{color:'#f3f4f8',drawBorder:false}, border:{display:false},
-          ticks:{color:'#9aa3b2',font:{size:11,family:'DM Sans'},callback:v=>'$'+(v/1000)+'K'},
-          min:0, max:55000 }
     }
-  }
-});
 
-// Donut
-new Chart(document.getElementById('donut'), {
-  type:'doughnut',
-  data:{
-    labels:['Adventure','Cultural','Relaxation','Nature','Other'],
-    datasets:[{
-      data:[35,25,20,12,8],
-      backgroundColor:['#6366f1','#3b82f6','#10b981','#f59e0b','#e5e7eb'],
-      borderWidth:0, hoverOffset:4
-    }]
-  },
-  options:{
-    responsive:false, cutout:'73%',
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed+'%'}}}
-  }
-});
+    function openPalette(){
+      $("#cmdOverlay").classList.add('show');
+      const input = $("#cmdInput");
+      input.value = "";
+      renderPalette(actions);
+      setTimeout(()=>input.focus(), 0);
+    }
 
-// Nav active
-document.querySelectorAll('.nav-btn').forEach(b => {
-  b.addEventListener('click', function() {
-    document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-</script>
+    function closePalette(){
+      $("#cmdOverlay").classList.remove('show');
+    }
+
+    function runAction(a){
+      closePalette();
+      // UI demo: map actions to highlight
+      if (a.route === 'dashboard') {
+        $$('.nav-item').forEach(x=>x.classList.remove('active'));
+        $$('.nav-item').find?.(x=>x.dataset.route==='dashboard');
+        const el = $(`.nav-item[data-route="dashboard"]`);
+        if (el) el.classList.add('active');
+      }
+      if (a.route === 'theme') {
+        document.body.style.filter = (document.body.style.filter ? '' : 'saturate(1.05) contrast(1.02)');
+      }
+      if (a.route === 'ai') {
+        const hero = $("#heroSub");
+        if (hero) hero.textContent = "AI playbook executed (demo): mitigation + scheduling updates prepared.";
+      }
+      // No navigation in this static asset
+      console.log('Command:', a.title);
+    }
+
+    // Palette events
+    $("#cmdOpen").addEventListener('click', openPalette);
+    $("#cmdOpen").addEventListener('keydown', (e)=>{
+      if (e.key === 'Enter' || e.key === ' ') openPalette();
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      const isMac = navigator.platform.toLowerCase().includes('mac');
+      const mod = isMac ? e.metaKey : e.ctrlKey;
+      if (mod && e.key.toLowerCase() === 'k'){
+        e.preventDefault();
+        openPalette();
+      }
+      if (e.key === 'Escape') closePalette();
+    });
+
+    $("#cmdOverlay").addEventListener('click', (e)=>{
+      if (e.target === $("#cmdOverlay")) closePalette();
+    });
+
+    $("#cmdInput").addEventListener('input', (e)=>{
+      renderPalette(actions, e.target.value);
+    });
+
+    $("#applyInsights").addEventListener('click', ()=>{
+      const el = $("#heroSub");
+      if (el) el.textContent = "Playbook applied: Europe cancellation mitigation • capacity confirmation queued.";
+    });
+
+    // Sidebar active state
+    $$('.nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        $$('.nav-item').forEach(x=>x.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Chart
+    const revCtx = document.getElementById('revChart');
+    if (revCtx){
+      new Chart(revCtx, {
+        type: 'line',
+        data: {
+          labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+          datasets: [
+            {
+              label: 'Total Revenue',
+              data: [28000, 31000, 38000, 32540, 39000, 43000, 48000],
+              borderColor: '#5b5ef6',
+              backgroundColor: 'rgba(91,94,246,.10)',
+              borderWidth: 2.2,
+              fill: true,
+              tension: .42,
+              pointRadius: 3.5,
+              pointBackgroundColor: '#5b5ef6',
+              pointBorderColor: '#fff',
+              pointBorderWidth: 2
+            },
+            {
+              label: 'Bookings',
+              data: [20000, 23000, 27000, 22000, 29000, 31000, 35000],
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16,185,129,.06)',
+              borderWidth: 2.2,
+              fill: true,
+              tension: .42,
+              pointRadius: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor:'#fff',
+              borderColor:'#eef0f5',
+              borderWidth:1,
+              titleColor:'#0f172a',
+              bodyColor:'#64748b',
+              padding:10,
+              cornerRadius:10,
+              callbacks: {
+                label: (c) => ' ' + c.dataset.label + ': $' + Number(c.parsed.y).toLocaleString()
+              }
+            }
+          },
+          scales: {
+            x: { grid: { display:false }, ticks: { color:'#94a3b8', font:{ size:11, family:'DM Sans' } } },
+            y: { grid: { color:'rgba(15,23,42,.05)' }, ticks: { color:'#94a3b8', font:{ size:11, family:'DM Sans' }, callback:(v)=>'$'+(v/1000)+'K' } }
+          }
+        }
+      });
+    }
+
+    // Theme toggle demo
+    $("#toggleTheme").addEventListener('click', ()=>{
+      document.documentElement.style.setProperty('--bg', document.documentElement.style.getPropertyValue('--bg') === '#f6f8fc' ? '#0b1020' : '#f6f8fc');
+    });
+
+    // Sidebar collapse demo (UI only)
+    $("#sbCollapse").addEventListener('click', ()=>{
+      const sidebar = document.querySelector('.sidebar');
+      const app = document.querySelector('.app');
+      if (!sidebar || !app) return;
+      const isCollapsed = sidebar.dataset.collapsed === '1';
+      sidebar.dataset.collapsed = isCollapsed ? '0' : '1';
+      app.style.gridTemplateColumns = isCollapsed ? '290px 1fr' : '86px 1fr';
+      sidebar.style.padding = isCollapsed ? '18px 16px' : '18px 10px';
+      $$('.sb-env, .nav-section, .sb-foot .role-row .meta, .sb-foot .role-row .avatar, .brand .txt .role, .brand .txt .name, .nav-head span:last-child, .presence').forEach(n=>{
+        n.style.display = isCollapsed ? '' : 'none';
+      });
+    });
+
+    // Quick actions demo
+    $("#sbQuick").addEventListener('click', ()=>{
+      const el = $("#heroSub");
+      if (el) el.textContent = "Quick actions opened (demo). Run AI playbook, export report, or jump to pipeline.";
+    });
+
+    // Notifications demo
+    $("#notifBtn").addEventListener('click', ()=>{
+      alert('Notifications center (demo): 8 unread items.');
+    });
+    $("#aiBtn").addEventListener('click', ()=>{
+      alert('AI assistant (demo): Suggested actions are highlighted across the dashboard.');
+    });
+
+    // Revise greeting dynamically
+    (function(){
+      const h = new Date().getHours();
+      let w = 'morning';
+      if (h >= 17) w = 'evening';
+      else if (h >= 12) w = 'afternoon';
+      const title = $("#heroTitle");
+      if (title) title.textContent = `Good ${w}, Solomon 👋`;
+    })();
+  </script>
 </body>
 </html>
+

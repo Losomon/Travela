@@ -1,0 +1,140 @@
+/* ============================================
+   DESTINATIONS PAGE - Destination Management
+   Popularity metrics, seasonality, performance
+   ============================================ */
+
+.destinations-page {
+  padding: var(--spacing-6);
+}
+
+/* Hero Map Section */
+.map-hero {
+  background: var(--surface-secondary);
+  border-radius: var(--radius-xl);
+  height: 400px;
+  position: relative;
+  margin-bottom: var(--spacing-6);
+  overflow: hidden;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gray-200) 0%, var(--gray-300) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+}
+
+/* Stats Row */
+.destination-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-8);
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  border: 1px solid var(--border-primary);
+  text-align: center;
+}
+
+/* Destinations Grid */
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-6);
+}
+
+.destination-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.destination-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+.destination-image {
+  height: 180px;
+  background: var(--gradient-primary);
+  position: relative;
+}
+
+.destination-rank {
+  position: absolute;
+  top: var(--spacing-3);
+  left: var(--spacing-3);
+  background: var(--brand-primary);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-bold);
+}
+
+.destination-content {
+  padding: var(--spacing-4);
+}
+
+.destination-name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-1);
+}
+
+.destination-country {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-3);
+}
+
+.destination-metrics {
+  display: flex;
+  justify-content: space-between;
+  padding-top: var(--spacing-3);
+  border-top: 1px solid var(--border-secondary);
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-value {
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+}
+
+.metric-label {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.trend-up {
+  color: var(--success);
+}
+
+.trend-down {
+  color: var(--danger);
+}
+
+/* Seasonality Chart */
+.seasonality-section {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+  margin-top: var(--spacing-8);
+}

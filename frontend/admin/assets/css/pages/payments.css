@@ -1,0 +1,150 @@
+/* ============================================
+   PAYMENTS PAGE - Transaction Management
+   Payouts, refunds, reconciliation
+   ============================================ */
+
+.payments-page {
+  padding: var(--spacing-6);
+}
+
+/* Payment Stats */
+.payment-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+.payment-stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  border: 1px solid var(--border-primary);
+}
+
+.payment-stat-value {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-1);
+}
+
+/* Filters Bar */
+.filters-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.search-input {
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--surface-primary);
+  min-width: 260px;
+}
+
+.status-filter {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* Transactions Table */
+.transactions-table-container {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table th {
+  text-align: left;
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--surface-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--text-secondary);
+}
+
+.transactions-table td {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.transaction-row {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.transaction-row:hover {
+  background: var(--surface-secondary);
+}
+
+.payment-status {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+}
+
+.status-completed {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.status-pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.status-failed {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.status-refunded {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.amount-positive {
+  color: var(--success);
+  font-weight: var(--font-semibold);
+}
+
+.amount-negative {
+  color: var(--danger);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  border-top: 1px solid var(--border-primary);
+}
+
+.pagination-btn {
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pagination-btn:hover {
+  background: var(--surface-secondary);
+}
+
+.pagination-btn.active {
+  background: var(--brand-primary);
+  color: white;
+};

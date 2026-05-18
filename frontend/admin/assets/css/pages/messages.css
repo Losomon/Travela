@@ -1,0 +1,215 @@
+/* ============================================
+   MESSAGES PAGE - Inbox & Communication
+   Conversations, notifications, templates
+   ============================================ */
+
+.messages-page {
+  padding: var(--spacing-6);
+}
+
+/* Messages Container - Split View */
+.messages-container {
+  display: flex;
+  gap: var(--spacing-6);
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+  min-height: 600px;
+}
+
+/* Conversations Sidebar */
+.conversations-sidebar {
+  width: 320px;
+  border-right: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation-search {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.conversation-search-input {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--surface-primary);
+}
+
+.conversations-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.conversation-item:hover {
+  background: var(--surface-secondary);
+}
+
+.conversation-item.active {
+  background: var(--brand-primary-bg);
+  border-left: 3px solid var(--brand-primary);
+}
+
+.conversation-avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--brand-primary-bg);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-bold);
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.conversation-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.conversation-name {
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--spacing-0_5);
+}
+
+.conversation-preview {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conversation-time {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.unread-badge {
+  background: var(--brand-primary);
+  color: white;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+}
+
+/* Messages Main Area */
+.messages-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-header {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--border-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.messages-header-name {
+  font-weight: var(--font-semibold);
+  font-size: var(--text-lg);
+}
+
+.message-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.message-action-btn {
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: var(--text-sm);
+}
+
+.message-action-btn:hover {
+  background: var(--surface-secondary);
+}
+
+/* Messages List */
+.messages-list {
+  flex: 1;
+  padding: var(--spacing-4);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.message-item {
+  display: flex;
+  gap: var(--spacing-3);
+  max-width: 70%;
+}
+
+.message-item.sent {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.message-bubble {
+  background: var(--surface-secondary);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+}
+
+.message-item.sent .message-bubble {
+  background: var(--brand-primary);
+  color: white;
+}
+
+.message-time {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--spacing-1);
+  text-align: center;
+}
+
+/* Message Input */
+.message-input-area {
+  padding: var(--spacing-4);
+  border-top: 1px solid var(--border-primary);
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.message-input {
+  flex: 1;
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--surface-primary);
+  resize: none;
+}
+
+.send-btn {
+  padding: var(--spacing-2) var(--spacing-5);
+  background: var(--brand-primary);
+  color: white;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.send-btn:hover {
+  background: var(--brand-primary-dark);
+}

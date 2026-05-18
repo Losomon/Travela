@@ -1,0 +1,86 @@
+/* ============================================
+   ANALYTICS PAGE - Business Intelligence
+   Reports, forecasts, custom dashboards
+   ============================================ */
+
+.analytics-page {
+  padding: var(--spacing-6);
+}
+
+/* Date Range Picker */
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.date-range-picker {
+  display: flex;
+  gap: var(--spacing-2);
+  background: var(--surface-secondary);
+  padding: var(--spacing-1);
+  border-radius: var(--radius-lg);
+}
+
+.range-option {
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.range-option.active {
+  background: var(--brand-primary);
+  color: white;
+}
+
+/* KPI Row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-8);
+}
+
+.kpi-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  border: 1px solid var(--border-primary);
+}
+
+.kpi-change {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--text-sm);
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.chart-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+}
+
+/* Export Button */
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-4);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+}

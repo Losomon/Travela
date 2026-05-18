@@ -10,71 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Chart.js -->
+    <!-- Chart.js (global — loads before app so Chart constructor is available) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    
-    <!-- ============================================ -->
-     /* CORE FILES - Global Styles & Variables */
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="../assets/css/core/reset.css">
-    <link rel="stylesheet" href="../assets/css/core/variables.css">
-    <link rel="stylesheet" href="../assets/css/core/typography.css">
-    <link rel="stylesheet" href="../assets/css/core/global.css">
-    <link rel="stylesheet" href="../assets/css/core/utilities.css">
-    
-    <!-- ============================================ */
-    /* LAYOUT FILES - Structure */
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="../assets/css/layouts/dashboard-layout.css">
-    <link rel="stylesheet" href="../assets/css/layouts/sidebar.css">
-    <link rel="stylesheet" href="../assets/css/layouts/header.css">
-    <link rel="stylesheet" href="../assets/css/layouts/grid.css">
-    
-    <!-- ============================================ */
-    /* COMPONENT FILES - UI Elements */
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="../assets/css/components/cards.css">
-    <link rel="stylesheet" href="../assets/css/components/buttons.css">
-    <link rel="stylesheet" href="../assets/css/components/tables.css">
-    <link rel="stylesheet" href="../assets/css/components/forms.css">
-    <link rel="stylesheet" href="../assets/css/components/modals.css">
-    <link rel="stylesheet" href="../assets/css/components/charts.css">
-    <link rel="stylesheet" href="../assets/css/components/widgets.css">
-    <link rel="stylesheet" href="../assets/css/components/badges.css">
-    <link rel="stylesheet" href="../assets/css/components/tabs.css">
-    <link rel="stylesheet" href="../assets/css/components/dropdowns.css">
-    <link rel="stylesheet" href="../assets/css/components/notifications.css">
-    
-    <!-- ============================================ */
-    /* SAAS COMPONENT FILES - Business Features */
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="../assets/css/components/workspace-header.css">
-    <link rel="stylesheet" href="../assets/css/components/smart-sidebar.css">
-    <link rel="stylesheet" href="../assets/css/components/bento-grid.css">
-    <link rel="stylesheet" href="../assets/css/components/ai-insights.css">
-    <link rel="stylesheet" href="../assets/css/components/booking-pipeline.css">
-    <link rel="stylesheet" href="../assets/css/components/fleet-management.css">
-    <link rel="stylesheet" href="../assets/css/components/collaboration.css">
-    <link rel="stylesheet" href="../assets/css/components/command-palette.css">
-    <link rel="stylesheet" href="../assets/css/components/activity-timeline.css">
-    
-    <!-- ============================================ */
-    /* ANIMATION FILES - Motion */
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="../assets/css/animations/transitions.css">
-    <link rel="stylesheet" href="../assets/css/animations/hover-effects.css">
-    <link rel="stylesheet" href="../assets/css/animations/loaders.css">
-    <link rel="stylesheet" href="../assets/css/animations/page-transitions.css">
-    
-    <!-- ============================================ */
-    /* THEME FILES - Light (Default) */
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="../assets/css/themes/light.css">
-    
-    <!-- ============================================ */
-    /* PAGE FILES - Dashboard Specific */
-    <!-- ============================================ -->
-    <link rel="stylesheet" href="../assets/css/pages/dashboard.css">
 </head>
 <body class="theme-light">
     <div class="app">
@@ -460,82 +397,6 @@
         </div>
     </div>
     
-    <script>
-        // Revenue Chart
-        const ctx = document.getElementById('revenueChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['May 12', 'May 13', 'May 14', 'May 15', 'May 16', 'May 17', 'May 18'],
-                datasets: [{
-                    label: 'Revenue',
-                    data: [25, 32, 28, 35, 42, 38, 48],
-                    borderColor: '#6366f1',
-                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }, {
-                    label: 'Bookings',
-                    data: [18, 22, 20, 28, 32, 30, 38],
-                    borderColor: '#10b981',
-                    backgroundColor: 'rgba(16, 185, 129, 0.05)',
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
-        
-        // Command Palette
-        const commandPalette = document.getElementById('commandPalette');
-        const commandSearch = document.querySelector('.command-search');
-        
-        commandSearch.addEventListener('click', () => {
-            commandPalette.classList.add('active');
-        });
-        
-        commandPalette.addEventListener('click', (e) => {
-            if (e.target === commandPalette) {
-                commandPalette.classList.remove('active');
-            }
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                commandPalette.classList.add('active');
-            }
-            if (e.key === 'Escape') {
-                commandPalette.classList.remove('active');
-            }
-        });
-        
-        // Sidebar Collapse
-        const sidebarToggle = document.querySelector('.sidebar-toggle');
-        const app = document.querySelector('.app');
-        
-        sidebarToggle.addEventListener('click', () => {
-            app.classList.toggle('sidebar-collapsed');
-        });
-        
-        // Stagger animations
-        document.querySelectorAll('.stagger-container').forEach(container => {
-            container.classList.add('visible');
-        });
-        
-        // Filter chips
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', function() {
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
+    <script src="../js/index.js"></script>
 </body>
 </html>

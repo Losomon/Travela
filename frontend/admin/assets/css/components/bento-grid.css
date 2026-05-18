@@ -1,0 +1,123 @@
+/* Bento Grid System - Asymmetric Premium Layout */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-6);
+  width: 100%;
+}
+
+/* Bento Items */
+.bento-item {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  transition: all var(--transition-premium);
+}
+
+.bento-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+/* Glass Bento Item */
+.bento-glass {
+  background: var(--saas-glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--saas-glass-border);
+}
+
+/* Size Variants */
+.bento-sm {
+  grid-column: span 3;
+}
+
+.bento-md {
+  grid-column: span 4;
+}
+
+.bento-lg {
+  grid-column: span 6;
+}
+
+.bento-xl {
+  grid-column: span 8;
+}
+
+.bento-full {
+  grid-column: span 12;
+}
+
+/* Row Spans */
+.bento-row-2 {
+  grid-row: span 2;
+}
+
+.bento-row-3 {
+  grid-row: span 3;
+}
+
+/* Hero Section */
+.bento-hero {
+  grid-column: span 12;
+  background: var(--saas-gradient-primary);
+  color: white;
+  padding: var(--spacing-8);
+}
+
+/* Intelligence Banner */
+.bento-intelligence {
+  grid-column: span 12;
+  background: var(--ai-insight-bg);
+  border-left: 4px solid var(--brand-primary);
+}
+
+/* Bento Content */
+.bento-header {
+  padding: var(--spacing-5) var(--spacing-5) 0 var(--spacing-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bento-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+}
+
+.bento-content {
+  padding: var(--spacing-5);
+}
+
+.bento-footer {
+  padding: var(--spacing-4) var(--spacing-5);
+  border-top: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bento-grid {
+    gap: var(--spacing-5);
+  }
+  
+  .bento-sm,
+  .bento-md {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    gap: var(--spacing-4);
+  }
+  
+  .bento-sm,
+  .bento-md,
+  .bento-lg,
+  .bento-xl,
+  .bento-full {
+    grid-column: span 12;
+  }
+}

@@ -1,0 +1,105 @@
+/* ============================================
+   LIGHT THEME - Default / Light Mode
+   Clean, Professional, High Contrast
+   ============================================ */
+
+/* Light Theme Variables */
+:root,
+.theme-light {
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-inverse: #111827;
+  
+  /* Surface Colors */
+  --surface-primary: #ffffff;
+  --surface-secondary: #f9fafb;
+  --surface-tertiary: #f3f4f6;
+  --surface-elevated: #ffffff;
+  
+  /* Text Colors */
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #9ca3af;
+  --text-inverse: #ffffff;
+  
+  /* Border Colors */
+  --border-primary: #e5e7eb;
+  --border-secondary: #f3f4f6;
+  --border-tertiary: #d1d5db;
+  
+  /* Brand Colors (Light Mode Optimized) */
+  --brand-primary: #6366f1;
+  --brand-primary-dark: #4f46e5;
+  --brand-primary-light: #818cf8;
+  --brand-primary-bg: rgba(99, 102, 241, 0.08);
+  
+  /* Semantic Colors */
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.08);
+  --warning: #f59e0b;
+  --warning-bg: rgba(245, 158, 11, 0.08);
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.08);
+  --info: #3b82f6;
+  --info-bg: rgba(59, 130, 246, 0.08);
+  
+  /* Glass Effects */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.07);
+  
+  /* Header Glass */
+  --header-glass-bg: rgba(255, 255, 255, 0.95);
+  --header-blur: blur(12px);
+  
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.02);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  
+  /* Premium Shadows */
+  --shadow-premium-sm: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
+  --shadow-premium-md: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+  --shadow-premium-lg: 0 35px 60px -15px rgba(0, 0, 0, 0.1);
+  
+  /* Scrollbar */
+  --scrollbar-track: #f3f4f6;
+  --scrollbar-thumb: #d1d5db;
+  --scrollbar-thumb-hover: #9ca3af;
+  
+  /* Code */
+  --code-bg: #f3f4f6;
+  --code-text: #ef4444;
+  
+  /* Sidebar */
+  --sidebar-bg: #f9fafb;
+  --sidebar-border: #e5e7eb;
+  --sidebar-item-hover: #f3f4f6;
+  
+  /* Card */
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-1);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  background: var(--surface-tertiary);
+}

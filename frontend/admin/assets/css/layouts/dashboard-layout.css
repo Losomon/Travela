@@ -1,0 +1,166 @@
+/* Dashboard Layout System - Enterprise Shell */
+
+/* App Container */
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: var(--gray-50);
+  position: relative;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width-expanded, 280px);
+  padding: var(--spacing-6) var(--spacing-8);
+  transition: margin-left var(--transition-premium, 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1));
+  min-width: 0; /* Prevents overflow */
+  overflow-x: hidden;
+}
+
+/* When sidebar is collapsed */
+.app.sidebar-collapsed .main-content {
+  margin-left: var(--sidebar-width-collapsed, 80px);
+}
+
+/* Main Content Inner Wrapper */
+.main-content-inner {
+  max-width: var(--container-max-width, 1440px);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Content Sections */
+.content-section {
+  margin-bottom: var(--spacing-8);
+}
+
+.content-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.section-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--gray-900);
+}
+
+.section-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+/* Page Header (Breadcrumb + Actions) */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-8);
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.page-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+  color: var(--gray-500);
+}
+
+.page-breadcrumb a:hover {
+  color: var(--brand-primary);
+}
+
+.page-breadcrumb-separator {
+  color: var(--gray-300);
+}
+
+.page-title {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--gray-900);
+  letter-spacing: -0.02em;
+}
+
+.page-description {
+  color: var(--gray-500);
+  margin-top: var(--spacing-1);
+  font-size: var(--text-sm);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--gray-200);
+  margin: var(--spacing-6) 0;
+}
+
+/* Loading Overlay for Sections */
+.section-loading {
+  position: relative;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.section-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--gray-100), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .main-content {
+    padding: var(--spacing-5) var(--spacing-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important;
+    padding: var(--spacing-4);
+  }
+  
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .page-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: var(--spacing-3);
+  }
+}

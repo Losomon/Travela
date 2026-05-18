@@ -1,0 +1,31 @@
+/* Toast Notifications */
+
+.notification-container {
+  position: fixed;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.notification {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3) var(--spacing-4);
+  box-shadow: var(--shadow-lg);
+  border-left: 3px solid var(--brand-primary);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

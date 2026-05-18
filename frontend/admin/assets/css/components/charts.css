@@ -1,0 +1,67 @@
+/* Chart Container System */
+
+/* Chart Card */
+.chart-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  padding: var(--spacing-5);
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-5);
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.chart-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+}
+
+.chart-filters {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* Chart Container */
+.chart-container {
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+}
+
+/* Chart Legend */
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--gray-200);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+}
+
+/* Chart Tooltip */
+.chart-tooltip {
+  background: white;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+}

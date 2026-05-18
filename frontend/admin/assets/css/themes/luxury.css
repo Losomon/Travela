@@ -1,0 +1,194 @@
+/* ============================================
+   LUXURY THEME - The Coconut Saraih Premium
+   Warm, Elegant, Sophisticated, Resort-Inspired
+   ============================================ */
+
+.theme-luxury {
+  /* Brand Colors - Warm & Elegant */
+  --brand-primary: #c8a45e;
+  --brand-primary-dark: #b8924a;
+  --brand-primary-light: #d4b87a;
+  --brand-primary-bg: rgba(200, 164, 94, 0.1);
+  
+  --brand-secondary: #2d5a4a;
+  --brand-secondary-dark: #234a3d;
+  --brand-secondary-light: #3e7a64;
+  
+  --brand-accent: #e8b86b;
+  --brand-accent-dark: #d4a35a;
+  
+  /* Background Colors - Warm Neutral */
+  --bg-primary: #fdfaf5;
+  --bg-secondary: #f8f4ec;
+  --bg-tertiary: #f0e9df;
+  --bg-inverse: #2c2418;
+  
+  /* Surface Colors - Cream & Sand */
+  --surface-primary: #ffffff;
+  --surface-secondary: #fdfaf5;
+  --surface-tertiary: #f8f4ec;
+  --surface-elevated: #ffffff;
+  
+  /* Text Colors - Warm Dark */
+  --text-primary: #2c2418;
+  --text-secondary: #6b5a47;
+  --text-tertiary: #a6947d;
+  --text-inverse: #fdfaf5;
+  
+  /* Border Colors - Soft Warm */
+  --border-primary: #e8dfd4;
+  --border-secondary: #f0e9df;
+  --border-tertiary: #ddd0c2;
+  
+  /* Semantic Colors - Elegant Tones */
+  --success: #2d6a4f;
+  --success-bg: rgba(45, 106, 79, 0.1);
+  --warning: #d4a35a;
+  --warning-bg: rgba(212, 163, 90, 0.1);
+  --danger: #c17a6e;
+  --danger-bg: rgba(193, 122, 110, 0.1);
+  --info: #5a8f7c;
+  --info-bg: rgba(90, 143, 124, 0.1);
+  
+  /* Glass Effects - Warm Glass */
+  --glass-bg: rgba(255, 253, 250, 0.85);
+  --glass-border: rgba(200, 164, 94, 0.15);
+  --glass-shadow: 0 8px 32px rgba(44, 36, 24, 0.06);
+  
+  /* Header Glass */
+  --header-glass-bg: rgba(255, 253, 250, 0.98);
+  --header-blur: blur(12px);
+  
+  /* Shadows - Soft & Warm */
+  --shadow-xs: 0 1px 2px rgba(44, 36, 24, 0.02);
+  --shadow-sm: 0 1px 3px rgba(44, 36, 24, 0.04), 0 1px 2px rgba(44, 36, 24, 0.02);
+  --shadow-md: 0 4px 6px -2px rgba(44, 36, 24, 0.05), 0 2px 4px -2px rgba(44, 36, 24, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(44, 36, 24, 0.05), 0 4px 6px -4px rgba(44, 36, 24, 0.02);
+  --shadow-xl: 0 20px 25px -5px rgba(44, 36, 24, 0.05), 0 8px 10px -6px rgba(44, 36, 24, 0.02);
+  
+  /* Premium Shadows - Warm Depth */
+  --shadow-premium-sm: 0 20px 35px -10px rgba(44, 36, 24, 0.08);
+  --shadow-premium-md: 0 25px 50px -12px rgba(44, 36, 24, 0.12);
+  --shadow-premium-lg: 0 35px 60px -15px rgba(44, 36, 24, 0.15);
+  
+  /* Scrollbar - Warm Tones */
+  --scrollbar-track: #f0e9df;
+  --scrollbar-thumb: #d4b87a;
+  --scrollbar-thumb-hover: #c8a45e;
+  
+  /* Code */
+  --code-bg: #f0e9df;
+  --code-text: #c17a6e;
+  
+  /* Sidebar - Warm & Inviting */
+  --sidebar-bg: #fdfaf5;
+  --sidebar-border: #e8dfd4;
+  --sidebar-item-hover: #f8f4ec;
+  
+  /* Card - Elegant White */
+  --card-bg: #ffffff;
+  --card-border: #e8dfd4;
+  --card-shadow: 0 1px 3px rgba(44, 36, 24, 0.04);
+  
+  /* Gradients - Warm & Luxurious */
+  --gradient-primary: linear-gradient(135deg, #c8a45e 0%, #e8b86b 100%);
+  --gradient-success: linear-gradient(135deg, #2d5a4a 0%, #3e7a64 100%);
+  --gradient-warm: linear-gradient(135deg, #e8b86b 0%, #d4a35a 100%);
+  
+  /* Luxury Pattern Overlay (Subtle) */
+  --pattern-overlay: repeating-linear-gradient(
+    45deg,
+    rgba(200, 164, 94, 0.02) 0px,
+    rgba(200, 164, 94, 0.02) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+/* Apply Luxury Pattern to Body */
+.theme-luxury body {
+  background-image: var(--pattern-overlay);
+}
+
+/* Luxury Specific Card Styles */
+.theme-luxury .card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.theme-luxury .card:hover {
+  box-shadow: var(--shadow-premium-sm);
+}
+
+/* Luxury Gradient Accents */
+.theme-luxury .btn-primary {
+  background: var(--gradient-primary);
+  border: none;
+}
+
+.theme-luxury .btn-primary:hover {
+  background: linear-gradient(135deg, #d4b87a 0%, #e8b86b 100%);
+}
+
+.theme-luxury .badge-success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+/* Luxury Sidebar Active Indicator */
+.theme-luxury .nav-item.active::before {
+  background: var(--gradient-primary);
+}
+
+/* Luxury Scrollbar */
+.theme-luxury ::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.theme-luxury ::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+}
+
+.theme-luxury ::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Luxury Glass Morphism */
+.theme-luxury .workspace-header {
+  background: var(--header-glass-bg);
+  backdrop-filter: var(--header-blur);
+  border-bottom-color: var(--glass-border);
+}
+
+/* Luxury AI Insights */
+.theme-luxury .ai-insight-card {
+  background: linear-gradient(135deg, #fdfaf5 0%, #f8f4ec 100%);
+  border-left: 3px solid var(--brand-primary);
+}
+
+/* Luxury Focus Rings */
+.theme-luxury input:focus,
+.theme-luxury select:focus,
+.theme-luxury textarea:focus,
+.theme-luxury button:focus {
+  box-shadow: 0 0 0 3px rgba(200, 164, 94, 0.3);
+}
+
+/* Luxury Selection */
+.theme-luxury ::selection {
+  background-color: var(--brand-primary);
+  color: white;
+}
+
+/* Luxury Loading Spinner */
+.theme-luxury .spinner {
+  border-color: rgba(200, 164, 94, 0.2);
+  border-top-color: var(--brand-primary);
+}
+
+/* Luxury Table Hover */
+.theme-luxury .table tbody tr:hover {
+  background: var(--bg-secondary);
+}

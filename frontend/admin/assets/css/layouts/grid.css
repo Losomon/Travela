@@ -1,0 +1,291 @@
+/* Dashboard Grid System - Bento Box Layout */
+
+/* Main Dashboard Grid Container */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-6);
+  width: 100%;
+}
+
+/* Grid Rows (for semantic grouping) */
+.grid-row {
+  display: contents;
+}
+
+/* Grid Items - Default Span */
+.grid-item {
+  grid-column: span 4;
+  min-width: 0;
+}
+
+/* Column Spans */
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+.col-span-5 { grid-column: span 5; }
+.col-span-6 { grid-column: span 6; }
+.col-span-7 { grid-column: span 7; }
+.col-span-8 { grid-column: span 8; }
+.col-span-9 { grid-column: span 9; }
+.col-span-10 { grid-column: span 10; }
+.col-span-11 { grid-column: span 11; }
+.col-span-12 { grid-column: span 12; }
+
+/* Row Spans */
+.row-span-1 { grid-row: span 1; }
+.row-span-2 { grid-row: span 2; }
+.row-span-3 { grid-row: span 3; }
+
+/* Responsive Grid - Tablet */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    gap: var(--spacing-5);
+  }
+  
+  .grid-item {
+    grid-column: span 6;
+  }
+  
+  .col-span-3,
+  .col-span-4 {
+    grid-column: span 6;
+  }
+}
+
+/* Responsive Grid - Mobile */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    gap: var(--spacing-4);
+  }
+  
+  .grid-item,
+  .col-span-1,
+  .col-span-2,
+  .col-span-3,
+  .col-span-4,
+  .col-span-5,
+  .col-span-6,
+  .col-span-7,
+  .col-span-8,
+  .col-span-9,
+  .col-span-10,
+  .col-span-11,
+  .col-span-12 {
+    grid-column: span 12;
+  }
+}
+
+/* Analytics Specific Grids */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-5);
+}
+
+/* Metrics Grid (KPI Cards Row) */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+/* Two Column Layout */
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-6);
+}
+
+@media (max-width: 768px) {
+  .two-column {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+}
+
+/* Three Column Layout */
+.three-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-6);
+}
+
+@media (max-width: 1024px) {
+  .three-column {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .three-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Asymmetric Layout Helper */
+.asymmetric-left {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-6);
+}
+
+.asymmetric-right {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-6);
+}
+
+@media (max-width: 768px) {
+  .asymmetric-left,
+  .asymmetric-right {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Compact Grid (Dense Data) */
+.grid-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+}
+
+/* Card Grid (For Card Collections) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-5);
+}
+
+/* Table Container */
+.table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+
+/* Flex Utilities for Dashboard */
+.dashboard-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-5);
+}
+
+.dashboard-flex-item {
+  flex: 1;
+  min-width: 240px;
+}
+
+/* Sticky Sidebar + Content Layout */
+.with-sidebar {
+  display: flex;
+  gap: var(--spacing-6);
+}
+
+.with-sidebar > .sidebar-content {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.with-sidebar > .main-content-area {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 992px) {
+  .with-sidebar {
+    flex-direction: column;
+  }
+  
+  .with-sidebar > .sidebar-content {
+    width: 100%;
+  }
+}
+
+/* Masonry-like Grid (Different Heights) */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-6);
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.masonry-item-tall {
+  grid-row: span 2;
+}
+
+.masonry-item-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 1024px) {
+  .masonry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .masonry-item-wide {
+    grid-column: span 1;
+  }
+}
+
+/* Spacing Utilities for Grid Items */
+.grid-gap-sm { gap: var(--spacing-3); }
+.grid-gap-md { gap: var(--spacing-5); }
+.grid-gap-lg { gap: var(--spacing-8); }
+.grid-gap-xl { gap: var(--spacing-10); }
+
+/* Dashboard Specific */
+.dashboard-widget {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.dashboard-widget:hover {
+  box-shadow: var(--shadow-premium-sm);
+}
+
+.dashboard-widget-header {
+  padding: var(--spacing-5) var(--spacing-5) 0 var(--spacing-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-widget-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--gray-900);
+}
+
+.dashboard-widget-action {
+  font-size: var(--text-sm);
+  color: var(--brand-primary);
+  cursor: pointer;
+}
+
+.dashboard-widget-content {
+  padding: var(--spacing-5);
+}
+
+.dashboard-widget-content:first-child {
+  padding-top: var(--spacing-5);
+}
+
+/* Empty State for Widgets */
+.widget-empty {
+  padding: var(--spacing-12);
+  text-align: center;
+  color: var(--gray-400);
+}

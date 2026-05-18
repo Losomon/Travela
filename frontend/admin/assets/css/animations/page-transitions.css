@@ -1,0 +1,279 @@
+/* ============================================
+   PAGE TRANSITIONS - Calm, Fluid Navigation
+   Philosophy: Cinematic but restrained. Luxury feel.
+   ============================================ */
+
+/* ===== Entrance Animations ===== */
+
+/* Fade Up - Most Common */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.fade-up.visible,
+.fade-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade In - Simple */
+.fade-in {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-gentle);
+}
+
+.fade-in.visible,
+.fade-in.active {
+  opacity: 1;
+}
+
+/* Zoom In - Subtle */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity var(--duration-slow) var(--ease-spring),
+              transform var(--duration-slow) var(--ease-spring);
+}
+
+.zoom-in.visible,
+.zoom-in.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Blur Reveal - Premium Effect */
+.blur-reveal {
+  filter: blur(8px);
+  opacity: 0;
+  transition: filter var(--duration-slower) var(--ease-out),
+              opacity var(--duration-slower) var(--ease-out);
+}
+
+.blur-reveal.visible,
+.blur-reveal.active {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Slide In Left */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.slide-left.visible,
+.slide-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide In Right */
+.slide-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.slide-right.visible,
+.slide-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== Stagger System ===== */
+.stagger-container > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.stagger-container.visible > *,
+.stagger-container.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Delays */
+.stagger-1 { transition-delay: 0ms; }
+.stagger-2 { transition-delay: 50ms; }
+.stagger-3 { transition-delay: 100ms; }
+.stagger-4 { transition-delay: 150ms; }
+.stagger-5 { transition-delay: 200ms; }
+.stagger-6 { transition-delay: 250ms; }
+.stagger-7 { transition-delay: 300ms; }
+.stagger-8 { transition-delay: 350ms; }
+.stagger-9 { transition-delay: 400ms; }
+.stagger-10 { transition-delay: 450ms; }
+
+/* ===== Route Transition Classes ===== */
+.route-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.route-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.route-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.route-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+/* ===== Route Loading Bar ===== */
+.route-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  z-index: 10000;
+  transform-origin: left;
+  animation: loadingProgress 0.8s ease-out forwards;
+}
+
+@keyframes loadingProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+/* ===== Modal Transitions ===== */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity var(--duration-base) var(--ease-spring),
+              transform var(--duration-base) var(--ease-spring);
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+/* ===== Sidebar Mobile Transition ===== */
+.sidebar-slide-enter {
+  transform: translateX(-100%);
+}
+
+.sidebar-slide-enter-active {
+  transform: translateX(0);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.sidebar-slide-exit {
+  transform: translateX(0);
+}
+
+.sidebar-slide-exit-active {
+  transform: translateX(-100%);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+/* ===== Dropdown Transitions ===== */
+.dropdown-enter {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.dropdown-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+/* ======= Animation Triggers via JS ======= */
+/* Add these classes via JavaScript to trigger animations */
+
+.animate-fade-up {
+  animation: fadeUp var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-gentle) forwards;
+}
+
+.animate-zoom-in {
+  animation: zoomIn var(--duration-slow) var(--ease-spring) forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

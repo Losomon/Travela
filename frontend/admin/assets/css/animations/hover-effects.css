@@ -1,0 +1,226 @@
+/* ============================================
+   HOVER EFFECTS - Subtle, Elegant, Premium
+   Inspiration: Linear, Stripe, Framer, Vercel
+   Philosophy: Less is more. Subtle > dramatic.
+   ============================================ */
+
+/* ===== Card Effects ===== */
+
+/* Gentle Lift - The SaaS Standard */
+.hover-lift {
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+/* Soft Scale - Very Subtle */
+.hover-scale {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.hover-scale:hover {
+  transform: scale(1.01);
+}
+
+/* Border Glow - Premium Accent */
+.hover-glow {
+  transition: box-shadow var(--duration-fast) var(--ease-smooth),
+              border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-glow:hover {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px var(--brand-primary-bg);
+}
+
+/* Border Sweep - Elegant Underline */
+.hover-sweep {
+  position: relative;
+}
+
+.hover-sweep::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.hover-sweep:hover::after {
+  width: 100%;
+}
+
+/* ===== Button Effects ===== */
+
+/* Magnetic Button */
+.hover-magnetic {
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.hover-magnetic:hover {
+  transform: translateY(-2px);
+}
+
+.hover-magnetic:active {
+  transform: translateY(0);
+}
+
+/* Gentle Glow Button */
+.hover-btn-glow {
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-btn-glow:hover {
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Icon Movement - Subtle Slide */
+.hover-icon-slide .icon {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.hover-icon-slide:hover .icon {
+  transform: translateX(3px);
+}
+
+/* ===== Navigation Effects ===== */
+
+/* Sidebar Item - Gentle Shift */
+.hover-nav {
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.hover-nav:hover {
+  transform: translateX(4px);
+  background: var(--gray-100);
+}
+
+/* Active Indicator Pulse */
+.hover-nav-active {
+  position: relative;
+}
+
+.hover-nav-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--brand-primary);
+  border-radius: var(--radius-full);
+  transition: height var(--duration-fast) var(--ease-out);
+}
+
+.hover-nav-active.active::before,
+.hover-nav-active:hover::before {
+  height: 20px;
+}
+
+/* ===== Icon Effects ===== */
+
+/* Gentle Icon Breathe */
+.hover-icon-breathe:hover {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Subtle Icon Pulse */
+.hover-icon-pulse:hover {
+  animation: iconSoftPulse 0.6s ease-out;
+}
+
+@keyframes iconSoftPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ===== Link Effects ===== */
+
+/* Gentle Underline Slide */
+.hover-link {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.hover-link:hover::after {
+  width: 100%;
+}
+
+/* Color Shift - Very Subtle */
+.hover-color {
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-color:hover {
+  color: var(--brand-primary);
+}
+
+/* ===== Table Row Effects ===== */
+
+.hover-row {
+  transition: background var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.hover-row:hover {
+  background: var(--gray-50);
+  transform: translateX(2px);
+}
+
+/* ===== Avatar Effects ===== */
+
+.hover-avatar {
+  transition: transform var(--duration-fast) var(--ease-spring),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px var(--brand-primary);
+}
+
+/* ===== Chart Elements ===== */
+
+.hover-chart-bar {
+  transition: opacity var(--duration-fast) var(--ease-smooth);
+  cursor: pointer;
+}
+
+.hover-chart-bar:hover {
+  opacity: 0.8;
+}
+
+/* ===== Glass Card Hover ===== */
+
+.hover-glass {
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.hover-glass:hover {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+}

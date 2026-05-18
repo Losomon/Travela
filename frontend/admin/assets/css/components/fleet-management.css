@@ -1,0 +1,112 @@
+/* Fleet Management - Vehicle Tracking */
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.fleet-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  transition: all var(--transition-premium);
+}
+
+.fleet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-premium-sm);
+}
+
+.fleet-image {
+  height: 140px;
+  background: linear-gradient(135deg, var(--gray-200) 0%, var(--gray-300) 100%);
+  position: relative;
+}
+
+.fleet-status {
+  position: absolute;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  padding: var(--spacing-0_5) var(--spacing-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+}
+
+.fleet-status.active {
+  background: var(--success);
+  color: white;
+}
+
+.fleet-status.maintenance {
+  background: var(--warning);
+  color: white;
+}
+
+.fleet-status.idle {
+  background: var(--gray-500);
+  color: white;
+}
+
+.fleet-details {
+  padding: var(--spacing-3);
+}
+
+.fleet-name {
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--spacing-2);
+}
+
+.fleet-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--gray-500);
+  margin-bottom: var(--spacing-3);
+}
+
+.fleet-driver {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+/* Fleet Metrics */
+.fleet-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.fleet-metric {
+  text-align: center;
+}
+
+.fleet-metric-value {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+}
+
+.fleet-metric-label {
+  font-size: var(--text-xs);
+  color: var(--gray-500);
+}
+
+/* Maintenance Alerts */
+.maintenance-alert {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--warning-bg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-2);
+  font-size: var(--text-sm);
+}

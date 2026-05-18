@@ -1,0 +1,213 @@
+/* Premium SaaS Card System - Glass, Layered, Interactive */
+
+/* Base Card */
+.card {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card Hover States */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+/* Glass Card (Premium SaaS Look) */
+.card-glass {
+  background: var(--saas-glass-bg, rgba(255, 255, 255, 0.7));
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--saas-glass-border, rgba(255, 255, 255, 0.2));
+}
+
+.card-glass:hover {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+}
+
+/* Gradient Border Card */
+.card-gradient {
+  background: white;
+  border: none;
+  position: relative;
+}
+
+.card-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: var(--saas-gradient-primary);
+  border-radius: var(--radius-xl);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Stat / Metric Card */
+.card-stat {
+  padding: var(--spacing-5);
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-base);
+}
+
+.card-stat:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-4);
+}
+
+.card-stat-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-stat-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--brand-primary-bg);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary);
+}
+
+.card-stat-value {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-2);
+}
+
+.card-stat-trend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+}
+
+.card-stat-trend.up {
+  color: var(--success);
+}
+
+.card-stat-trend.down {
+  color: var(--danger);
+}
+
+.card-stat-trend-label {
+  color: var(--gray-500);
+}
+
+/* Analytics Card */
+.card-analytics {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+}
+
+.card-analytics-header {
+  padding: var(--spacing-5) var(--spacing-5) 0 var(--spacing-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.card-analytics-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+}
+
+.card-analytics-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.card-analytics-content {
+  padding: var(--spacing-5);
+}
+
+/* Interactive Card (Clickable) */
+.card-interactive {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.card-interactive:active {
+  transform: scale(0.98);
+}
+
+/* Card with AI Insight Overlay */
+.card-ai {
+  position: relative;
+  overflow: visible;
+}
+
+.card-ai-badge {
+  position: absolute;
+  top: -10px;
+  right: var(--spacing-4);
+  padding: var(--spacing-1) var(--spacing-2);
+  background: var(--saas-gradient-primary);
+  color: white;
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Card Footer */
+.card-footer {
+  padding: var(--spacing-4) var(--spacing-5);
+  border-top: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+/* Card Sizes */
+.card-sm {
+  padding: var(--spacing-3);
+}
+
+.card-md {
+  padding: var(--spacing-5);
+}
+
+.card-lg {
+  padding: var(--spacing-8);
+}
+
+/* Loading Card */
+.card-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.card-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

@@ -1,0 +1,132 @@
+/* ============================================
+   TRANSITIONS SYSTEM - Premium Motion Foundation
+   Philosophy: Smooth, Elegant, Restrained
+   ============================================ */
+
+/* Root Transition Variables */
+:root {
+  /* Easing Curves - Linear/Framer inspired */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-gentle: cubic-bezier(0.45, 0, 0.55, 1);
+  
+  /* Duration Tokens */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 400ms;
+  --duration-slower: 500ms;
+}
+
+/* ===== Base Transition Classes ===== */
+.fast-transition {
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.smooth-transition {
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.slow-transition {
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.slower-transition {
+  transition: all var(--duration-slower) var(--ease-out);
+}
+
+/* ===== Specific Property Transitions ===== */
+.transform-transition {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.opacity-transition {
+  transition: opacity var(--duration-base) var(--ease-gentle);
+}
+
+.color-transition {
+  transition: color var(--duration-fast) var(--ease-smooth),
+              background-color var(--duration-fast) var(--ease-smooth),
+              border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.shadow-transition {
+  transition: box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+/* ===== Combined Effect Transitions ===== */
+.fade-transition {
+  transition: opacity var(--duration-base) var(--ease-gentle),
+              visibility var(--duration-base) var(--ease-gentle);
+}
+
+.scale-transition {
+  transition: transform var(--duration-base) var(--ease-spring),
+              opacity var(--duration-base) var(--ease-gentle);
+}
+
+.blur-transition {
+  transition: filter var(--duration-base) var(--ease-gentle),
+              opacity var(--duration-base) var(--ease-gentle);
+}
+
+.slide-transition {
+  transition: transform var(--duration-base) var(--ease-out),
+              opacity var(--duration-base) var(--ease-gentle);
+}
+
+/* ===== Layout Transitions ===== */
+.layout-transition {
+  transition: width var(--duration-base) var(--ease-out),
+              height var(--duration-base) var(--ease-out),
+              margin var(--duration-base) var(--ease-out),
+              padding var(--duration-base) var(--ease-out);
+}
+
+.sidebar-transition {
+  transition: width var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.modal-transition {
+  transition: opacity var(--duration-base) var(--ease-smooth),
+              transform var(--duration-base) var(--ease-spring);
+}
+
+.dropdown-transition {
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-out),
+              visibility var(--duration-fast) var(--ease-smooth);
+}
+
+/* ===== Component Specific Transitions ===== */
+.card-transition {
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-smooth),
+              border-color var(--duration-base) var(--ease-smooth);
+}
+
+.btn-transition {
+  transition: transform var(--duration-fast) var(--ease-spring),
+              background var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+.nav-transition {
+  transition: transform var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-smooth),
+              color var(--duration-fast) var(--ease-smooth);
+}
+
+/* ===== Reduced Motion Preference ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

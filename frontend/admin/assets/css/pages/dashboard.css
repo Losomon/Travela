@@ -1,0 +1,323 @@
+/* ============================================
+   DASHBOARD - Intelligence Hub
+   Not just metrics - Decision-making system
+   ============================================ */
+
+.dashboard-page {
+  padding: var(--spacing-6);
+}
+
+/* AI Intelligence Banner - Hero Section */
+.ai-intel-banner {
+  background: var(--ai-insight-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6) var(--spacing-8);
+  margin-bottom: var(--spacing-8);
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid var(--brand-primary);
+}
+
+.ai-intel-banner::before {
+  content: '✨';
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-6);
+  font-size: 60px;
+  opacity: 0.15;
+}
+
+.ai-greeting {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-2);
+}
+
+.ai-insight-text {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-4);
+}
+
+.ai-actions {
+  display: flex;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.ai-action-chip {
+  padding: var(--spacing-1) var(--spacing-3);
+  background: white;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ai-action-chip:hover {
+  background: var(--brand-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Bento Grid Metrics - Asymmetric */
+.metrics-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-8);
+}
+
+.metric-hero {
+  grid-column: span 3;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+  transition: all var(--transition-base);
+}
+
+.metric-hero:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+/* Revenue Hero Card - Larger */
+.revenue-hero {
+  grid-column: span 6;
+  background: var(--gradient-primary);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.revenue-hero::after {
+  content: '📈';
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  font-size: 100px;
+  opacity: 0.1;
+}
+
+.revenue-value {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-2);
+}
+
+.revenue-trend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-4);
+}
+
+.revenue-insight {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+/* Live Operations Grid */
+.operations-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+/* Booking Pipeline Widget */
+.pipeline-widget {
+  grid-column: span 7;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+}
+
+.pipeline-stages {
+  display: flex;
+  gap: var(--spacing-3);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-3);
+}
+
+.pipeline-stage-card {
+  min-width: 200px;
+  background: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+}
+
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-3);
+  font-weight: var(--font-semibold);
+}
+
+.stage-count {
+  background: var(--surface-tertiary);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+}
+
+.stage-item {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.stage-item:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* AI Insights Sidebar */
+.ai-sidebar {
+  grid-column: span 5;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+}
+
+.ai-prediction-card {
+  background: var(--ai-success-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.prediction-label {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-1);
+}
+
+.prediction-value {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--success);
+}
+
+.confidence-bar {
+  height: 4px;
+  background: var(--border-primary);
+  border-radius: var(--radius-full);
+  margin-top: var(--spacing-2);
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: var(--success);
+  border-radius: var(--radius-full);
+  width: 78%;
+}
+
+/* Smart Actions */
+.smart-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+
+.smart-action-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.smart-action-item:hover {
+  background: var(--brand-primary-bg);
+  transform: translateX(4px);
+}
+
+/* Live Activity Feed */
+.activity-feed {
+  grid-column: span 12;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+}
+
+.feed-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.feed-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  border-bottom: 1px solid var(--border-secondary);
+  transition: all var(--transition-fast);
+}
+
+.feed-item:hover {
+  background: var(--surface-secondary);
+  transform: translateX(4px);
+}
+
+.feed-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--brand-primary-bg);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-content {
+  flex: 1;
+}
+
+.feed-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--spacing-0_5);
+}
+
+.feed-time {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .metric-hero,
+  .revenue-hero {
+    grid-column: span 6;
+  }
+  
+  .pipeline-widget,
+  .ai-sidebar {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 768px) {
+  .metric-hero {
+    grid-column: span 12;
+  }
+  
+  .dashboard-page {
+    padding: var(--spacing-4);
+  }
+}

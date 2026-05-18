@@ -1,0 +1,173 @@
+/* Enterprise SaaS Tables */
+
+/* Table Container */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+
+/* Base Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+/* Table Header */
+.table thead tr {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.table th {
+  text-align: left;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-weight: var(--font-semibold);
+  color: var(--gray-600);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Sticky Header */
+.table-sticky th {
+  position: sticky;
+  top: 0;
+  background: var(--gray-50);
+  z-index: 10;
+}
+
+/* Table Cells */
+.table td {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-700);
+}
+
+/* Hover Row */
+.table tbody tr:hover {
+  background: var(--gray-50);
+  cursor: pointer;
+}
+
+/* Row Selection */
+.table-row-selected {
+  background: var(--brand-primary-bg);
+}
+
+.table-row-selected:hover {
+  background: var(--brand-primary-bg);
+}
+
+/* Checkbox Column */
+.table-checkbox {
+  width: 40px;
+  text-align: center;
+}
+
+/* Status Badge in Table */
+.table-status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+}
+
+.table-status-confirmed {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.table-status-pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.table-status-cancelled {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* Sortable Columns */
+.table-sortable th {
+  cursor: pointer;
+  user-select: none;
+}
+
+.table-sortable th:hover {
+  background: var(--gray-100);
+}
+
+.sort-icon {
+  display: inline-block;
+  margin-left: var(--spacing-1);
+  font-size: 10px;
+}
+
+/* Pagination */
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-4);
+  border-top: 1px solid var(--gray-200);
+  background: white;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.pagination-info {
+  font-size: var(--text-sm);
+  color: var(--gray-500);
+}
+
+.pagination-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.pagination-btn {
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.pagination-btn.active {
+  background: var(--brand-primary);
+  color: white;
+}
+
+/* Expandable Rows */
+.table-expandable-row {
+  cursor: pointer;
+}
+
+.table-expanded-content {
+  padding: var(--spacing-4);
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Compact Table */
+.table-compact th,
+.table-compact td {
+  padding: var(--spacing-2) var(--spacing-3);
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .table-responsive {
+    display: block;
+  }
+  
+  .table-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

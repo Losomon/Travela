@@ -1,0 +1,227 @@
+/* ============================================
+   REVIEWS PAGE - Customer Feedback
+   Sentiment analysis, ratings, moderation
+   ============================================ */
+
+.reviews-page {
+  padding: var(--spacing-6);
+}
+
+/* Rating Overview */
+.rating-overview {
+  display: flex;
+  gap: var(--spacing-8);
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.average-rating {
+  text-align: center;
+  flex: 1;
+}
+
+.average-score {
+  font-size: 64px;
+  font-weight: var(--font-bold);
+  color: var(--warning);
+  line-height: 1;
+}
+
+.average-stars {
+  font-size: var(--text-xl);
+  color: var(--warning);
+  margin: var(--spacing-2) 0;
+}
+
+.rating-bars {
+  flex: 2;
+}
+
+.rating-bar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+}
+
+.rating-label {
+  width: 60px;
+  font-size: var(--text-sm);
+}
+
+.rating-bar-container {
+  flex: 1;
+  height: 8px;
+  background: var(--border-primary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.rating-bar-fill {
+  height: 100%;
+  background: var(--warning);
+  border-radius: var(--radius-full);
+}
+
+.rating-count {
+  width: 40px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* Reviews List */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.review-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+  transition: all var(--transition-base);
+}
+
+.review-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: var(--spacing-3);
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.reviewer-avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--brand-primary-bg);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-bold);
+  color: var(--brand-primary);
+}
+
+.reviewer-name {
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--spacing-0_5);
+}
+
+.review-date {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.review-stars {
+  color: var(--warning);
+  font-size: var(--text-sm);
+}
+
+.review-tour {
+  display: inline-block;
+  background: var(--surface-secondary);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  margin-bottom: var(--spacing-3);
+}
+
+.review-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-3);
+}
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-3);
+  border-top: 1px solid var(--border-secondary);
+}
+
+.helpful-count {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.moderation-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.moderation-btn {
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.moderation-btn.approve {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.moderation-btn.reject {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* Sentiment Analysis */
+.sentiment-section {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+  margin-top: var(--spacing-8);
+}
+
+.sentiment-chart {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.sentiment-item {
+  flex: 1;
+  text-align: center;
+  padding: var(--spacing-3);
+  border-radius: var(--radius-lg);
+}
+
+.sentiment-positive {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.sentiment-neutral {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.sentiment-negative {
+  background: var(--danger-bg);
+  color: var(--danger);
+}

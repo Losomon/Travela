@@ -1,0 +1,180 @@
+/* ============================================
+   PROMOTIONS PAGE - Campaign Management
+   Discounts, coupons, flash sales
+   ============================================ */
+
+.promotions-page {
+  padding: var(--spacing-6);
+}
+
+/* Promo Stats */
+.promo-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+/* Create Button */
+.create-promo-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-5);
+  background: var(--brand-primary);
+  color: white;
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.create-promo-btn:hover {
+  background: var(--brand-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Promotions Grid */
+.promotions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-6);
+}
+
+.promo-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.promo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+.promo-badge {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+}
+
+.promo-active {
+  background: var(--success);
+  color: white;
+}
+
+.promo-expired {
+  background: var(--danger);
+  color: white;
+}
+
+.promo-scheduled {
+  background: var(--warning);
+  color: white;
+}
+
+.promo-header {
+  background: var(--gradient-primary);
+  padding: var(--spacing-4);
+  color: white;
+}
+
+.promo-code {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  letter-spacing: 2px;
+}
+
+.promo-discount {
+  font-size: 36px;
+  font-weight: var(--font-bold);
+  margin-top: var(--spacing-2);
+}
+
+.promo-body {
+  padding: var(--spacing-4);
+}
+
+.promo-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-2);
+}
+
+.promo-description {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-3);
+}
+
+.promo-dates {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-3) 0;
+  border-top: 1px solid var(--border-secondary);
+  border-bottom: 1px solid var(--border-secondary);
+  margin-bottom: var(--spacing-3);
+  font-size: var(--text-sm);
+}
+
+.promo-usage {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  margin-bottom: var(--spacing-3);
+}
+
+.usage-bar {
+  height: 4px;
+  background: var(--border-primary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: var(--spacing-1);
+}
+
+.usage-fill {
+  height: 100%;
+  background: var(--success);
+  border-radius: var(--radius-full);
+}
+
+.promo-footer {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--border-secondary);
+  display: flex;
+  gap: var(--spacing-2);
+  background: var(--surface-secondary);
+}
+
+.promo-action {
+  flex: 1;
+  padding: var(--spacing-1);
+  text-align: center;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: var(--text-sm);
+}
+
+.promo-action.edit:hover {
+  background: var(--brand-primary-bg);
+  color: var(--brand-primary);
+}
+
+.promo-action.duplicate:hover {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.promo-action.delete:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+}

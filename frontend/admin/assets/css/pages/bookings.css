@@ -1,0 +1,175 @@
+/* ============================================
+   BOOKINGS PAGE - Intelligent Booking System
+   Kanban pipeline, smart filters, AI predictions
+   ============================================ */
+
+.bookings-page {
+  padding: var(--spacing-6);
+}
+
+/* Page Header with Smart Actions */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.page-title-section h1 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-1);
+}
+
+.page-title-section p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.smart-filters {
+  display: flex;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+/* Booking Stats Bar */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.stat-badge {
+  background: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+  text-align: center;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.stat-badge:hover {
+  transform: translateY(-2px);
+  background: var(--brand-primary-bg);
+}
+
+.stat-badge.active {
+  background: var(--brand-primary);
+  color: white;
+}
+
+.stat-number {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  opacity: 0.8;
+}
+
+/* Kanban Pipeline */
+.kanban-container {
+  display: flex;
+  gap: var(--spacing-5);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-4);
+  min-height: 600px;
+}
+
+.kanban-column {
+  min-width: 320px;
+  background: var(--surface-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 2px solid var(--border-primary);
+}
+
+.column-title {
+  font-weight: var(--font-semibold);
+}
+
+.column-count {
+  background: var(--surface-tertiary);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+}
+
+.booking-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+  border: 1px solid var(--border-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.booking-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brand-primary);
+}
+
+.booking-customer {
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--spacing-1);
+}
+
+.booking-details {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-2);
+}
+
+.booking-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-xs);
+}
+
+.booking-price {
+  font-weight: var(--font-bold);
+  color: var(--brand-primary);
+}
+
+/* AI Smart Filter Bar */
+.ai-filter-bar {
+  background: var(--ai-insight-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.ai-filter-text {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+}
+
+.ai-filter-badge {
+  background: var(--brand-primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+}

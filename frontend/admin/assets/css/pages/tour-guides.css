@@ -1,0 +1,166 @@
+/* ============================================
+   TOUR GUIDES PAGE - Guide Management
+   Schedules, ratings, assignments
+   ============================================ */
+
+.guides-page {
+  padding: var(--spacing-6);
+}
+
+/* Guides Stats */
+.guides-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+/* Guides Grid */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+}
+
+.guide-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.guide-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+.guide-header {
+  background: var(--gradient-primary);
+  padding: var(--spacing-4);
+  text-align: center;
+  position: relative;
+}
+
+.guide-avatar {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: var(--radius-full);
+  margin: 0 auto var(--spacing-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: var(--font-bold);
+  color: var(--brand-primary);
+}
+
+.guide-name {
+  color: white;
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+}
+
+.guide-status {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+}
+
+.status-active {
+  background: var(--success);
+  box-shadow: 0 0 0 2px white;
+}
+
+.status-off-duty {
+  background: var(--warning);
+}
+
+.status-on-tour {
+  background: var(--info);
+}
+
+.guide-body {
+  padding: var(--spacing-4);
+}
+
+.guide-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-3);
+  font-size: var(--text-sm);
+}
+
+.guide-specialty {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.specialty-tag {
+  background: var(--surface-secondary);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--warning);
+  font-weight: var(--font-semibold);
+}
+
+.guide-footer {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--border-secondary);
+  display: flex;
+  justify-content: space-between;
+  background: var(--surface-secondary);
+}
+
+/* Schedule View */
+.schedule-section {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+  margin-top: var(--spacing-8);
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-4);
+}
+
+.schedule-day {
+  text-align: center;
+  padding: var(--spacing-2);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+.schedule-assignment {
+  background: var(--brand-primary-bg);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  margin-top: var(--spacing-1);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.schedule-assignment:hover {
+  background: var(--brand-primary);
+  color: white;
+}

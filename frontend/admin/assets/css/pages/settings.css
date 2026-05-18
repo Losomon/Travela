@@ -1,0 +1,137 @@
+/* ============================================
+   SETTINGS PAGE - 12 Configuration Sections
+   Workspace, Team, Billing, Integrations, etc.
+   ============================================ */
+
+.settings-page {
+  padding: var(--spacing-6);
+}
+
+/* Settings Layout */
+.settings-container {
+  display: flex;
+  gap: var(--spacing-8);
+  max-width: 1200px;
+}
+
+/* Settings Sidebar Navigation */
+.settings-nav {
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.settings-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: var(--spacing-1);
+}
+
+.settings-nav-item:hover {
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+}
+
+.settings-nav-item.active {
+  background: var(--brand-primary-bg);
+  color: var(--brand-primary);
+}
+
+/* Settings Content */
+.settings-content {
+  flex: 1;
+}
+
+.settings-section {
+  display: none;
+  animation: fadeIn var(--duration-base) var(--ease-out);
+}
+
+.settings-section.active {
+  display: block;
+}
+
+.section-header {
+  margin-bottom: var(--spacing-6);
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.section-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-1);
+}
+
+.section-description {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+/* Settings Cards */
+.setting-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+  margin-bottom: var(--spacing-4);
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-4) 0;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-weight: var(--font-medium);
+  margin-bottom: var(--spacing-0_5);
+}
+
+.setting-description {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* The 12 Settings Sections */
+.settings-section[data-section="general"] { }
+.settings-section[data-section="workspace"] { }
+.settings-section[data-section="team"] { }
+.settings-section[data-section="billing"] { }
+.settings-section[data-section="integrations"] { }
+.settings-section[data-section="notifications"] { }
+.settings-section[data-section="security"] { }
+.settings-section[data-section="appearance"] { }
+.settings-section[data-section="api"] { }
+.settings-section[data-section="advanced"] { }
+.settings-section[data-section="data"] { }
+.settings-section[data-section="compliance"] { }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .settings-container {
+    flex-direction: column;
+  }
+  
+  .settings-nav {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    gap: var(--spacing-2);
+  }
+  
+  .settings-nav-item {
+    white-space: nowrap;
+  }
+}

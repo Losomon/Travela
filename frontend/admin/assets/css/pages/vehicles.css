@@ -1,0 +1,166 @@
+/* ============================================
+   VEHICLES PAGE - Fleet Management
+   Vehicle tracking, maintenance, assignments
+   ============================================ */
+
+.vehicles-page {
+  padding: var(--spacing-6);
+}
+
+/* Fleet Summary */
+.fleet-summary {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.summary-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+  text-align: center;
+  border: 1px solid var(--border-primary);
+}
+
+.summary-number {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+}
+
+/* Vehicles Grid */
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.vehicle-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.vehicle-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium-md);
+}
+
+.vehicle-image {
+  height: 160px;
+  background: var(--surface-secondary);
+  position: relative;
+}
+
+.vehicle-type-badge {
+  position: absolute;
+  top: var(--spacing-3);
+  left: var(--spacing-3);
+  background: var(--brand-primary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+}
+
+.vehicle-status {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+}
+
+.status-available {
+  background: var(--success);
+  color: white;
+}
+
+.status-maintenance {
+  background: var(--danger);
+  color: white;
+}
+
+.status-booked {
+  background: var(--warning);
+  color: white;
+}
+
+.vehicle-details {
+  padding: var(--spacing-4);
+}
+
+.vehicle-name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-2);
+}
+
+.vehicle-specs {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-3);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.vehicle-metrics {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-3) 0;
+  border-top: 1px solid var(--border-secondary);
+  border-bottom: 1px solid var(--border-secondary);
+  margin-bottom: var(--spacing-3);
+}
+
+.maintenance-indicator {
+  height: 4px;
+  background: var(--border-primary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: var(--spacing-2);
+}
+
+.maintenance-fill {
+  height: 100%;
+  background: var(--warning);
+  border-radius: var(--radius-full);
+  width: 0%;
+}
+
+/* Maintenance Alerts */
+.maintenance-alerts {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-primary);
+  padding: var(--spacing-5);
+}
+
+.alert-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  border-bottom: 1px solid var(--border-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.alert-item:hover {
+  background: var(--surface-secondary);
+  transform: translateX(4px);
+}
+
+.alert-critical {
+  border-left: 3px solid var(--danger);
+}
+
+.alert-warning {
+  border-left: 3px solid var(--warning);
+}

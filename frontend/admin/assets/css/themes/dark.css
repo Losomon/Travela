@@ -1,0 +1,123 @@
+/* ============================================
+   DARK THEME - Dark Mode
+   Premium, Low Light, Eye Comfort
+   ============================================ */
+
+.theme-dark {
+  /* Background Colors */
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-tertiary: #27272a;
+  --bg-inverse: #ffffff;
+  
+  /* Surface Colors */
+  --surface-primary: #18181b;
+  --surface-secondary: #27272a;
+  --surface-tertiary: #3f3f46;
+  --surface-elevated: #27272a;
+  
+  /* Text Colors */
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --text-inverse: #09090b;
+  
+  /* Border Colors */
+  --border-primary: #27272a;
+  --border-secondary: #18181b;
+  --border-tertiary: #3f3f46;
+  
+  /* Brand Colors (Dark Mode Optimized) */
+  --brand-primary: #818cf8;
+  --brand-primary-dark: #6366f1;
+  --brand-primary-light: #a5b4fc;
+  --brand-primary-bg: rgba(129, 140, 248, 0.12);
+  
+  /* Semantic Colors */
+  --success: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.12);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.12);
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.12);
+  --info: #60a5fa;
+  --info-bg: rgba(96, 165, 250, 0.12);
+  
+  /* Glass Effects */
+  --glass-bg: rgba(24, 24, 27, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  /* Header Glass */
+  --header-glass-bg: rgba(24, 24, 27, 0.95);
+  --header-blur: blur(12px);
+  
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -2px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  
+  /* Premium Shadows */
+  --shadow-premium-sm: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+  --shadow-premium-md: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  --shadow-premium-lg: 0 35px 60px -15px rgba(0, 0, 0, 0.5);
+  
+  /* Scrollbar */
+  --scrollbar-track: #27272a;
+  --scrollbar-thumb: #52525b;
+  --scrollbar-thumb-hover: #71717a;
+  
+  /* Code */
+  --code-bg: #27272a;
+  --code-text: #f87171;
+  
+  /* Sidebar */
+  --sidebar-bg: #18181b;
+  --sidebar-border: #27272a;
+  --sidebar-item-hover: #27272a;
+  
+  /* Card */
+  --card-bg: #18181b;
+  --card-border: #27272a;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #818cf8 0%, #a5b4fc 100%);
+  --gradient-success: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+}
+
+/* Dark Mode Specific Adjustments */
+.theme-dark .card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+.theme-dark .skeleton {
+  background: var(--surface-tertiary);
+}
+
+.theme-dark .skeleton::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+}
+
+.theme-dark input,
+.theme-dark select,
+.theme-dark textarea {
+  background: var(--surface-secondary);
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+.theme-dark input:focus,
+.theme-dark select:focus,
+.theme-dark textarea:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px var(--brand-primary-bg);
+}

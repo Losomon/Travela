@@ -1,0 +1,87 @@
+/* Booking Pipeline - Kanban Stages */
+
+.booking-pipeline {
+  display: flex;
+  gap: var(--spacing-4);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-4);
+}
+
+.pipeline-stage {
+  min-width: 280px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+}
+
+.pipeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-3);
+  padding: var(--spacing-2);
+}
+
+.pipeline-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+}
+
+.pipeline-count {
+  background: var(--gray-200);
+  padding: var(--spacing-0_5) var(--spacing-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+}
+
+.pipeline-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.pipeline-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+  border: 1px solid var(--gray-200);
+  cursor: pointer;
+  transition: all var(--transition-premium);
+}
+
+.pipeline-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.pipeline-card-customer {
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--spacing-1);
+}
+
+.pipeline-card-details {
+  font-size: var(--text-xs);
+  color: var(--gray-500);
+  margin-bottom: var(--spacing-2);
+}
+
+.pipeline-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+}
+
+.pipeline-card-price {
+  font-weight: var(--font-bold);
+  color: var(--brand-primary);
+}
+
+/* Stage Colors */
+.pipeline-stage.inquiry .pipeline-title { color: var(--gray-500); }
+.pipeline-stage.pending .pipeline-title { color: var(--warning); }
+.pipeline-stage.confirmed .pipeline-title { color: var(--info); }
+.pipeline-stage.preparing .pipeline-title { color: var(--brand-primary); }
+.pipeline-stage.ontour .pipeline-title { color: var(--success); }
+.pipeline-stage.completed .pipeline-title { color: var(--success); }
+.pipeline-stage.cancelled .pipeline-title { color: var(--danger); }

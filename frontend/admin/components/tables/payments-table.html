@@ -1,0 +1,43 @@
+<!-- Payments Table Component -->
+<div class="table-container">
+    <div class="table-toolbar">
+        <div class="search-wrapper">
+            <input type="text" class="table-search" placeholder="Search payments..." id="paymentsSearch">
+        </div>
+        <div class="table-filters">
+            <select class="filter-select" id="statusFilter">
+                <option value="all">All Payments</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="refunded">Refunded</option>
+            </select>
+            <select class="filter-select" id="methodFilter">
+                <option value="all">All Methods</option>
+                <option value="card">Credit Card</option>
+                <option value="bank">Bank Transfer</option>
+                <option value="cash">Cash</option>
+            </select>
+            <button class="btn-secondary btn-sm">Export</button>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="data-table payments-table">
+            <thead>
+                <tr>
+                    <th data-sort="customer">Customer <span class="sort-icon">↕️</span></th>
+                    <th data-sort="amount">Amount <span class="sort-icon">↕️</span></th>
+                    <th data-sort="method">Method <span class="sort-icon">↕️</span></th>
+                    <th data-sort="date">Date <span class="sort-icon">↕️</span></th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="paymentsTableBody">
+                <tr class="loading-row">
+                    <td colspan="6"><div class="skeleton-row"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<!-- Customers Table Component -->
+<div class="table-container">
+    <div class="table-toolbar">
+        <div class="search-wrapper">
+            <input type="text" class="table-search" placeholder="Search customers..." id="customersSearch">
+        </div>
+        <div class="table-filters">
+            <select class="filter-select" id="statusFilter">
+                <option value="all">All Customers</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="vip">VIP</option>
+            </select>
+            <button class="btn-secondary btn-sm export-btn">Export</button>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="data-table customers-table">
+            <thead>
+                <tr>
+                    <th data-sort="name">Name <span class="sort-icon">↕️</span></th>
+                    <th data-sort="email">Email <span class="sort-icon">↕️</span></th>
+                    <th data-sort="bookings">Total Bookings <span class="sort-icon">↕️</span></th>
+                    <th data-sort="spent">Total Spent <span class="sort-icon">↕️</span></th>
+                    <th data-sort="status">Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="customersTableBody">
+                <tr class="loading-row">
+                    <td colspan="6"><div class="skeleton-row"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

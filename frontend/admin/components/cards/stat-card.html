@@ -1,0 +1,26 @@
+<!-- Stat Card - Reusable KPI Card -->
+<div class="stat-card" data-stat-id="{{id}}">
+    <div class="stat-card-inner">
+        <div class="stat-left">
+            <span class="stat-label">{{label}}</span>
+            <div class="stat-value" data-value="{{value}}">
+                {{formattedValue}}
+            </div>
+            <div class="stat-trend {{trendDirection}}">
+                {{trendIcon}} {{trendValue}}%
+                <span class="stat-period">vs {{period}}</span>
+            </div>
+        </div>
+        <div class="stat-right">
+            <div class="stat-icon" style="background: {{iconBg}}">
+                {{icon}}
+            </div>
+            <div class="stat-sparkline">
+                <canvas class="spark-canvas" width="80" height="40" data-spark="{{sparkData}}"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="stat-tooltip" style="display: none;">
+        <div class="tooltip-content"></div>
+    </div>
+</div>

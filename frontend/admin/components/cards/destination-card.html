@@ -1,0 +1,32 @@
+<!-- Destination Card -->
+<div class="destination-card" data-destination-id="{{id}}">
+    <div class="destination-image">
+        <img src="{{imageUrl}}" alt="{{name}}" loading="lazy">
+        <div class="destination-badge {{badgeClass}}">{{badgeText}}</div>
+    </div>
+    <div class="destination-content">
+        <h3 class="destination-title">{{name}}</h3>
+        <div class="destination-location">
+            <span>📍</span>
+            <span>{{country}}</span>
+        </div>
+        <div class="destination-stats">
+            <div class="stat">
+                <span class="stat-value">{{tourCount}}</span>
+                <span class="stat-label">Tours</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">{{bookingCount}}</span>
+                <span class="stat-label">Bookings</span>
+            </div>
+        </div>
+        <div class="destination-revenue">
+            <span class="revenue-label">Revenue:</span>
+            <span class="revenue-value">${{revenue}}</span>
+        </div>
+    </div>
+    <div class="destination-actions">
+        <button class="btn-secondary btn-sm">View Details</button>
+        <button class="btn-icon" aria-label="More options">⋯</button>
+    </div>
+</div>

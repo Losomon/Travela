@@ -1,0 +1,23 @@
+<!-- AI Insight Card -->
+<div class="ai-insight-card {{type}}">
+    <div class="ai-badge">
+        <span>✨ AI Insight</span>
+    </div>
+    <div class="ai-title">{{title}}</div>
+    <div class="ai-description">{{description}}</div>
+    <div class="ai-metric">
+        {{metricValue}}
+        <span class="ai-metric-label">{{metricLabel}}</span>
+    </div>
+    <div class="ai-prediction">
+        <div class="prediction-label">Confidence</div>
+        <div class="confidence-bar">
+            <div class="confidence-fill" style="width: {{confidence}}%"></div>
+        </div>
+        <div class="confidence-value">{{confidence}}%</div>
+    </div>
+    <div class="ai-actions">
+        <button class="btn-ghost-sm ai-action-btn">View Details →</button>
+        <button class="btn-ghost-sm ai-action-btn">Dismiss</button>
+    </div>
+</div>

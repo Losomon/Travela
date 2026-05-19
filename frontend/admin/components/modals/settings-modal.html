@@ -1,0 +1,49 @@
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settingsModal" style="display: none;">
+    <div class="modal modal-lg">
+        <div class="modal-header">
+            <h3 class="modal-title">Workspace Settings</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="general">General</button>
+                <button class="settings-tab" data-tab="notifications">Notifications</button>
+                <button class="settings-tab" data-tab="billing">Billing</button>
+                <button class="settings-tab" data-tab="team">Team</button>
+            </div>
+            
+            <div class="settings-content">
+                <div class="settings-panel active" data-panel="general">
+                    <div class="form-group">
+                        <label class="form-label">Workspace Name</label>
+                        <input type="text" class="form-input" value="The Coconut Saraih">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Timezone</label>
+                        <select class="form-select">
+                            <option>UTC-5 (Eastern Time)</option>
+                            <option>UTC+0 (GMT)</option>
+                            <option>UTC+1 (Central European)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="settings-panel" data-panel="notifications">
+                    <div class="toggle-group">
+                        <span>New booking alerts</span>
+                        <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="toggle-group">
+                        <span>Payment confirmations</span>
+                        <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary cancel-btn">Cancel</button>
+            <button class="btn-primary save-btn">Save Changes</button>
+        </div>
+    </div>
+</div>

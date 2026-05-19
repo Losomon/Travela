@@ -1,0 +1,45 @@
+<!-- Tours Table Component -->
+<div class="table-container">
+    <div class="table-toolbar">
+        <div class="search-wrapper">
+            <input type="text" class="table-search" placeholder="Search tours..." id="toursSearch">
+        </div>
+        <div class="table-filters">
+            <select class="filter-select" id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="adventure">Adventure</option>
+                <option value="cultural">Cultural</option>
+                <option value="relaxation">Relaxation</option>
+                <option value="nature">Nature</option>
+            </select>
+            <select class="filter-select" id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="draft">Draft</option>
+            </select>
+            <button class="btn-secondary btn-sm">Export</button>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="data-table tours-table">
+            <thead>
+                <tr>
+                    <th>Tour Name</th>
+                    <th>Destination</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Bookings</th>
+                    <th>Rating</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="toursTableBody">
+                <tr class="loading-row">
+                    <td colspan="8"><div class="skeleton-row"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

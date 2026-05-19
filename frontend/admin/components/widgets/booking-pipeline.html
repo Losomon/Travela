@@ -1,0 +1,48 @@
+<!-- Booking Pipeline Widget -->
+<div class="booking-pipeline-widget">
+    <div class="pipeline-header">
+        <h3 class="pipeline-title">Booking Pipeline</h3>
+        <div class="pipeline-summary">
+            <span class="pipeline-count">{{totalBookings}}</span>
+            <span class="pipeline-label">Total Bookings</span>
+        </div>
+    </div>
+    <div class="pipeline-stages">
+        <div class="stage" data-stage="inquiry">
+            <div class="stage-header">
+                <span class="stage-name">Inquiry</span>
+                <span class="stage-count">{{inquiryCount}}</span>
+            </div>
+            <div class="stage-progress">
+                <div class="progress-bar" style="width: {{inquiryPercent}}%"></div>
+            </div>
+        </div>
+        <div class="stage" data-stage="pending">
+            <div class="stage-header">
+                <span class="stage-name">Pending</span>
+                <span class="stage-count">{{pendingCount}}</span>
+            </div>
+            <div class="stage-progress">
+                <div class="progress-bar" style="width: {{pendingPercent}}%"></div>
+            </div>
+        </div>
+        <div class="stage" data-stage="confirmed">
+            <div class="stage-header">
+                <span class="stage-name">Confirmed</span>
+                <span class="stage-count">{{confirmedCount}}</span>
+            </div>
+            <div class="stage-progress">
+                <div class="progress-bar" style="width: {{confirmedPercent}}%"></div>
+            </div>
+        </div>
+        <div class="stage" data-stage="completed">
+            <div class="stage-header">
+                <span class="stage-name">Completed</span>
+                <span class="stage-count">{{completedCount}}</span>
+            </div>
+            <div class="stage-progress">
+                <div class="progress-bar" style="width: {{completedPercent}}%"></div>
+            </div>
+        </div>
+    </div>
+</div>

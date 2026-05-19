@@ -1,0 +1,16 @@
+<!-- Donut Chart Component -->
+<div class="donut-chart-widget">
+    <div class="widget-header">
+        <h3 class="widget-title">{{title}}</h3>
+    </div>
+    <div class="donut-container">
+        <canvas id="{{chartId}}" width="200" height="200"></canvas>
+        <div class="donut-center">
+            <div class="donut-value">{{centerValue}}</div>
+            <div class="donut-label">{{centerLabel}}</div>
+        </div>
+    </div>
+    <div class="donut-legend" id="{{legendId}}">
+        <!-- Legend items injected dynamically -->
+    </div>
+</div>

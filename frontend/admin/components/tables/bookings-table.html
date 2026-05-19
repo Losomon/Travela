@@ -1,0 +1,57 @@
+<!-- Bookings Table Component -->
+<div class="table-container">
+    <div class="table-toolbar">
+        <div class="search-wrapper">
+            <input type="text" class="table-search" placeholder="Search bookings..." id="bookingsSearch">
+        </div>
+        <div class="table-filters">
+            <select class="filter-select" id="statusFilter">
+                <option value="all">All Status</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="pending">Pending</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <select class="filter-select" id="dateFilter">
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="90">Last 90 days</option>
+                <option value="all">All time</option>
+            </select>
+            <button class="btn-secondary btn-sm export-btn">Export</button>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="data-table bookings-table">
+            <thead>
+                <tr>
+                    <th data-sort="customer">Customer <span class="sort-icon">↕️</span></th>
+                    <th data-sort="tour">Tour / Package <span class="sort-icon">↕️</span></th>
+                    <th data-sort="date">Date <span class="sort-icon">↕️</span></th>
+                    <th data-sort="amount">Amount <span class="sort-icon">↕️</span></th>
+                    <th data-sort="status">Status</th>
+                    <th data-sort="payment">Payment</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="bookingsTableBody">
+                <!-- Dynamic rows injected here -->
+                <tr class="loading-row">
+                    <td colspan="7"><div class="skeleton-row"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="table-pagination" id="bookingsPagination">
+        <div class="pagination-info">Showing 1-10 of 1,248 entries</div>
+        <div class="pagination-controls">
+            <button class="pagination-prev" disabled>Previous</button>
+            <button class="pagination-page active">1</button>
+            <button class="pagination-page">2</button>
+            <button class="pagination-page">3</button>
+            <button class="pagination-page">4</button>
+            <button class="pagination-next">Next</button>
+        </div>
+    </div>
+</div>

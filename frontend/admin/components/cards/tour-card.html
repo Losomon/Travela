@@ -1,0 +1,46 @@
+<!-- Tour Card - For Tours & Packages Grid -->
+<div class="tour-card" data-tour-id="{{id}}">
+    <div class="tour-image">
+        <img src="{{imageUrl}}" alt="{{name}}" loading="lazy">
+        <div class="tour-badge {{badgeClass}}">{{badgeText}}</div>
+        <div class="tour-rating">
+            <span class="stars">★★★★☆</span>
+            <span class="rating-value">4.8</span>
+        </div>
+    </div>
+    <div class="tour-content">
+        <h3 class="tour-title">{{name}}</h3>
+        <div class="tour-location">
+            <span>📍</span>
+            <span>{{location}}</span>
+        </div>
+        <div class="tour-metrics">
+            <div class="metric">
+                <span class="metric-value">{{duration}}</span>
+                <span class="metric-label">days</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value">{{maxGroupSize}}</span>
+                <span class="metric-label">max guests</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value">{{languages}}</span>
+                <span class="metric-label">languages</span>
+            </div>
+        </div>
+        <div class="tour-price-section">
+            <div class="tour-price">
+                <span class="price-amount">${{price}}</span>
+                <span class="price-period">/ person</span>
+            </div>
+            <div class="tour-availability">
+                <span class="availability-status {{availabilityClass}}"></span>
+                <span>{{availabilityText}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="tour-footer">
+        <button class="btn-secondary btn-sm view-details">View Details</button>
+        <button class="btn-primary btn-sm book-now">Book Now</button>
+    </div>
+</div>

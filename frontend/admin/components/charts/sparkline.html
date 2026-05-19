@@ -1,0 +1,13 @@
+<!-- Sparkline Chart Component -->
+<div class="sparkline-widget">
+    <div class="sparkline-header">
+        <span class="sparkline-label">{{label}}</span>
+        <span class="sparkline-value">{{value}}</span>
+    </div>
+    <div class="sparkline-container">
+        <canvas class="sparkline" data-values="{{data}}" width="120" height="40"></canvas>
+    </div>
+    <div class="sparkline-footer">
+        <span class="sparkline-trend {{trendClass}}">{{trendIcon}} {{trend}}</span>
+    </div>
+</div>

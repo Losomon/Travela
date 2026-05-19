@@ -1,0 +1,47 @@
+<!-- Revenue Chart Component -->
+<div class="chart-card">
+    <div class="chart-header">
+        <div class="chart-title-section">
+            <h3 class="chart-title">Revenue Overview</h3>
+            <p class="chart-subtitle">Weekly revenue tracking</p>
+        </div>
+        <div class="chart-controls">
+            <div class="chart-legend" id="revenueLegend">
+                <div class="legend-item" data-dataset="0">
+                    <div class="legend-color" style="background: #6366f1"></div>
+                    <span>Total Revenue</span>
+                </div>
+                <div class="legend-item" data-dataset="1">
+                    <div class="legend-color" style="background: #10b981"></div>
+                    <span>Bookings</span>
+                </div>
+                <div class="legend-item" data-dataset="2">
+                    <div class="legend-color" style="background: #ef4444"></div>
+                    <span>Cancellations</span>
+                </div>
+            </div>
+            <div class="chart-filters">
+                <button class="filter-chip active" data-range="week">This Week</button>
+                <button class="filter-chip" data-range="month">This Month</button>
+                <button class="filter-chip" data-range="year">This Year</button>
+            </div>
+        </div>
+    </div>
+    <div class="chart-container">
+        <canvas id="revenueCanvas" width="800" height="400"></canvas>
+    </div>
+    <div class="chart-footer">
+        <div class="chart-summary">
+            <div class="summary-item">
+                <span class="summary-label">Total Revenue</span>
+                <span class="summary-value" id="totalRevenue">$128,540</span>
+                <span class="summary-change positive">↑ 18.6%</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Avg. Daily</span>
+                <span class="summary-value" id="avgDaily">$18,363</span>
+            </div>
+        </div>
+        <button class="btn-ghost-sm download-chart">Download Report →</button>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<!-- Booking Modal - Create/Edit Booking -->
+<div class="modal-overlay" id="bookingModal" style="display: none;">
+    <div class="modal modal-lg">
+        <div class="modal-header">
+            <h3 class="modal-title">{{modalTitle}}</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="bookingForm" class="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Customer Name *</label>
+                        <input type="text" class="form-input" name="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Customer Email *</label>
+                        <input type="email" class="form-input" name="customerEmail" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tour / Package *</label>
+                        <select class="form-select" name="tourId" required>
+                            <option value="">Select a tour...</option>
+                            <option value="1">Bali Paradise</option>
+                            <option value="2">Switzerland Trip</option>
+                            <option value="3">Iceland Adventure</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Booking Date *</label>
+                        <input type="date" class="form-input" name="bookingDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Number of Guests *</label>
+                        <input type="number" class="form-input" name="guests" min="1" max="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Special Requests</label>
+                        <textarea class="form-textarea" name="specialRequests" rows="2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Payment Method</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="card"> Credit Card
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="bank"> Bank Transfer
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="cash"> Cash
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary cancel-btn">Cancel</button>
+            <button class="btn-primary save-btn">Save Booking</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<!-- Metric Card Widget - Reusable KPI Card -->
+<div class="metric-card" data-metric-id="{{id}}">
+    <div class="metric-header">
+        <div class="metric-title">{{title}}</div>
+        <div class="metric-icon">{{icon}}</div>
+    </div>
+    <div class="metric-value" data-value="{{value}}">{{formattedValue}}</div>
+    <div class="metric-trend {{trendClass}}">
+        {{trendIcon}} {{trendValue}}%
+        <span class="trend-sub">vs last {{period}}</span>
+    </div>
+    <canvas class="sparkline" data-spark-data="{{sparkData}}" width="120" height="44"></canvas>
+</div>

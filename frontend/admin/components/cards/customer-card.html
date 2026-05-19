@@ -1,0 +1,31 @@
+<!-- Customer Card -->
+<div class="customer-card" data-customer-id="{{id}}">
+    <div class="customer-header">
+        <div class="customer-avatar">
+            <img src="{{avatarUrl}}" alt="{{name}}" loading="lazy">
+        </div>
+        <div class="customer-status {{statusClass}}"></div>
+    </div>
+    <div class="customer-content">
+        <h3 class="customer-name">{{name}}</h3>
+        <div class="customer-email">{{email}}</div>
+        <div class="customer-meta">
+            <span class="customer-tier">{{tier}}</span>
+            <span class="customer-bookings">{{totalBookings}} bookings</span>
+        </div>
+    </div>
+    <div class="customer-stats">
+        <div class="stat">
+            <span class="stat-label">Total Spent</span>
+            <span class="stat-value">${{totalSpent}}</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Last Booking</span>
+            <span class="stat-value">{{lastBookingDate}}</span>
+        </div>
+    </div>
+    <div class="customer-actions">
+        <button class="btn-ghost-sm">Message</button>
+        <button class="btn-secondary btn-sm">View Profile</button>
+    </div>
+</div>
